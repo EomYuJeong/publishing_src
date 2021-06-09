@@ -1,0 +1,158 @@
+/*font*/
+@font-face {font-family: "NanumB"; 
+	src: url("//db.onlinewebfonts.com/t/232b0a3fe86157c969fd810572c7fa85.eot"); 
+	src: url("//db.onlinewebfonts.com/t/232b0a3fe86157c969fd810572c7fa85.eot?#iefix") format("embedded-opentype"), 
+		url("//db.onlinewebfonts.com/t/232b0a3fe86157c969fd810572c7fa85.woff2") format("woff2"), 
+		url("//db.onlinewebfonts.com/t/232b0a3fe86157c969fd810572c7fa85.woff") format("woff"),
+		url("//db.onlinewebfonts.com/t/232b0a3fe86157c969fd810572c7fa85.ttf") format("truetype"),
+		url("//db.onlinewebfonts.com/t/232b0a3fe86157c969fd810572c7fa85.svg#NanumSquare Bold") format("svg"); }
+/*snapt_wrapper*/
+.snapt_wrapper{font-family:'NanumSquare', sans-serif;padding-bottom:84px;overflow:hidden}
+.snapt_wrapper .snapt_top_box{position:relative}
+.snapt_wrapper .snapt_top_box .img_box{position:relative;height:909px;overflow:hidden}
+.snapt_wrapper .snapt_top_box .img_box img{width:1920px;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2}
+.snapt_wrapper .snapt_top_box .text_box{top:150px;z-index:10;position:absolute;left:0;width:100%;text-align:center}
+.snapt_wrapper .snapt_top_box .text_header{color:#fff;font-size:77px;font-weight:bold;font-family:'NanumB'}
+.snapt_wrapper .snapt_top_box .text_cont{color:#fff;font-size:38px}
+.snapt_wrapper .snapt_cont_tab{text-align:center;margin-top:137px}
+.snapt_wrapper .snapt_cont_tab ul{display:inline-block;border-bottom:3px solid #f1f1f1;height:76px}
+.snapt_wrapper .snapt_cont_tab ul li{float:left;margin-right:54px}
+.snapt_wrapper .snapt_cont_tab ul li:last-child{margin-right:0}
+.snapt_wrapper .snapt_cont_tab ul li a{display:block;font-size:25px;color:#000;line-height:1;font-weight:bold;height:76px;line-height:76px}
+.snapt_wrapper .snapt_cont_tab ul li a:hover{text-decoration:none}
+.snapt_wrapper .snapt_cont_tab ul li.on a{border-bottom:3px solid #000}
+.snapt_wrapper .snapt_cont_tab ul li.snapt a{color:#009ae1}
+.snapt_wrapper .h_ln{margin-top:130px;padding-top:130px;height:6px;position:relative}
+.snapt_wrapper .h_ln:before{width:620px;height:6px;background:#dcdcdc;position:absolute;content:'';top:0;left:50%;transform:translateX(-50%)}
+.snapt_wrapper .btn{height:40px;color:#fff;font-weight:bold;font-size:20px;border-radius:20px;min-width:162px;padding:0 23px;background:#000;transition:transform .2s cubic-bezier(.235,0,.05,.95);cursor:pointer;line-height:1}
+.snapt_wrapper .btn:hover{transform:scale(1.05)}
+/*original*/
+.snapt_wrapper #original .original_dt_wrap{width:100%;max-width:1534px;overflow:hidden;margin:100px auto 200px;}
+.snapt_wrapper #original .original_dt_wrap .row{margin:0;position:relative;height:765px}
+.snapt_wrapper #original .original_dt_wrap .row .txt_cont{float:left;width:50%}
+.snapt_wrapper #original .original_dt_wrap .row .txt_cont .tit{font-family:'NanumB';font-size:66px;color:#3d3d3d;margin-bottom:20px;font-weight:bold;line-height:1.2;margin-bottom:10px;padding-top:150px}
+.snapt_wrapper #original .original_dt_wrap .row .txt_cont .cont{font-size:20px;color:#3d3d3d;line-height:46px;font-weight:bold;width:70%;word-break:keep-all}
+.snapt_wrapper #original .original_dt_wrap .row .img_box{float:left;width:50%}
+.snapt_wrapper #original .original_dt_wrap .row.item_lft .txt_cont{box-sizing:border-box;padding-left:58%;width:100%}
+.snapt_wrapper #original .original_dt_wrap .row.item_lft .img_box{position:absolute;top:0;left:0}
+.snapt_wrapper #original .original_dt_wrap .row.item_lft .cont{width:82%}
+.snapt_wrapper #original .img_snapt_full_box{position:relative}
+.snapt_wrapper #original .img_snapt_full_box .img_box{position:relative;height:905px;overflow:hidden}
+.snapt_wrapper #original .img_snapt_full_box .img_box img{width:1920px;position:absolute;left:50%;margin-left:-960px;z-index:2;top:0}
+.snapt_wrapper #original .img_snapt_full_box .btn{position:absolute;z-index:10;top:50%;left:50%;margin:-20px 0 0 -105px}
+/*history*/
+.snapt_wrapper #history .history_list_wrap{max-width:1180px;width:100%;margin:0 auto}
+.snapt_wrapper #history .history_list_wrap .item{height:330px;position:relative;margin-bottom:150px}
+.snapt_wrapper #history .history_list_wrap .item .year_img{position:absolute;left:46%}
+.snapt_wrapper #history .history_list_wrap .item .history_info{width:50%;position:relative;z-index:10}
+.snapt_wrapper #history .history_list_wrap .item .history_info .year{font-size:57px;color:#3d3d3d;font-weight:bold;line-height:1;margin-bottom:10px;font-family:'NanumB'}
+.snapt_wrapper #history .history_list_wrap .item .history_info .dscrt{font-size:20px;color:#3d3d3d;line-height:2;width:90%;word-break:keep-all;font-weight:bold}
+.snapt_wrapper #history .history_list_wrap .item.y1985 .history_info .dscrt{width:100%}
+.snapt_wrapper #history .history_list_wrap .item .history_info .t_emph{font-weight:bold;color:#ff3600;font-size:24px}
+.snapt_wrapper #history .history_list_wrap .item.item_rig{padding-left:44%}
+.snapt_wrapper #history .history_list_wrap .item.item_rig .history_info{width:auto}
+.snapt_wrapper #history .history_list_wrap .item.item_rig .year_img{left:0}
+.snapt_wrapper #history .history_list_wrap .item.y1985 .year_img{top:5%}
+.snapt_wrapper #history .history_list_wrap .item.y1986 .year_img{top:-18%}
+.snapt_wrapper #history .history_list_wrap .item.y1989 .year_img{top:-10%}
+.snapt_wrapper #history .history_list_wrap .item.y1991 .year_img{top:-5%}
+.snapt_wrapper #history .history_list_wrap .item.y1994 .year_img{top:-20%}
+.snapt_wrapper #history .history_list_wrap .item.y2007 .year_img{left:40%;top:-10%}
+.snapt_wrapper #history .history_list_wrap .item.y2013 .year_img{top:-15%;}
+.snapt_wrapper #history .history_list_wrap .item.y2014 .year_img{left:42%}
+/*mysnapt*/
+.snapt_wrapper #mysnapt{}
+.snapt_wrapper #mysnapt .tit{font-size:70px;color:#0881df;line-height:1;font-weight:bold;font-family:'NanumB';text-align:center}
+.snapt_wrapper #mysnapt .mysnapt_lst_wrap{}
+.snapt_wrapper #mysnapt .mysnapt_lst_wrap .mysnapt_lst{margin-top:50px;text-align:center}
+.snapt_wrapper #mysnapt .mysnapt_lst_wrap .mysnapt_lst ul{display:inline-block;width:1080px;overflow:hidden}
+.snapt_wrapper #mysnapt .mysnapt_lst_wrap .mysnapt_lst ul li{padding:6px;box-sizing:border-box;width:33.33%;float:left;position:relative}
+.snapt_wrapper #mysnapt .mysnapt_lst_wrap .mysnapt_lst ul li .img_txt{position:absolute;width:100%;left:0;}
+.snapt_wrapper #mysnapt .mysnapt_lst_wrap .mysnapt_lst ul li .img_txt2{}
+.snapt_wrapper #mysnapt .paging{text-align:center;margin-top:35px}
+.snapt_wrapper #mysnapt .paging .now{font-size:20px;color:#3d3d3d;font-weight:bold;display:inline-block;vertical-align:top;margin:0 9px;height:30px;line-height:30px}
+.snapt_wrapper #mysnapt .paging .num{font-size:20px;color:#3d3d3d;display:inline-block;vertical-align:top;margin:0 9px;height:30px;line-height:30px}
+.snapt_wrapper #mysnapt .mysnapt_dscrt{text-align:center;margin-top:70px;font-size:20px;color:#3d3d3d;line-height:43px;font-weight:bold}
+.snapt_wrapper #mysnapt .button_wrap{padding-top:36px;text-align:center}
+.snapt_wrapper #mysnapt .slct_slider_wrap .slick-slider{text-align:center}
+.snapt_wrapper #mysnapt .slct_slider_wrap .slick-slider .slick-prev{background:url('../images/ico_arr_left.png') 0 0 no-repeat;width:47px;height:60px;overflow:hidden;text-indent:-999px;left:20px;top:50%;transform:translateY(-50%);position:absolute;z-index:100}
+.snapt_wrapper #mysnapt .slct_slider_wrap .slick-slider .slick-next{background:url('../images/ico_arr_right.png') 0 0 no-repeat;width:47px;height:60px;overflow:hidden;text-indent:-999px;right:20px;top:50%;transform:translateY(-50%);position:absolute;z-index:100}
+.snapt_wrapper #mysnapt .slct_slider_wrap .slick-slider .slick-slide{padding:35px 0}
+.snapt_wrapper #mysnapt .slct_slider_wrap .slick-slider img{display:inline}
+.snapt_wrapper #mysnapt .slct_slider_wrap{margin-top:35px;}
+.snapt_wrapper #mysnapt .slct_slider_wrap .sld_tit{border-bottom:2px solid #dcdcdc;text-align:center;height:30px;}
+.snapt_wrapper #mysnapt .slct_slider_wrap .sld_tit .tt{width:175px;height:30px;line-height:32px;color:#fff;text-align:center;display:inline-block;background:#dcdcdc;font-family:'NanumB';font-size:20px;white-space:nowrap;border-top-left-radius:5px;border-top-right-radius:5px}
+.snapt_wrapper #mysnapt .snapt_result_box{width:450px;height:450px;border:5px solid #dcdcdc;margin:50px auto 110px;position:relative}
+.snapt_wrapper #mysnapt .snapt_result_box .btn_del{position:absolute;background:#fff url('../images/btn_del.png') 0 0 no-repeat;width:41px;height:41px;border-radius:50%;z-index:10;top:18px;right:18px;overflow:hidden;text-indent:-999px}
+.snapt_wrapper #mysnapt .snapt_result_box .draggable_box{width:340px;background:#fff;height:9px;bottom:28px;left:50%;transform:translateX(-50%);z-index:3;position:absolute;border-radius:3px}
+.snapt_wrapper #mysnapt .snapt_result_box .draggable_box .drag_btn{position:absolute;width:23px;height:23px;background:#fff;cursor:pointer;border-radius:50%;top:-8px;z-index:10}
+
+/*collection*/
+.snapt_wrapper #collection{}
+.snapt_wrapper #collection .title{line-height:1;font-size:70px;color:#373737;text-align:center;font-family:'NanumB';font-weight:bold;margin-bottom:60px}
+.snapt_wrapper #collection .collection_thumbnail{text-align:center}
+.snapt_wrapper #collection .collection_thumbnail ul{width:1464px;overflow:hidden;display:inline-block}
+.snapt_wrapper #collection .collection_thumbnail ul li{float:left;width:25%;box-sizing:border-box;padding:13px}
+.snapt_wrapper #collection .collection_thumbnail ul li a{}
+.snapt_wrapper #collection .collection_thumbnail ul li a img{width:100%}
+/*our_footprint*/
+.snapt_wrapper #our_footprint{max-width:1688px;margin:0 auto}
+.snapt_wrapper #our_footprint .footprint_box{}
+.snapt_wrapper #our_footprint .footprint_box .title{font-size:32px;font-weight:bold;color:#3d3d3d;margin-bottom:30px;line-height:1;font-family:'NanumB'}
+.snapt_wrapper #our_footprint .footprint_box .item{width:49%;height:556px;background:#f4f4f4;border-radius:5px;position:relative}
+.snapt_wrapper #our_footprint .footprint_box .item.item_l{float:left;background:#f4f4f4 url('../images/bg_footprint.png') 100% 0 no-repeat}
+.snapt_wrapper #our_footprint .footprint_box .item.item_r{float:right;background:#f4f4f4 url('../images/bg_footprint2.png') 100% 0 no-repeat}
+.snapt_wrapper #our_footprint .footprint_box .item .dscrt_bx{position:absolute;left:6%;bottom:10%;z-index:10;width:42%}
+.snapt_wrapper #our_footprint .footprint_box .item .tit{color:#000;font-weight:bold;font-size:24px;line-height:1;margin-bottom:15px;font-family:'NanumB'}
+.snapt_wrapper #our_footprint .footprint_box .item .cont{line-height:26px;font-size:20px;color:#000;font-weight:bold;}
+.snapt_wrapper #our_footprint .footprint_box .item .mt{font-size:13px;margin-top:50px;line-height:1;color:#2a2a2a;font-weight:bold;font-family:'NanumB'}
+.snapt_wrapper #our_footprint .footprint_box .item .btn_more{height:42px;font-weight:bold;font-family:'NanumB';font-size:12px;padding:0 34px;position:absolute;right:5%;bottom:8%;background:#fff;border-radius:20px;transition:transform .2s cubic-bezier(.235,0,.05,.95)}
+.snapt_wrapper #our_footprint .footprint_box .item .btn_more:hover{transform:scale(1.1)}
+
+
+@media screen and (max-width:768px){
+	.snapt_wrapper .h_ln{margin:60px auto 0;padding-top:60px;height:3px;width:50%}
+	.snapt_wrapper .h_ln:before{width:100%;height:3px}
+	.snapt_wrapper .snapt_top_box .text_box{top:14%}
+	.snapt_wrapper .snapt_top_box .text_header{font-size:32px}
+	.snapt_wrapper .snapt_top_box .text_cont{font-size:24px}
+	.snapt_wrapper .snapt_cont_tab{margin-top:60px;padding:0 10px}
+	.snapt_wrapper .snapt_cont_tab ul{width:100%;height:40px}
+	.snapt_wrapper .snapt_cont_tab ul li{margin:0;width:25%}
+	.snapt_wrapper .snapt_cont_tab ul li a{font-size:13px;height:40px;line-height:40px}
+	.snapt_wrapper #original .original_dt_wrap{margin:0;}
+	.snapt_wrapper #original .original_dt_wrap .row .txt_cont{float:none;width:100%}
+	.snapt_wrapper #original .original_dt_wrap .row .img_box{float:none;width:100%;padding:0 20px}
+	.snapt_wrapper #original .original_dt_wrap .row .img_box img{width:100%}
+	.snapt_wrapper #original .original_dt_wrap .row .txt_cont .tit{padding:50px 20px 0;font-size:34px}
+	.snapt_wrapper #original .original_dt_wrap .row .txt_cont .cont{width:100%;padding:0 20px;font-size:16px;line-height:30px}
+	.snapt_wrapper #original .original_dt_wrap .row.item_lft .txt_cont{padding-left:0}
+	.snapt_wrapper #original .original_dt_wrap .row.item_lft .img_box{position:relative}
+	.snapt_wrapper #original .img_snapt_full_box .img_box{height:100vh}
+	.snapt_wrapper #history .history_list_wrap .item{height:auto;margin-bottom:50px}
+	.snapt_wrapper #history .history_list_wrap .item.item_rig{padding-left:0;}
+	.snapt_wrapper #history .history_list_wrap .item .year_img{position:relative;top:0 !important;padding:0 30px;left:0 !important}
+	.snapt_wrapper #history .history_list_wrap .item .year_img img{width:100%}
+	.snapt_wrapper #history .history_list_wrap .item .history_info{width:100%}
+	.snapt_wrapper #history .history_list_wrap .item .history_info .year{padding:20px;text-align:center;font-size:42px}
+	.snapt_wrapper #history .history_list_wrap .item .history_info .dscrt{width:100%;padding:0 20px;line-height:1.6;font-size:16px}
+	.snapt_wrapper #history .history_list_wrap .item .history_info .t_emph{font-size:20px}
+	.snapt_wrapper #mysnapt .tit{font-size:50px}
+	.snapt_wrapper #mysnapt .mysnapt_lst_wrap .mysnapt_lst ul{width:100%}
+	.snapt_wrapper #mysnapt .mysnapt_dscrt{font-size:14px;line-height:34px}
+	.snapt_wrapper #collection .title{font-size:50px}
+	.snapt_wrapper #collection .collection_thumbnail ul{width:100%;padding:0 6px}
+	.snapt_wrapper #collection .collection_thumbnail ul li{width:50%}
+	.snapt_wrapper #our_footprint .footprint_box .title{text-align:center;}
+	.snapt_wrapper #our_footprint .footprint_box .item{width:94%;float:none !important;margin:0 auto 30px;background-size:70% !important}
+	.snapt_wrapper #our_footprint .footprint_box .item .dscrt_bx{width:86%}
+	.snapt_wrapper #mysnapt .snapt_result_box{width:320px;height:320px}
+	.snapt_wrapper #mysnapt .snapt_result_box .draggable_box{width:240px;height:6px;bottom:20px}
+	.snapt_wrapper #mysnapt .snapt_result_box .btn_del{width:30px;height:30px;background-size:contain}
+	.snapt_wrapper #mysnapt .slct_slider_wrap .slick-slider .slick-slide{padding:35px 10px}
+	.snapt_wrapper #mysnapt .slct_slider_wrap .slick-slider img{width:100%}
+	
+}
+
+
+
