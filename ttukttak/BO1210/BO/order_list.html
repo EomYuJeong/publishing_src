@@ -1,0 +1,3878 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+<title>뚝딱 관리자환경 :: 퍼스트몰, 오직 운영자만을 생각한 가장 앞선 쇼핑몰입니다.</title>
+<!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />  -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="http://www.ttukttak.kr/admin/skin/default/css/style.css" />
+<link rel="stylesheet" type="text/css" href="http://www.ttukttak.kr/app/javascript/plugin/editor/css/editor.css" />
+
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="/data/icon/favicon/favicon1568624146.ico" />
+<!-- 자바스크립트 [순서변경하지마세요] -->
+<script nonce="qXCrvnaCd410kqO1l1u3WPPX9rCBVi7inWwLxCD7W38=">window.Firstmall = window.Firstmall || {};
+window.Firstmall.Config = {"Environment":{"MobileMode":false,"SetMode":null,"Language":"KR","Currency":{"Basic":{"Id":"KRW","Symbol":"원","Position":"after"},"Skin":{"Id":"KRW","Symbol":"원","Position":"after"}},"serviceLimit":{"H_FR":false,"H_AD":true},"OperationType":"light","Protocol":"https","CacheBreaker":null},"Security":{"PreventDrag":false,"PreventContextMenu":false},"Search":{"AutoComplete":true,"Suggest":false}};
+(function(){ var aliases = {"gl_operation_type":window.Firstmall.Config.Environment.OperationType,"gl_mobile_mode":window.Firstmall.Config.Environment.MobileMode,"gl_set_mode":window.Firstmall.Config.Environment.SetMode,"gl_language":window.Firstmall.Config.Environment.Language,"gl_basic_currency":window.Firstmall.Config.Environment.Currency.Basic.Id,"gl_skin_currency":window.Firstmall.Config.Environment.Currency.Skin.Id,"gl_basic_currency_symbol":window.Firstmall.Config.Environment.Currency.Basic.Symbol,"gl_basic_currency_symbol_position":window.Firstmall.Config.Environment.Currency.Basic.Position,"gl_protocol":window.Firstmall.Config.Environment.Protocol+"://"}; for(var attr in aliases) { window[attr] = aliases[attr]; }})();</script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/plugin/jquery.hotkeys.js"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/plugin/jquery.poshytip.min.js"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/plugin/jquery.activity-indicator-1.0.0.min.js"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/plugin/jquery.cookie.js"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/plugin/custom-select-box.js"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/js/dev-tools.js"></script>
+<script type="text/javascript" src="/data/js/language/L10n_KR.js?dummy=20201201015025"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/js/common.js?dummy=20201201015025"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/js/admin-layout.js?dummy=20201201015025&krdomain=http://ttukttak.firstmall.kr"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/js/admin-common-ui.js?mm=20201201"></script>
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/jquery/html5shiv.js"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/jquery/respond.min.js"></script>
+<![endif]-->
+<script type="text/javascript">
+var video_use = 'Y';//동영상설정여부
+</script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/plugin/validate/jquery.validate.js"></script>
+
+<script type="text/javascript">
+//<![CDATA[
+var isAdminpage = true;
+
+//한글도메인체크@2013-03-12
+var fdomain = document.domain;
+var krdomain = gl_protocol+'ttukttak.firstmall.kr';
+var kordomainck = false;
+for(i=0; i<fdomain.length; i++){
+ if (((fdomain.charCodeAt(i) > 0x3130 && fdomain.charCodeAt(i) < 0x318F) || (fdomain.charCodeAt(i) >= 0xAC00 && fdomain.charCodeAt(i) <= 0xD7A3)))
+{
+	kordomainck = true;
+	break;
+}
+}
+if( !kordomainck ){
+krdomain = '';
+}
+var gl_amout_list						= new Array();
+gl_amout_list['KRW'] = '1000';
+gl_amout_list['CNY'] = '1';
+gl_amout_list['JPY'] = '100';
+gl_amout_list['EUR'] = '1';
+gl_amout_list['USD'] = '1';
+var gl_currency_exchange = "1137.30";
+
+//]]>
+</script>
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0; t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '643451206191859', {}, {'agent':'plgabia'});fbq('track', 'PageView');</script><noscript><img height='1' width='1' style='display:none' src='https://www.facebook.com/tr?id=643451206191859&ev=PageView&noscript=1' /></noscript><script async src='https://www.googletagmanager.com/gtag/js?id=AW-593611280'></script><script>window.dataLayer=window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-593611280');</script><script src="http://www.ttukttak.kr/app/javascript/plugin/jquery.bxslider.js?v=11071d8b6c642d7f088b"></script>
+</head>
+<style>
+.page-manual-btn.btn_resp {border:1px #a7a8aa solid; display:none; background: #FFF; }
+.page-title .status-isY {margin:-8px 0 0 5px;}
+.page-manual-btn {margin-left:7px !important; top:14px !important; padding:0 !important; height: 25px !important; }
+.page-manual-btn a {margin-top:1px !important; border:0 !important; background-color:#FFF !important; border-radius:0 !important; width:auto !important; box-shadow:none !important; padding:0 5px 0 20px !important; color:#000 !important; height:24px !important; line-height:24px !important; background:url(/admin/skin/default/images/common/ico_manual.png) 6px 4px no-repeat !important;}
+#page-title-bar-area #page-title-bar.flyingMode .page-manual-btn.btn_resp{border:0;}
+#page-title-bar-area #page-title-bar.flyingMode {background:#3e424e; opacity:0.94}
+</style>
+
+<script type="text/javascript">
+
+	setTimeout(function(){
+		loadIssueCounts();
+	},500);
+
+	$(function(){
+		$(".platformhelp").poshytip({
+			className: 'tip-darkgray',
+			bgImageFrameSize: 8,
+			alignTo: 'target',
+			alignX: 'up',
+			alignY: 'bottom',
+			offsetX: -55,
+			offsetY: 6,
+			allowTipHover: false,
+			slide: false,
+			showTimeout : 0
+		});
+
+		// 매뉴얼 버튼 링크
+		$("#page-title-bar").each(function(){
+			$(".page-global-btn").appendTo($(this)).show().children("a");
+			$(".page-manual-btn").appendTo($(this)).show().children("a").attr('href','http://gmanual.firstmall.kr/html/manual.php?url=order%2Fcatalog');
+		});
+
+		// 매뉴얼 설정창 띄우기
+		$("#hs-global, #page-global-btn").bind("click", function(){
+			env = $(this).attr('env');
+			if	(env != 'all'){
+				title = ' 관리환경 이동';
+				$("#global-setting .global-setting-layer").fadeIn("slow");
+				$("#global-setting .global-setting-bg").fadeIn();
+				$("#global-setting .global-setting-layer a.btn_link").bind("click", function(){
+					$(this).css({"border":"1px solid #b9b9b9",  "color":"#b9b9b9"});
+				});
+				$('#global-setting #global-title').html(title);
+			}
+		});
+		$(".global-setting-bg, .global-setting-layer .close").bind("click", function(){
+			$("#global-setting .global-setting-layer").fadeOut("slow");
+			$("#global-setting .global-setting-bg").fadeOut();
+		});
+	});
+
+	$(function(){
+		$("#layout-header .header-gnb-container ul.header-gnb li.mitem-td").each(function(){
+			$(this)
+			.bind('mouseenter',function(){
+				$("div.submenu",this).stop(true,true).show();
+			})
+			.bind('mouseleave',function(){
+				$("div.submenu",this).stop(true,true).hide();
+			});
+		});
+
+		$("#layout-header .header-gnb-container ul.header-qnb li.gnb-item").each(function(){
+			$(this)
+			.bind('mouseenter',function(){
+				$("ul.gnb-subnb",this).stop(true,true).slideDown('fast');
+			})
+			.bind('mouseleave',function(){
+				$("ul.gnb-subnb",this).stop(true,true).slideUp('fast');
+			});
+		});
+
+		// 상단 메모, 중요알림,myfirstmall link,관리자정보 메뉴 활성 비활성
+		var hsnbClass = ["hsnb-memo","hsnb-notice","hsnb-link","hsnb-admin"];
+		for(var hsnbnum=0; hsnbnum<hsnbClass.length; hsnbnum++){
+			$("#layout-header ul.header-snb li."+hsnbClass[hsnbnum]+" a").eq(0).click(function(){
+				if( $(this).hasClass('opened') ){
+					$("#layout-header ul.header-snb .item > a, #layout-header ul.header-snb .item > .hsnbm-menu").removeClass('opened');
+				}else{
+					$("#layout-header ul.header-snb .item > a, #layout-header ul.header-snb .item > .hsnbm-menu").removeClass('opened');
+					$(this).addClass('opened');
+					$(this).next().addClass('opened');
+				}
+			});
+		}
+		$(".manager_alert_view_btn").bind('click',function(){
+			$("#manager_alert_dialog").load('/admin/common/manager_alert_history');
+			openDialog("중요행위발생을 알려 드립니다!", "manager_alert_dialog", {"width":800});
+		});
+		
+		$( window ).resize(function() {
+			manualPostion()
+		});
+			manualPostion()
+	});
+
+	function manualPostion()
+	{
+		var len = $(".page-title > h2").length
+		var obj
+		if(len>1)
+		{
+			obj = $(".page-title > h2:last-child");
+		}else{
+			obj = $(".page-title > h2");
+		}
+		if( obj.length > 0){
+			$(".page-manual-btn").css("left", obj.position().left+obj.width());
+			var select = $(".page-title > select");
+			if(select.width() > 0 && select.css("display")!="none")
+			{
+				$(".page-manual-btn").css("left", select.position().left + select.width()+15);
+			}
+			$(".page-manual-btn").css("display", "inline-block");
+		}
+	}
+
+	//-->
+</script>
+
+<body>
+<div id="dumy" style="display:none"></div>
+<div id="env_move" style="display:none">
+	<table class="info-table-style" cellspacing="0">
+		<colgroup>
+			<col width="100px"/>
+			<col width="400px"/>
+			<col width="200px"/>
+			<col width="200px"/>
+			<col width="100px"/>
+		</colgroup>
+		<thead>
+			<tr>
+				<th class="its-th-align">관리명</th>
+				<th class="its-th-align">사용자 화면</th>
+				<th class="its-th-align">안내 언어</th>
+				<th class="its-th-align">기본통화</th>
+				<th class="its-th-align">관리환경</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div id="member_info_layer" class="member_info_layer hide"></div>
+<!-- 다국어 통합설정 -->
+<div id="page-global-btn" class="page-global-btn hide" env="뚝딱">	
+	<a href="javascript:;" title="관리환경 이동" style="display:none;"><img src="/data/brand_country/kr.png" alt="KR"> <strong>뚝딱</strong> KRW</a>
+</div>
+<!-- 매뉴얼 버튼 -->
+<div class="page-manual-btn btn_resp hide">
+	<a href="#" target="_blank">매뉴얼</a>
+</div>
+<!-- 다국어 관리환경 이동 -->
+<div id="global-setting">
+	<div class="global-setting-layer">
+		<h1 id="global-title">관리환경 이동</h1>
+		<table width="650" border="0" cellpadding="0" cellspacing="0">
+			<colgroup>
+				<col /><col /><col width="18%" /><col width="16%" /><col width="16%" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th scope="col">관리명</th>
+					<th scope="col">사용자 화면</th>
+					<th scope="col">안내 언어</th>
+					<th scope="col">기본 통화</th>
+					<th scope="col">관리환경</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">뚝딱</th>
+					<td>ttukttak.kr</td>
+					<td class="lang_KR">한국어</td>
+					<td class="center">KRW</td>
+					<td class="center">
+						<a class="btn_link" style="border:1px solid #b9b9b9;color:#b9b9b9;">바로가기</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="javascript:;" class="close">닫기</a>
+	</div>
+	<div class="global-setting-bg"></div>
+</div>
+
+<div id="wrap">
+	<div id="layout-container" class="P_ADVA"><!-- free premium expantion proexpantion -->
+		<div id="layout-background"  ><div class="img_bg P_ADVA"></div></div>
+		<!-- //헤더 : 백그라운드 -->
+
+		<!--[ 레이아웃 헤더 : 시작 ]-->
+		<div id="layout-header" class="icon-view">
+
+			<!-- 헤더 상단부 -->
+			<div class="header-snb-container clearbox">
+				<!-- 로고 -->
+				<a href="/admin"><h1 class="header-logo"><span>Firstmall</span></h1></a>
+
+				<!-- 우측 상단메뉴 -->
+				<ul class="header-snb clearbox">
+					<li class="item hsnb-pc">
+						<a href="//www.ttukttak.kr/?setDesignMode=off&setMode=mobile" target="_blank" title="반응형 쇼핑몰 바로가기">반응형 쇼핑몰 바로가기</a>
+					</li>
+					<li class="item hsnb-memo">
+						<a href="javascript:;" title="메모">메모</a>
+						<div class="hsnbm-menu">
+							<span class="point_b"></span>
+							<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/plugin/jquery_pagination/jquery.pager.js" charset="utf8"></script>
+
+							<div id="admin-memo">
+								<div id="admin-memo-container">
+									<div class="memo-input-container clearbox">
+										<form name="newMemoForm" action="../adminmemo_process/save" method="post" target="actionFrame">
+											<textarea class="memo-input" name="contents" title="메모를 남기세요." rows="5"></textarea>
+											<input type="image" src="http://www.ttukttak.kr/admin/skin/default/images/main/btn_save_memo.gif" class="btn_save" align="absmiddle" />
+										</form>
+									</div>
+									<div class="memo-search">
+										<form name="searchMemoForm" method="post" onsubmit="get_memo_list('',this.search_keyword.value);return false;">
+											<input type="text" class="memo-search-input" name="search_keyword" value="" class="line" title="메모 검색" />
+											<input type="image" class="memo-search-btn" src="http://www.ttukttak.kr/admin/skin/default/images/main/right_search_btn.gif" align="absmiddle"/>
+										</form>
+									</div>
+									<div class="memo-list"></div>
+									<div id="admin-memo-page" class="pager"></div>
+								</div>
+							</div>
+						</div>
+						<script>
+								var memo_page = 1;
+								var memo_animation = false;
+								var addHeight = 0;
+								var memo_opened	= false;
+
+								$(function(){
+									var memoWidth;
+									$("#admin-memo-container").height($("#layout-body").outerHeight());
+									$("#admin-memo-openbtn").toggle(function(){
+										memoWidth = 216;
+										$("#admin-memo-container").outerWidth(memoWidth).height($("#layout-body").outerHeight());
+										if(memo_animation)	$("#admin-memo").animate({'width':memoWidth,'margin-left':-memoWidth});
+										else				$("#admin-memo").css({'width':memoWidth,'margin-left':-memoWidth});
+										$(".memo-closebtn").show();
+										$(".memo-openbtn").hide();
+									},function(){
+										$("#admin-memo").animate({'width':0,'margin-left':0});
+										$(".memo-openbtn").show();
+										$(".memo-closebtn").hide();
+									});
+
+									$("#admin-memo-openbtn").click();
+									memo_animation = true;
+
+									$(".memo-item-openbtn").live('click',function(){
+										$(".memo-item").not($(this).closest('.memo-item')).removeClass('memo-item-opened');
+										$(this).closest('.memo-item').toggleClass('memo-item-opened');
+										if(memo_opened) {
+											$("#admin-memo-container").height(addHeight);		memo_opened = false;
+										} else			{
+											$("#admin-memo-container").height(addHeight + 300); memo_opened = true;
+										}
+										$("#admin-memo").height("100%");
+									});
+
+									$(".memo-item-contents").live('click',function(){
+										if(!$(this).closest('.memo-item').is(".memo-item-opened")){
+											$(this).closest('.memo-item').find(".memo-item-openbtn").click();
+										}
+									});
+
+									$(".memo-item-contents textarea").live('keydown','Ctrl+S',function(event){
+										event.preventDefault();
+										$(this.form).submit();
+										return false;
+									});
+
+									$("#admin-memo-container .memo-input").focus(function(){
+										$(".memo-input-container").addClass('memo-input-container-focused');
+									});
+									get_memo_list();
+								});
+
+								function get_memo_list(page,search_keyword){
+
+									memo_page = page ? page : memo_page;
+
+									if(search_keyword && document.searchMemoForm.search_keyword.value==document.searchMemoForm.search_keyword.title){
+										document.searchMemoForm.search_keyword.value='';
+										search_keyword='';
+									}
+
+									$.ajax({
+										'url' : '../adminmemo_process/get_list',
+										'data' : {'page':page,'search_keyword':search_keyword},
+										'type' : 'post',
+										'dataType' : 'json',
+										'global' : false,
+										'success' : function(result){
+
+											$("#admin-memo-page").show().pager({pagenumber: result.page.nowpage, pagecount: result.page.totalpage, buttonClickCallback:function(clicked_page){
+												get_memo_list(clicked_page,search_keyword);
+											}});
+
+											var html = '';
+											if( result.record ) {
+												for(var i=0;i<result.record.length;i++){
+													html += '<div class="memo-item '+(result.record[i].check=='1'?'checked':'')+'" memo_seq="'+result.record[i].memo_seq+'">';
+													html += '	<form action="../adminmemo_process/edit" method="post" target="actionFrame">';
+													html += '	<input type="hidden" name="memo_seq" value="'+result.record[i].memo_seq+'" />';
+													html += '	<div class="memo-item-important"><span class="icon-star-gray '+(result.record[i].important=='1'?'checked':'')+'" onclick="important_memo('+result.record[i].memo_seq+')"></span></div>';
+													html += '	<div class="memo-item-writer"><span>'+result.record[i].manager_id+'</span></div>';
+													html += '	<div class="memo-item-contents">';
+													html += '		<div class="memo-item-contents-summary">'+result.record[i].contents_htmlspecialchars+'</div>';
+													html += '		<textarea name="contents">'+result.record[i].contents_htmlspecialchars+'</textarea>';
+													html += '	</div>';
+													html += '	<div class="memo-item-openbtn"></div>';
+													html += '	<div class="memo-item-footer clearbox">';
+													html += '		<div class="fl">';
+													html += '			<span class="memo-item-check" onclick="check_memo('+result.record[i].memo_seq+')"></span>';
+													html += '			<input type="image" src="http://www.ttukttak.kr/admin/skin/default/images/main/btn_memo_edit.gif" onmouseover="this.src=\'/admin/skin/default/images/main/btn_memo_edit_on.gif\'" onmouseout="this.src=\'/admin/skin/default/images/main/btn_memo_edit.gif\'" align="absmiddle" title="저장하기" />';
+													html += '			<img src="http://www.ttukttak.kr/admin/skin/default/images/main/btn_memo_del.gif" onmouseover="this.src=\'/admin/skin/default/images/main/btn_memo_del_on.gif\'" onmouseout="this.src=\'/admin/skin/default/images/main/btn_memo_del.gif\'" align="absmiddle" hspace="5" title="삭제하기" class="hand" onclick="delete_memo('+result.record[i].memo_seq+')" />';
+													html += '		</div>';
+													html += '		<div class="fr fx11 gray">'+result.record[i].date+'</div>';
+													html += '	</div>';
+													html += '	</form>';
+													html += '</div>';
+												}
+											}else{
+												html = '<div class="pd5 desc center">검색된 메모가 없습니다.</div>';
+												$("#admin-memo-page").hide();
+											}
+
+											$("#admin-memo .memo-list").html(html);
+
+											addHeight	= $("#layout-body").outerHeight() + $(".memo-list").outerHeight() - 256;
+											if($("#layout-body").outerHeight() <= addHeight )
+												$("#admin-memo-container").height(addHeight);
+											$("#admin-memo").height("100%");
+										}
+									});
+								}
+
+								function delete_memo(memo_seq){
+									openDialogConfirm('메모를 삭제하시겠습니까?',400,200,function(){
+										$.ajax({
+											'url'	: '../adminmemo_process/delete',
+											'type'	: 'post',
+											'data'	: {'memo_seq':memo_seq},
+											'success' : function(){
+												$(".memo-item[memo_seq='"+memo_seq+"']").slideUp();
+												openDialogAlert("메모가 삭제 되었습니다.",400,240,function(){
+													get_memo_list(memo_page);
+												});
+											}
+										});
+									});
+								}
+
+								function important_memo(memo_seq){
+									$.ajax({
+										'url'	: '../adminmemo_process/important',
+										'type'	: 'post',
+										'data'	: {'memo_seq':memo_seq},
+										'global' : false,
+										'success' : function(important){
+											if(important=='1') $(".memo-item[memo_seq='"+memo_seq+"'] .memo-item-important .icon-star-gray").addClass('checked');
+											else $(".memo-item[memo_seq='"+memo_seq+"'] .memo-item-important .icon-star-gray").removeClass('checked');
+										}
+									});
+								}
+
+								function check_memo(memo_seq){
+									$.ajax({
+										'url'	: '../adminmemo_process/check',
+										'type'	: 'post',
+										'data'	: {'memo_seq':memo_seq},
+										'global' : false,
+										'success' : function(check){
+											if(check=='1'){
+												$(".memo-item[memo_seq='"+memo_seq+"']").addClass('checked');
+											}
+											else{
+												$(".memo-item[memo_seq='"+memo_seq+"']").removeClass('checked');
+											}
+										}
+									});
+								}
+							</script>
+					</li>
+					<li class="item hsnb-notice">
+						<div class="header-gnb-issueCount-layer" style="display: block;">
+						</div>
+						<a href="javascript:;" title="알림">알림</a>
+						<div class="hsnbm-menu">
+							<span class="point_c"></span>
+							<strong>알림</strong>
+							<ul class="tb_link">
+								<li style="display:inline-block;width:250px;overflow:hidden;text-overflow:ellipsis;"><a href="#">부관리자는 볼수 없습니다.</a></li>
+							</ul>
+						</div>
+						<div id="manager_alert_dialog" class="hide"></div>
+					</li>
+					<li class="item hsnb-link">
+						<a href="javascript:;" title="더보기">더보기</a>
+						<div class="hsnbm-menu">
+							<span class="point_c"></span>
+							<ul class="tb_link">
+								<li><a href="https://www.firstmall.kr/myshop/shops/539721881/view" target="_blank" title="새창열림">MY퍼스트몰</a></li>
+								<li><a href="https://www.firstmall.kr/ec_hosting/customer/1to1.php" target="_blank" title="새창열림">1:1문의</a></li>
+								<li><a href="https://www.firstmall.kr/ec_hosting/customer/" target="_blank" title="새창열림">고객센터</a></li>
+								<li><a href="http://gmanual.firstmall.kr/" target="_blank" title="새창열림">온라인매뉴얼</a></li>
+								<!--li><a href="http://interface.firstmall.kr/firstmall_plus/data/manual/firstmall_manual.zip">매뉴얼 다운로드</a></li-->
+								<li><a href="https://design.firstmall.kr/" target="_blank" title="새창열림">디자인샵</a></li>
+								<li><a href="javascript:void(window.open('https://www.firstmall.kr/buildservice/customize'));">맞춤개발</a></li>
+									<li><a href="http://webmail.ttukttak.kr/admin/adminhome" target="_blank" title="새창열림">웹메일/세금계산서</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="item hsnb-admin">
+						<a href="javascript:;" title="관리자 정보">관리자 정보</a>
+						<div class="hsnbm-menu">
+							<span class="point_c"></span>
+							<ul class="tb_admin_info">
+								<li class="admin_thumb">
+									<img src="http://www.ttukttak.kr/admin/skin/default/images/main/def_img.png" width="50" height="50" align="absmiddle" />
+								</li>
+								<li class="admin_info">
+									<p>t00020</p>
+									<p>(안근창)</p>
+									<p style="color:#348ddb;">부운영자</p>
+								</li>
+								<li class="admin_link">
+									<a href="../setting/manager_reg?manager_seq=137">정보수정</a>
+									<a href="../login_process/logout">로그아웃</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+
+				<!-- 다국어 통합설정 -->
+				<a href="javascript:;" id="hs-global" class="hs-global hide" env="뚝딱" title="관리환경 이동"><strong>뚝딱</strong><span class="lang_KR"><span class="hide">한국어 </span>KRW</span><span class="hs_arrow"></span></a>
+
+				<!-- 검색창 -->
+				<form name="headForm" id="headForm" class="header-search" action="http://www.ttukttak.kr/admin/order/catalog" style="overflow: visible;">
+					<div class="fl hs-box">
+						<input type="text" name="header_search_keyword" id="header_search_keyword" value="" title="주문, 출고, 실물, 티켓, 회원" />
+						<!-- 검색어 입력시 레이어 박스 : start -->
+						<div class="header_search_type_text hide"></div>
+						<div class="header_searchLayer hide">
+							<input type="hidden" name="header_search_type" id="header_search_type" value="" />
+							<ul class="headerSearchUl">
+								<li><a class="header_link_keyword" s_type="order" href="#">주문검색: <span class="header_txt_keyword"></span> <span class="header_txt_title">-주문 찾기</span></a></li>
+								<li><a class="header_link_keyword" s_type="export" href="#">출고검색: <span class="header_txt_keyword"></span> <span class="header_txt_title">-출고 찾기</span></a></li>
+								<li><a class="header_link_keyword" s_type="goods" href="#">실물상품: <span class="header_txt_keyword"></span> <span class="header_txt_title">-실물 찾기</span></a></li>
+								<li><a class="header_link_keyword" s_type="coupon" href="#">티켓상품: <span class="header_txt_keyword"></span> <span class="header_txt_title">-티켓 찾기</span></a></li>
+								<li><a class="header_link_keyword" s_type="member" href="#">회원검색: <span class="header_txt_keyword"></span> <span class="header_txt_title">-회원 찾기</span></a></li>
+							</ul>
+						</div>
+						<!-- 검색어 입력시 레이어 박스 : end -->
+					</div>
+					<span class="fl"><input type="image" src="http://www.ttukttak.kr/admin/skin/default/images/main/btn_search.png" /></span>
+					<div class="relative">
+						<div class="absolute" style="top:5px; left:300px; z-index:1000"><img src="http://www.ttukttak.kr/admin/skin/default/images/main/q_icon.png" align="absmiddle" id="search_help" class="hand" /></div>
+						<div class="absolute hide" id="search_information" style="z-index:1000">
+							<div class="center pdb10 fn12 bold">아래의 정의된 검색어로 빠르게 검색하세요</div>
+							<table class="simplelist-table-style" style="width:100%; table-layout:fixed">
+								<tr>
+									<th class="bold">주문 → 주문리스트</th>
+									<th class="bold">출고 → 출고리스트</th>
+									<th class="bold">상품 → 실물 배송 상품</th>
+									<th class="bold">티켓 → 티켓 발송 상품</th>
+									<th class="bold">회원  → 회원리스트</th>
+								</tr>
+								<tr>
+									<td style="border:1px solid #c8c8c8;" valign="top">
+										<div class="pdl5">· 주문자</div>
+										<div class="pdl5 pdt5">· 수령자</div>
+										<div class="pdl5 pdt5">· 입금자</div>
+										<div class="pdl5 pdt5">· 아이디</div>
+										<div class="pdl5 pdt5">· 이메일</div>
+										<div class="pdl5 pdt5">· 휴대폰</div>
+										<div class="pdl5 pdt5">· 상품명</div>
+										<div class="pdl5 pdt5">· 상품 고유값</div>
+										<div class="pdl5 pdt5">· 상품코드</div>
+										<div class="pdl5 pdt5">· 사은품</div>
+										<div class="pdl5 pdt5">· 운송장번호</div>
+										<div class="pdl5 pdt5">· 주문번호</div>
+										<div class="pdl5 pdt5">· 출고번호</div>
+										<div class="pdl5 pdt5">· 반품번호</div>
+										<div class="pdl5 pdt5">· 환불번호</div>
+									</td>
+									<td style="border:1px solid #c8c8c8;" valign="top">
+										<div class="pdl5">· 주문자</div>
+										<div class="pdl5 pdt5">· 수령자</div>
+										<div class="pdl5 pdt5">· 입금자</div>
+										<div class="pdl5 pdt5">· 아이디</div>
+										<div class="pdl5 pdt5">· 이메일</div>
+										<div class="pdl5 pdt5">· 휴대폰</div>
+										<div class="pdl5 pdt5">· 상품명</div>
+										<div class="pdl5 pdt5">· 상품 고유값</div>
+										<div class="pdl5 pdt5">· 상품코드</div>
+										<div class="pdl5 pdt5">· 사은품</div>
+										<div class="pdl5 pdt5">· 운송장번호</div>
+										<div class="pdl5 pdt5">· 주문번호</div>
+										<div class="pdl5 pdt5">· 출고번호</div>
+										<div class="pdl5 pdt5">· 반품번호</div>
+										<div class="pdl5 pdt5">· 환불번호</div>
+									</td>
+									<td style="border:1px solid #c8c8c8;" valign="top">
+										<div class="pdl5">· 상품명</div>
+										<div class="pdl5 pdt5">· 상품 고유값</div>
+										<div class="pdl5 pdt5">· 상품코드</div>
+										<div class="pdl5 pdt5">· 태그</div>
+										<div class="pdl5 pdt5">· 간략설명</div>
+									</td>
+									<td style="border:1px solid #c8c8c8;" valign="top">
+										<div class="pdl5">· 상품명</div>
+										<div class="pdl5 pdt5">· 상품 고유값</div>
+										<div class="pdl5 pdt5">· 상품코드</div>
+										<div class="pdl5 pdt5">· 태그</div>
+										<div class="pdl5 pdt5">· 간략설명</div>
+									</td>
+									<td style="border:1px solid #c8c8c8;" valign="top">
+										<div class="pdl5">· 아이디</div>
+										<div class="pdl5 pdt5">· 회원명</div>
+										<div class="pdl5 pdt5">· 닉네임</div>
+										<div class="pdl5 pdt5">· 이메일</div>
+										<div class="pdl5 pdt5">· 주소</div>
+										<div class="pdl5 pdt5">· 전화번호</div>
+										<div class="pdl5 pdt5">· 핸드폰</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<script type="text/javascript">
+						$("#search_help").bind("click",function(){
+							openDialog("빠른 검색", "search_information", {"width":800});
+						});
+						$("#header_search_keyword").blur(function(){
+							if("" == $("#header_search_keyword").val()){
+								$(".header_search_type_text").show();
+							}
+							setTimeout(function(){
+								$('.header_searchLayer').hide()}, 500
+							);
+						});
+					</script>
+				</form>
+			</div>
+
+			<!-- 헤더 네비게이션바 -->
+			<div class="header-gnb-container">
+				<ul class="header-gnb-warp clearbox">
+					<li class="fl">
+						<!-- 좌측 GNB -->
+						<ul class="header-gnb">
+							<li class="mitem-td ">
+								<span class="mitem mitem_main"><a href="../main/index"><span>홈</span></a></span>
+							</li>
+							<li class="mitem-td " code="goods">
+								<div class="header-gnb-issueCount-layer" code="goods"></div>
+								<span class="mitem mitem_goods"><a href="../goods/index"><span>판매상품</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../goods/catalog">[실물] 상품</a>
+										</li>
+										<li>
+											
+											<a href="../goods/package_catalog">[실물] 패키지/복합 상품</a>
+										</li>
+										<li>
+											
+											<a href="../goods/social_catalog">[티켓] 티켓상품</a>
+										</li>
+										<li>
+											
+											<a href="../goods/gift_catalog">[실물] 사은품</a>
+										</li>
+										<li>
+											
+											<a href="../goods/batch_regist">[실물] 상품 빠른등록</a>
+										</li>
+										<li>
+											
+											<a href="../goods/batch_modify">[실물] 일괄 업데이트</a>
+										</li>
+										</ul>
+										<ul>
+										<li>
+											
+											<a href="../goods/restock_notify_catalog">재입고 알림</a>
+										</li>
+										<li>
+											
+											<a href="../category/catalog">카테고리</a>
+										</li>
+										<li>
+											
+											<a href="../brand/catalog">브랜드</a>
+										</li>
+										<li>
+											
+											<a href="../page_manager/catalog">상품리스트 페이지</a>
+										</li>
+										<li>
+											
+											<a href="../barcode/catalog">바코드 출력</a>
+										</li>
+										<li>
+											
+											<a href="../goods/excel_download">엑셀 다운로드</a>
+										</li>
+										</ul>
+										<ul>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td current" code="order">
+								<div class="header-gnb-issueCount-layer" code="order"></div>
+								<span class="mitem mitem_order"><a href="../order/index"><span>주문</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../order/catalog">통합주문리스트</a>
+										</li>
+										<li>
+											
+											<a href="../order/company_catalog">└ 본사배송 주문상품</a>
+										</li>
+										<li>
+											
+											<a href="../order/personal">개인결제리스트</a>
+										</li>
+										<li>
+											
+											<a href="../order/autodeposit">자동입금확인</a>
+										</li>
+										<li>
+											
+											<a href="../export/catalog">출고리스트</a>
+										</li>
+										<li>
+											
+											<a href="../returns/catalog">반품리스트</a>
+										</li>
+										</ul>
+										<ul>
+										<li>
+											
+											<a href="../refund/catalog">환불리스트</a>
+										</li>
+										<li>
+											
+											<a href="../order/sales">매출증빙리스트</a>
+										</li>
+										<li>
+											
+											<a href="../order/temporary">삭제리스트</a>
+										</li>
+										<li>
+											
+											<a href="../order/excel_download">엑셀 다운로드</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="market_connector">
+								<div class="header-gnb-issueCount-layer" code="market_connector"></div>
+								<span class="mitem mitem_market_connector"><a href="../market_connector/index"><span>오픈마켓</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../market_connector/market_order_list">주문수집/등록</a>
+										</li>
+										<li>
+											
+											<a href="../market_connector/market_cancel_list">취소관리</a>
+										</li>
+										<li>
+											
+											<a href="../market_connector/market_return_list">반품관리</a>
+										</li>
+										<li>
+											
+											<a href="../market_connector/market_exchange_list">교환관리</a>
+										</li>
+										<li>
+												<div style="border-top:1px solid #C2C2C2;padding-top:3px;width:95%;margin-left:5px;"></div>
+											
+											<a href="../market_connector/distributor">상품등록</a>
+										</li>
+										<li>
+											
+											<a href="../market_connector/market_product_list">상품관리</a>
+										</li>
+										<li>
+												<div style="border-top:1px solid #C2C2C2;padding-top:3px;width:95%;margin-left:5px;"></div>
+											
+											<a href="../market_connector/market_qna_list">문의관리</a>
+										</li>
+										<li>
+												<div style="border-top:1px solid #C2C2C2;padding-top:3px;width:95%;margin-left:5px;"></div>
+											
+											<a href="../market_connector/market_linkage">연동설정</a>
+										</li>
+										<li>
+											
+											<a href="../market_connector/market_setting">마켓설정</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="member">
+								<div class="header-gnb-issueCount-layer" code="member"></div>
+								<span class="mitem mitem_member"><a href="../member/index"><span>회원</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../member/catalog">회원리스트</a>
+										</li>
+										<li>
+											
+											<a href="../member/dormancy_catalog">휴면처리리스트</a>
+										</li>
+										<li>
+											
+											<a href="../member/withdrawal">탈퇴리스트</a>
+										</li>
+										<li>
+											
+											<a href="../member/kakaotalk_index">카카오알림톡</a>
+										</li>
+										<li>
+											
+											<a href="../member/sms">SMS발송관리</a>
+										</li>
+										<li>
+											
+											<a href="../batch/sms">SMS대량발송</a>
+										</li>
+										</ul>
+										<ul>
+										<li>
+											
+											<a href="../member/email">이메일발송관리</a>
+										</li>
+										<li>
+											
+											<a href="../member/amail">이메일대량발송</a>
+										</li>
+										<li>
+											
+											<a href="../member/curation">SMS/EMAIL 고객리마인드</a>
+										</li>
+										<li>
+											
+											<a href="../member/excel_download">엑셀 다운로드</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="board">
+								<div class="header-gnb-issueCount-layer" code="board"></div>
+								<span class="mitem mitem_board"><a href="../board/index"><span>게시판</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../board/index">게시글 리스트</a>
+										</li>
+										<li>
+											
+											<a href="../board/main">게시판 리스트</a>
+										</li>
+										<li>
+											
+											<a href="../board/counsel_catalog">고객상담 통합게시판</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="coupon">
+								<div class="header-gnb-issueCount-layer" code="coupon"></div>
+								<span class="mitem mitem_coupon"><a href="../coupon/index"><span>프로모션/쿠폰</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../coupon/catalog">할인 쿠폰</a>
+										</li>
+										<li>
+											
+											<a href="../promotion/catalog">할인 코드</a>
+										</li>
+										<li>
+											
+											<a href="../referer/index">할인 유입경로</a>
+										</li>
+										<li>
+											
+											<a href="../event/catalog">할인 이벤트</a>
+										</li>
+										<li>
+											
+											<a href="../event/gift_catalog">사은품 이벤트</a>
+										</li>
+										<li>
+											
+											<a href="../joincheck/catalog">출석체크</a>
+										</li>
+										<li>
+											
+											<a href="../banner_management/banner_list">배너 전시 관리</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="marketing">
+								<div class="header-gnb-issueCount-layer" code="marketing"></div>
+								<span class="mitem mitem_marketing"><a href="../marketing/marketplace_url"><span>마케팅</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../marketing/marketplace">마케팅 소개</a>
+										</li>
+										<li>
+											
+											<a href="../marketing/marketplace_url">입점마케팅설정</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="statistic">
+								<div class="header-gnb-issueCount-layer" code="statistic"></div>
+								<span class="mitem mitem_statistic"><a href="../statistic_summary"><span>통계</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../statistic_summary">요약 통계</a>
+										</li>
+										<li>
+											
+											<a href="../statistic_visitor">방문 통계</a>
+										</li>
+										<li>
+											
+											<a href="../statistic_member">가입 통계</a>
+										</li>
+										<li>
+											
+											<a href="../statistic_sales">판매 통계</a>
+										</li>
+										<li>
+											
+											<a href="../statistic_goods">상품 통계</a>
+										</li>
+										<li>
+											
+											<a href="../statistic_epc">적립 통계</a>
+										</li>
+										<li>
+											
+											<a href="../statistic_ga">구글 애널리틱스</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="provider">
+								<div class="header-gnb-issueCount-layer" code="provider"></div>
+								<span class="mitem mitem_provider"><a href="../provider/"><span>입점사</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../provider/catalog">입점사리스트</a>
+										</li>
+										<li>
+											
+											<a href="../provider/provider_group">입점사등급</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="ttukttak_manage">
+								<div class="header-gnb-issueCount-layer" code="ttukttak_manage"></div>
+								<span class="mitem mitem_ttukttak_manage"><a href="../ttukttak/setting"><span>운영관리</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../ttukttak/setting">운영 설정</a>
+										</li>
+										<li>
+											
+											<a href="../location/catalog">이사/인테리어/매거진 설정</a>
+										</li>
+										<li>
+											
+											<a href="../ttukttak/company">제휴업체 관리</a>
+										</li>
+										<li>
+											
+											<a href="../ttukttak/company_login">외부업체 로그인 계정 관리</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="accountall">
+								<div class="header-gnb-issueCount-layer" code="accountall"></div>
+								<span class="mitem mitem_accountall"><a href="../accountall/index"><span>정산</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../accountall/accountallviewerall">정산리스트 - 주문별</a>
+										</li>
+										<li>
+											
+											<a href="../accountall/accountgroup">정산리스트 - 업체별</a>
+										</li>
+										<li>
+											
+											<a href="../accountall/accountall_setting">정산마감일 설정</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="mobile_app">
+								<div class="header-gnb-issueCount-layer" code="mobile_app"></div>
+								<span class="mitem mitem_mobile_app"><a href="../mobile_app/setting"><span>모바일앱</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../mobile_app/setting">앱 설정</a>
+										</li>
+										<li>
+											
+											<a href="../mobile_app/push_manual">푸시발송관리</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="o2oservice">
+								<div class="header-gnb-issueCount-layer" code="o2oservice"></div>
+								<span class="mitem mitem_o2oservice"><a href="../o2o/o2osetting"><span>오프라인 매장</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../o2o/o2osetting">매장 리스트</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</li>
+					<li class="fr">
+						<!-- 우측 GNB -->
+						<ul class="header-qnb">
+							<!-- 빅데이터 영역 -> 페이지 관리로 대체 :: 2019-01-21 -->
+							<li class="hide gnb-item qnb-bigdata ">
+								<a href="../bigdata/catalog" class="gnb-item-a"><span>빅데이터</span></a>
+								<ul class="gnb-subnb">
+									<li class="gnb-subnb-item"><a href="../bigdata/catalog">전용페이지 설정</a></li>
+									<li class="gnb-subnb-item"><a href="../bigdata/preview">결과 테스트</a></li>
+								</ul>
+							</li>
+							<li class="gnb-item qnb-design ">
+								<a href="../design/index" class="gnb-item-a"><span>디자인</span></a>
+								<ul class="gnb-subnb">
+									<li class="gnb-subnb-item"><a href="../design/skin">스킨 설정</a></li>
+									<li class="gnb-subnb-item"><a href="../design/skin_add" >스킨 추가</a></li>
+									<li class="gnb-subnb-item"><a href="../design/main?setMode=mobile" target="_blank">디자인환경 (반응형)</a></li>
+									<li class="gnb-subnb-item"><a href="#" onclick="DM_window_eyeeditor('data/skin/responsive_v1_7_200506/main/index.html')">HTML 에디터</a></li>
+								</ul>
+							</li>
+							<li class="gnb-item qnb-config ">
+								<a href="../setting/index" class="gnb-item-a"><span>설정</span></a>
+								<ul class="gnb-subnb setting">
+									<li class="gnb-subnb-item ">
+										<a href="../setting/multi"><span class="hide">01.</span> 01. 상점관리</a>
+									</li>
+									<li class="gnb-subnb-item seo">
+										<a href="../setting/seo"><span class="hide">02.</span> 02. 검색엔진최적화[SEO]</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/snsconf"><span class="hide">03.</span> 03. SNS 연동</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/operating"><span class="hide">04.</span> 04. 운영 방식</a>
+									</li>
+									<li class="gnb-subnb-item pg">
+										<a href="../setting/pg"><span class="hide">05.</span> 05. 전자결제</a>
+									</li>
+									<li class="gnb-subnb-item bank">
+										<a href="../setting/bank"><span class="hide">06.</span> 06. 무통장</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/member"><span class="hide">07.</span> 07. 회원</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/goods"><span class="hide">08.</span> 08. 상품 코드</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/search"><span class="hide">09.</span> 09. 검색</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/video"><span class="hide">10.</span> 10. 동영상</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/order"><span class="hide">11.</span> 11. 주문</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/sale"><span class="hide">12.</span> 12. 매출증빙</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/reserve"><span class="hide">13.</span> 13. 마일리지/포인트/예치금</a>
+									</li>
+									<li class="gnb-subnb-item shipping">
+										<a href="../setting/shipping_group"><span class="hide">14.</span> 14. 배송비</a>
+									</li>
+									<li class="gnb-subnb-item delivery">
+										<a href="../setting/delivery_company"><span class="hide">15.</span> 15. 택배사</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/protect"><span class="hide">16.</span> 16. 보안</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/cache"><span class="hide">17.</span> 17. 캐시</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/manager"><span class="hide">18.</span> 18. 관리자</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/alert_setting"><span class="hide">19.</span> 19. 안내메시지</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+
+			<!--[ 혜택설정바로가기 : 시작 ]-->
+			<div class="relative">
+				<div class="benifit-popup hide"></div>
+			</div>
+			<!--[ 혜택설정바로가기 : 끝 ]-->
+		</div>
+		<!--[ 레이아웃 헤더 : 끝 ]-->
+
+		<div id="layout-body">
+		<!--[ 레이아웃 바디(본문) : 시작 ]-->
+
+<div id="orderAdminSettle" class="hide"></div>
+<div id="issueGoodsSelect" class="hide"></div>
+<link rel="stylesheet" type="text/css" href="http://www.ttukttak.kr/admin/skin/default/css/layer_stock.css" />
+<style>
+	.search_label 	{display:inline-block;width:90px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;-o-text-overflow:ellipsis;vertical-align:middle}
+	span.step_title { font-weight:normal;padding:0 5px 0 5px; }
+	span.export-list { display:inline-block;background-url("http://www.ttukttak.kr/admin/skin/default/images/common/btn_list_release.gif");width:60px;height:15px; }
+	div.btn-open-all{ position:absolute;top:3px;left:-62px;}
+	div.btn-open-all img { cursor:pointer; }
+	.ft11	{ font-size:11px; }
+
+	.barcode-btn {position:absolute; top:-35px; left:5px; cursor:pointer}
+	.barcode-btn .openImg{display:block;}
+	.barcode-btn .closeImg{display:none;}
+	.barcode-btn.opened .openImg{display:none;}
+	.barcode-btn.opened .closeImg{display:block;}
+	.barcode-description {display:none; background-color:#d2d8d8; border-top:5px solid #f9fbfc; border-bottom:10px solid #f9fbfc; text-align:center}
+
+	.darkgreen { color:#009900; }
+
+	table.export_table {border-collapse:collapse;border:1px solid #c8c8c8;width:100%}
+	table.export_table th {padding:5px; border:1px solid #c8c8c8;}
+	table.export_table td {padding:5px; border:1px solid #c8c8c8;}
+	table.export_table th {background-color:#efefef;}
+
+	.price {padding-right:5px;text-align:right}
+	table.order-inner-table td,table.order-inner-table th {height:9px !important; border:0 !important;}
+	.ea {font-family:dotum; color:#a400ff;}
+	.title_order_number {font-family:dotum;font-size:13px;}
+
+	table.order-summary-table tbody td.pvtd{border:1px solid #dcdde1;text-align:center;background-color:#fff;}
+	.coupon_status{color:red}
+	.coupon_status_all{color:red}
+	.coupon_order_status{color:gray}
+	.coupon_status_use{color:blue}
+	.coupon_input_value{color:green}
+
+	.url-helper{border:1px solid #424242;background-color:#fff;line-height: 14px;}
+	.open-link a:link, a:active, a:visited{color: #a7a7a7;}
+	.open-link a:hover {color:#f63;}
+	.warehouse-info-lay { padding:5px;margin:2px 10px 5px 0;border:1px solid #c5c5c5;background-color:#fff; }
+
+	td.package-option {background-color:#F3FCFF;}
+	td.package-option span.title {color:#FF0000;}
+	td.package-option div.ea {color:#A400FF;}
+	td.package-option div.stock {color:#0066CC;}
+	td.package-option div.ablestock {color:#0066CC;}
+
+
+	div.sub-choose-lay div.choose-form-lay {top:-10px;right:100px;width:200px;}
+</style>
+<script type="text/javascript">
+	/* default search */
+	var default_search_pageid	= "order";
+	var default_obj_width		= 970;
+	var default_obj_height		= "530";
+
+	/* variable for ajax list */
+	var npage					= 1;
+	var nstep					= '';
+	var nnum					= '';
+	var stepArr					= new Array();
+	var allOpenStep				= new Array();
+	var npay_use				= "";
+	var start_search_date		= "2020-11-24";
+	var end_search_date			= "2020-12-01";
+	var loading_status			= 'n';
+	var searchTime				= "2020-12-01 01:50:25";
+	var linkage_mallnames_cnt	= "0";
+	var linkage_mallnames		= '';
+
+	var pagemode				= '';
+	var detailmode				= '';
+	var shipping_provider_seq	= '';
+	var bankChk					= 'Y';
+
+	var queryString			= 'noquery=true';
+
+	/* 스타일적용 */
+	apply_input_style();
+
+	function down_list(obj)
+	{
+		location.href='../order/download_list';
+	}
+
+	/*######################## 16.12.15 gcs yjy : 검색조건 유지되도록 s */
+		function orderView(order_seq){
+			$("input[name='keyword']").focus();
+			$("input[name='no']").val(order_seq);
+			var search = location.search;
+			search = search.substring(1,search.length);
+			$("input[name='query_string']").val(search);
+			$("form[name='search-form']").attr('action','view');
+			$("form[name='search-form']").submit();
+		}
+
+	/*######################## 16.12.15 gcs yjy : 검색조건 유지되도록 e */
+</script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/js/admin-goodsRegist.js?dummy=20201201015025"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/js/admin-orderCatalog.js?dummy=20201201015025"></script>
+
+<!-- 페이지 타이틀 바 : 시작 -->
+<div id="page-title-bar-area">
+	<div id="page-title-bar">
+		<!-- 좌측 버튼 -->
+		<ul class="page-buttons-left box" style="z-index:1;">
+			<li>
+				무통장자동입금
+				<a href="../setting/bank" target="_blank">
+				<span class="black bold">사용</span>
+				</a>
+			</li>
+			<li>
+				<span>택배 업무 자동화</span>
+				<a href="../setting/delivery_company" target="_blank">
+				<span class="red bold">미사용</span>
+				</a>
+			</li>
+			<li style="padding-bottom:4px">
+				네이버페이
+				<a href="../marketing/marketplace_url" target="_blank"><span class="red bold">미사용</span></a>			</li>
+			<!--
+			<li><span class="btn small orange"><button type="button" class="order_type_help hand" onclick="order_type_help();">안내) 주문유형</button></span></li>
+			-->
+		</ul>
+
+		<!-- 타이틀 -->
+		<div class="page-title">
+			<!--<a href="../setting/order" target="_blank"><img src="http://www.ttukttak.kr/admin/skin/default/images/common/btn_now_prcs.gif" align="absmiddle" style="margin-left:-115px;" /></a>-->
+			<h2>통합 주문리스트</h2>
+		</div>
+
+		<!-- 우측 버튼 -->
+		<ul class="page-buttons-right">
+			<li><span class="btn large"><button type="button" name="order_admin_person">개인결제 생성하기<span class="arrowright"></span></button></span></li>
+			<li><span class="btn large"><button type="button" name="order_admin_settle" >관리자가 주문넣기<span class="arrowright"></span></button></span></li>
+			<li>
+				<span class="btn large"><button type="button" name="down_list" onclick="down_list();">다운로드항목설정<span class="arrowright"></span></button></span>
+			</li>
+			<li><span class="btn large"><button type="button" name="print_setting">프린트설정<span class="arrowright"></span></button></span></li>
+			<li><span class="btn large red"><button type="button" onclick="batch_goods_export_popup('');">출고처리<span class="arrowright"></span></button></span></li>
+		</ul>
+
+	</div>
+</div>
+<!-- 페이지 타이틀 바 : 끝 -->
+
+<!-- 주문리스트 검색폼 : 시작 -->
+<div class="search-form-container-new">
+	<form name="search-form" method="get">
+<!--######################## 16.12.15 gcs yjy : 검색조건 유지되도록  -->
+	<input type="hidden" name="query_string"/>
+	<input type="hidden" name="no" />
+<script type="text/javascript">
+	var keyword					= "";
+	var search_type				= "";
+</script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/js/admin-searchForm.js?v=20201201015025"></script>
+<link rel="stylesheet" type="text/css" href="http://www.ttukttak.kr/admin/skin/default/css/searchform.css" />
+<style>
+	table.helpicon_table{padding:0px;margin:0px;border-top:1px solid #ddd;}
+	table.helpicon_table th,table.helpicon_table td {font-weight:normal;padding:3px;margin:0px;border-right:1px solid #ddd;border-bottom:1px solid #ddd;text-align:center;}
+	table.helpicon_table th:first-child,table.helpicon_table td:first-child {border-left:1px solid #ddd;}
+</style>
+
+<p class="mt25"></p>
+<div class="relative">
+	<div class="barcode-btn"><img src="http://www.ttukttak.kr/admin/skin/default/images/common/btn_bacode_open.gif" class="openImg" /><img src="http://www.ttukttak.kr/admin/skin/default/images/common/btn_bacode_close.gif" class="closeImg" /></div>
+	<div class="barcode-description">
+		<img src="http://www.ttukttak.kr/admin/skin/default/images/common/barcode_step_img.gif" />
+	</div>
+</div>
+<table class="search-form-table">
+	<tr>
+		<td width="700">
+			<table class="sf-keyword-table">
+				<tr>
+					<td class="sfk-td-txt">
+					<div class="relative">
+						<input type="text" name="keyword" id="search_keyword" value="" title="주문번호,주문자명,입금자명,아이디,휴대전화,이메일,수령자명,휴대전화,일반전화,상품명,상품번호,바코드" />
+						<!-- 검색어 입력시 레이어 박스 : start -->
+						<div class="search_type_text hide"></div>
+						<div class="searchLayer hide">
+							<input type="hidden" name="search_type" id="search_type" value="" />
+							<ul class="searchUl">
+								<li><a class="link_keyword" s_type="all" href="#"><span class="txt_keyword"></span> <span class="txt_title">-전체검색</span></a></li>
+								<li><a class="link_keyword" s_type="order_seq" href="#">주문번호: <span class="txt_keyword"></span> <span class="txt_title">-주문번호로 찾기</span></a></li>
+								<li><a class="link_keyword" s_type="order_user_name" href="#">주문자명: <span class="txt_keyword"></span> <span class="txt_title">-주문자명로 찾기</span></a></li>
+								<li><a class="link_keyword" s_type="depositor" href="#">입금자명: <span class="txt_keyword"></span> <span class="txt_title">-입금자명로 찾기</span></a></li>
+								<li><a class="link_keyword" s_type="userid" href="#">아이디: <span class="txt_keyword"></span> <span class="txt_title">-아이디로 찾기</span></a></li>
+								<li><a class="link_keyword" s_type="order_cellphone" href="#">휴대전화: <span class="txt_keyword"></span> <span class="txt_title">-휴대전화로 찾기</span></a></li>
+								<li><a class="link_keyword" s_type="order_email" href="#">이메일: <span class="txt_keyword"></span> <span class="txt_title">-이메일로 찾기</span></a></li>
+								<li><a class="link_keyword" s_type="recipient_user_name" href="#">수령자명: <span class="txt_keyword"></span> <span class="txt_title">-수령자명로 찾기</span></a></li>
+								<li><a class="link_keyword" s_type="recipient_cellphone" href="#">휴대전화: <span class="txt_keyword"></span> <span class="txt_title">-휴대전화로 찾기</span></a></li>
+								<li><a class="link_keyword" s_type="recipient_phone" href="#">일반전화: <span class="txt_keyword"></span> <span class="txt_title">-일반전화로 찾기</span></a></li>
+								<li><a class="link_keyword" s_type="goods_name" href="#">상품명: <span class="txt_keyword"></span> <span class="txt_title">-상품명로 찾기</span></a></li>
+								<li><a class="link_keyword" s_type="goods_seq" href="#">상품번호: <span class="txt_keyword"></span> <span class="txt_title">-상품번호로 찾기</span></a></li>
+								<li><a class="link_keyword" s_type="bar_code" href="#">바코드: <span class="txt_keyword"></span> <span class="txt_title">-바코드로 찾기</span></a></li>
+							</ul>
+						</div>
+						<!-- 검색어 입력시 레이어 박스 : end -->
+					</div>
+					</td>
+					<td class="sfk-td-btn"><button type="submit"><span>검색</span></button></td>
+				</tr>
+			</table>
+		</td>
+		<td style="position:relative;">
+			<label style="position:relative; display:inline-block; left:3px; bottom:6px;">
+			<input type="checkbox" name="set_search_partial" title="부분 검색 설정" /> <span>부분검색</span>
+			</label>
+			<button type="button" id="set_default_setting_button" title="기본검색설정" class="ml10"></button>
+			<button type="button" id="set_default_apply_button" onclick="set_search_form('order')" title="기본검색적용"></button>
+			<button type="button" id="search_reset_button" title="검색초기화"></button>
+			<button type="button" id="search_detail_button" class="close" value="open" title="상세검색닫기▲"></button>
+		</td>
+	</tr>
+</table>
+<!-- 상세검색 시작 -->
+<div class="search-detail-lay mt15">
+	<table class="search-form-table" id="search_detail_table" >
+		<tr>
+			<td>
+				<table class="sf-option-table">
+					<col width="110" /><col width="490" />
+					<col width="70" /><col width="220" />
+					<col width="70" /><col />
+					<tr>
+						<th>배송책임</th>
+						<td colspan="5">
+							<div class="ui-widget"  style="float:left;">
+								<select name="shipping_provider_seq_selector" style="vertical-align:middle;" default_none>
+									<option value="0">- 검색 -</option>
+									<option value="1" provider_id="본사" >본사</option>
+									<option value="208" provider_id="gagufeeling" >가구느낌</option>
+									<option value="466" provider_id="gagooya" >가구야</option>
+									<option value="268" provider_id="garam1000" >가람테크놀러지</option>
+									<option value="44" provider_id="gaunet" >가우넷</option>
+									<option value="424" provider_id="buypass" >가이드삼정</option>
+									<option value="366" provider_id="gaion1" >가이온퍼니처</option>
+									<option value="254" provider_id="nhgamk" >가죽스토리</option>
+									<option value="414" provider_id="fourm-wine" >갈기산포도농원</option>
+									<option value="133" provider_id="gm201706" >거목</option>
+									<option value="63" provider_id="guerilla" >게릴라</option>
+									<option value="67" provider_id="gog5202" >고그인터내셔날</option>
+									<option value="341" provider_id="goworld68" >고월드</option>
+									<option value="472" provider_id="goldmall" >골드몰</option>
+									<option value="62" provider_id="gonggam" >공감담음</option>
+									<option value="299" provider_id="lgonlinemall" >공식 온라인몰</option>
+									<option value="50" provider_id="fruitsasak" >과일아삭협동조합</option>
+									<option value="152" provider_id="spiderloc" >굿센스</option>
+									<option value="129" provider_id="goodmd0820" >굿앰디</option>
+									<option value="29" provider_id="kcg2179" >굿커머스</option>
+									<option value="469" provider_id="gh280211" >그림같은집</option>
+									<option value="289" provider_id="greetstore" >그릿스토어</option>
+									<option value="13" provider_id="geumsagang" >금사강</option>
+									<option value="181" provider_id="ngenius" >기술자들</option>
+									<option value="326" provider_id="aka200701" >꾸안꾸</option>
+									<option value="96" provider_id="treevillage" >나무마을</option>
+									<option value="140" provider_id="nazel" >나즐</option>
+									<option value="464" provider_id="nh-kimchi" >남현푸드랩</option>
+									<option value="214" provider_id="violetlia" >내곁의작은정원</option>
+									<option value="329" provider_id="neobiz01" >네오비즈</option>
+									<option value="57" provider_id="noroo1" >노루하우홈(시공)</option>
+									<option value="58" provider_id="noroo2" >노루하우홈(일반)</option>
+									<option value="462" provider_id="noble" >노블콜렉션</option>
+									<option value="185" provider_id="nulijib" >누리집</option>
+									<option value="186" provider_id="nulijib7007" >누리집_렌탈</option>
+									<option value="310" provider_id="toplighting8" >뉴)탑라이팅</option>
+									<option value="157" provider_id="iunique" >뉴니끄</option>
+									<option value="374" provider_id="nyf1101" >뉴욕퍼니처</option>
+									<option value="463" provider_id="ndoctors" >뉴트리션닥터스</option>
+									<option value="193" provider_id="nplus76" >뉴하이텍</option>
+									<option value="232" provider_id="nixkms75" >닉스케이엠에스</option>
+									<option value="127" provider_id="daniela" >다니엘라</option>
+									<option value="10" provider_id="dalink01" >다링크</option>
+									<option value="94" provider_id="damie" >다미에홀딩스</option>
+									<option value="25" provider_id="david" >다비드커뮤니케이션</option>
+									<option value="372" provider_id="davinciled" >다빈치스타일</option>
+									<option value="405" provider_id="daon0605" >다온에스아이</option>
+									<option value="248" provider_id="daoncc79" >다온컴퍼니</option>
+									<option value="72" provider_id="daallmoa" >다올모아</option>
+									<option value="283" provider_id="judawri" >다우리전자</option>
+									<option value="307" provider_id="dwstory" >다원스토리</option>
+									<option value="402" provider_id="dajung" >다정</option>
+									<option value="198" provider_id="aop80" >다크호스</option>
+									<option value="434" provider_id="daho6457" >다호코리아</option>
+									<option value="282" provider_id="doctorcos" >닥터코스</option>
+									<option value="378" provider_id="krencia" >대명크렌시아</option>
+									<option value="216" provider_id="dsglobal2016" >대성글로벌</option>
+									<option value="381" provider_id="lkc5343" >대승에프엔피</option>
+									<option value="336" provider_id="lucoms" >대우씨엔디</option>
+									<option value="273" provider_id="daewonelect" >대원</option>
+									<option value="239" provider_id="dwcts" >대원씨티에스</option>
+									<option value="355" provider_id="daeun" >대은솔루션</option>
+									<option value="43" provider_id="dhcnc3291" >대현씨앤씨</option>
+									<option value="236" provider_id="theloel" >더로엘코리아</option>
+									<option value="61" provider_id="bluenine" >더블루나인</option>
+									<option value="296" provider_id="stone0510" >더블루스톤</option>
+									<option value="357" provider_id="wj12020" >더블유제이</option>
+									<option value="315" provider_id="double106" >더블커머스</option>
+									<option value="452" provider_id="thebm" >더비엠</option>
+									<option value="234" provider_id="thewaltz" >더왈츠</option>
+									<option value="27" provider_id="theoneplatform" >더원플랫폼</option>
+									<option value="343" provider_id="thewayat" >더웨이앳</option>
+									<option value="259" provider_id="thebf2020" >더푸른미래</option>
+									<option value="433" provider_id="dailychae" >데일리차이</option>
+									<option value="189" provider_id="epzhckd" >데코뱅크</option>
+									<option value="136" provider_id="dodmtech1" >도담테크</option>
+									<option value="446" provider_id="dotoro" >도토로</option>
+									<option value="45" provider_id="dmsnd" >동명에스앤디</option>
+									<option value="390" provider_id="dfgagu" >동서가구</option>
+									<option value="361" provider_id="dongsuh100" >동서카살라</option>
+									<option value="235" provider_id="doosi" >두시</option>
+									<option value="388" provider_id="dreamus7" >드림어스</option>
+									<option value="240" provider_id="acskang10m" >디디코퍼레이션</option>
+									<option value="333" provider_id="demade" >디마드</option>
+									<option value="86" provider_id="dmark" >디마크</option>
+									<option value="389" provider_id="diasbed" >디아스침대</option>
+									<option value="292" provider_id="dstkorea" >디에스트레이딩코리아</option>
+									<option value="73" provider_id="dyntec" >디와이엔텍</option>
+									<option value="479" provider_id="designryu" >디자인류</option>
+									<option value="195" provider_id="elxodid" >디지탈태양</option>
+									<option value="218" provider_id="dicamall" >디카몰</option>
+									<option value="290" provider_id="dcomma" >디콤마</option>
+									<option value="204" provider_id="trarae" >뜨라래</option>
+									<option value="47" provider_id="lassiette" >라씨에뜨</option>
+									<option value="16" provider_id="liongroup" >라이온그룹코리아</option>
+									<option value="83" provider_id="latexmg" >라텍스명가</option>
+									<option value="348" provider_id="rumble" >럼블</option>
+									<option value="423" provider_id="lemonart1" >레몬아트</option>
+									<option value="99" provider_id="realel" >레알에코리빙</option>
+									<option value="449" provider_id="oheimint02" >레이디가구</option>
+									<option value="108" provider_id="reptech" >렙테크</option>
+									<option value="252" provider_id="unigame1" >렛츠커머스</option>
+									<option value="245" provider_id="royche" >로이체</option>
+									<option value="410" provider_id="lookhome2013" >룩홈</option>
+									<option value="267" provider_id="itbirth" >리버스</option>
+									<option value="6" provider_id="ldlab1018" >리빙디자인연구소</option>
+									<option value="364" provider_id="leadmall" >리빙월드</option>
+									<option value="135" provider_id="lvhouse" >리빙하우스</option>
+									<option value="442" provider_id="tygroup87" >리턴라이프</option>
+									<option value="130" provider_id="manishop" >마니샵</option>
+									<option value="391" provider_id="marangjeju" >마랑제주</option>
+									<option value="59" provider_id="maruneuru" >마루느루</option>
+									<option value="111" provider_id="myselfinterior" >마이셀프인테리어</option>
+									<option value="213" provider_id="mytiny0806" >마이타이니</option>
+									<option value="401" provider_id="markinc" >마크</option>
+									<option value="38" provider_id="moms4u" >맘스포유</option>
+									<option value="105" provider_id="dustdc" >먼지방어사령부</option>
+									<option value="370" provider_id="multiscan" >멀티스캔텍</option>
+									<option value="453" provider_id="megatrade" >메가트레이드</option>
+									<option value="104" provider_id="medipresso" >메디프레소</option>
+									<option value="142" provider_id="gift8996" >명성</option>
+									<option value="284" provider_id="mono" >모노</option>
+									<option value="295" provider_id="factory2046" >모던팩토리</option>
+									<option value="119" provider_id="moduba" >모두바</option>
+									<option value="51" provider_id="bestmif" >모리프</option>
+									<option value="103" provider_id="mobi4you" >모비포유</option>
+									<option value="412" provider_id="mobilight" >모빌라이트</option>
+									<option value="52" provider_id="ttukttakmong(test)" >몽땅뚝딱 주식회사</option>
+									<option value="354" provider_id="homuro" >무로코퍼레이션</option>
+									<option value="84" provider_id="mediness" >미래바이텍</option>
+									<option value="212" provider_id="miraeecp" >미래이씨피</option>
+									<option value="261" provider_id="mima0900" >미마인터내셔널</option>
+									<option value="194" provider_id="zzzzzzzzzzzzzzzz" >미입점 제휴사</option>
+									<option value="115" provider_id="sk3155530" >미퓨어</option>
+									<option value="407" provider_id="vitalbra" >미호비즈텍</option>
+									<option value="396" provider_id="bananabd" >바나나코퍼레이션</option>
+									<option value="330" provider_id="jhysj08" >바로방가구</option>
+									<option value="342" provider_id="baren" >바른디자인</option>
+									<option value="246" provider_id="iimiyoung" >바스몰</option>
+									<option value="360" provider_id="vasphor" >바스포르</option>
+									<option value="344" provider_id="boundlab" >바운드랩</option>
+									<option value="432" provider_id="bioshield" >바이오쉴드</option>
+									<option value="60" provider_id="bam2018" >밤(BAM)</option>
+									<option value="5" provider_id="bestliving" >베스트리빙(bestliving)</option>
+									<option value="269" provider_id="betty2020" >베티</option>
+									<option value="233" provider_id="starlighting" >별별조명</option>
+									<option value="192" provider_id="ttukttakad" >본사</option>
+									<option value="210" provider_id="ttukttak2" >본사</option>
+									<option value="413" provider_id="vnb101" >브이앤비리빙</option>
+									<option value="328" provider_id="vone704" >브이원 주식회사</option>
+									<option value="166" provider_id="blanche" >블랑쉬하우스</option>
+									<option value="420" provider_id="blockgarden" >블록가든</option>
+									<option value="266" provider_id="bdfu01" >비디퓨</option>
+									<option value="154" provider_id="bngintl" >비앤지인터내셔날</option>
+									<option value="21" provider_id="bsm1215" >비에스몰</option>
+									<option value="250" provider_id="nho5809" >비엔</option>
+									<option value="231" provider_id="bizonemall" >비즈온플레이스</option>
+									<option value="230" provider_id="vicfus" >빅퍼스</option>
+									<option value="425" provider_id="teambp" >빅픽처코퍼레이션</option>
+									<option value="56" provider_id="canterki" >삐더리</option>
+									<option value="443" provider_id="inperson" >사람인사람</option>
+									<option value="126" provider_id="safa1425" >사파헬스케어</option>
+									<option value="255" provider_id="sdinc1011" >산들리빙</option>
+									<option value="88" provider_id="senteur" >샤토에르</option>
+									<option value="176" provider_id="shopion" >샵피온</option>
+									<option value="403" provider_id="shpms1107" >서현피엠에스</option>
+									<option value="380" provider_id="hihometech" >선경산업</option>
+									<option value="387" provider_id="sunwoo" >선우케미칼</option>
+									<option value="429" provider_id="4merit" >선진컴퍼니</option>
+									<option value="124" provider_id="ss140206" >성심</option>
+									<option value="4" provider_id="goldmom" >성진리테일</option>
+									<option value="19" provider_id="sesangdamgi" >세상담기</option>
+									<option value="2" provider_id="sytst" >세윤티에스티</option>
+									<option value="317" provider_id="solid" >솔리드네트워크</option>
+									<option value="163" provider_id="smcompany7" >송명</option>
+									<option value="455" provider_id="towel79" >송월타올수건이야기(주)</option>
+									<option value="125" provider_id="insoo2400" >송월타올코리아</option>
+									<option value="386" provider_id="naturelovemere" >수미</option>
+									<option value="54" provider_id="subininfo" >수빈인포텍</option>
+									<option value="196" provider_id="suazinter1389" >수아즈인터내셔널</option>
+									<option value="97" provider_id="sualc5715" >수어플라이언스</option>
+									<option value="426" provider_id="forest11" >숲에서</option>
+									<option value="131" provider_id="smithinit" >스미스이니셔티브</option>
+									<option value="356" provider_id="skinplayer" >스킨플레이어</option>
+									<option value="87" provider_id="star233" >스타미디홈</option>
+									<option value="120" provider_id="stylek" >스타일K</option>
+									<option value="323" provider_id="statech" >스타텍</option>
+									<option value="191" provider_id="stemkor" >스템</option>
+									<option value="441" provider_id="steelart" >스틸아트</option>
+									<option value="428" provider_id="spl123" >스팔라</option>
+									<option value="34" provider_id="spacedm" >스페이스디엠</option>
+									<option value="272" provider_id="spaceon2750" >스페이스온</option>
+									<option value="353" provider_id="spacewick" >스페이스윅</option>
+									<option value="404" provider_id="8311ssh" >슬로시티 수산협동조합</option>
+									<option value="260" provider_id="plant8994" >식물맛집</option>
+									<option value="37" provider_id="prestiges" >신민전자</option>
+									<option value="320" provider_id="sbrtrading" >신바람트레이딩</option>
+									<option value="32" provider_id="sinsujnginet" >신성아이넷</option>
+									<option value="33" provider_id="BOSOMI" >신성아이넷</option>
+									<option value="257" provider_id="sinyoungsm" >신영에스엠</option>
+									<option value="394" provider_id="shinukorea" >신유코리아</option>
+									<option value="167" provider_id="daesung10" >실리프</option>
+									<option value="470" provider_id="seelectric" >쎄전기</option>
+									<option value="205" provider_id="cynex1314" >씨넥스존</option>
+									<option value="165" provider_id="cnmade" >씨앤메이드</option>
+									<option value="371" provider_id="cscommerce" >씨에스커머스</option>
+									<option value="324" provider_id="clps2016" >씨엘피에스</option>
+									<option value="438" provider_id="cyint2019" >씨와이인터내셔널</option>
+									<option value="346" provider_id="cysale" >씨와이컴퍼니</option>
+									<option value="68" provider_id="adorar" >아도라</option>
+									<option value="253" provider_id="adullamint01" >아둘람인터내셔널</option>
+									<option value="457" provider_id="adico" >아디코</option>
+									<option value="478" provider_id="aramedia" >아라미디어솔루션</option>
+									<option value="278" provider_id="apropkc" >아름다운프로</option>
+									<option value="215" provider_id="avade1120" >아바드</option>
+									<option value="340" provider_id="imama01" >아이마마</option>
+									<option value="224" provider_id="imixyou" >아이믹스유</option>
+									<option value="416" provider_id="aiwana0201" >아이와나테크</option>
+									<option value="450" provider_id="ichelsea" >아이첼시</option>
+									<option value="145" provider_id="bigant" >아이피글로벌</option>
+									<option value="64" provider_id="dlinkkorea" >아이피드림</option>
+									<option value="437" provider_id="dkdlafnzl" >아임루키</option>
+									<option value="24" provider_id="archiinfo" >아키인포</option>
+									<option value="417" provider_id="andongbanga" >안동반가 주식회사</option>
+									<option value="465" provider_id="daehantd" >알찬재래김</option>
+									<option value="264" provider_id="yamuzida" >야무지다</option>
+									<option value="382" provider_id="yangjisa" >양지사</option>
+									<option value="150" provider_id="urbancom" >어반커머스</option>
+									<option value="188" provider_id="mkmsmy02" >어썸팩토리</option>
+									<option value="92" provider_id="slmedianet" >에스엘미디어넷</option>
+									<option value="440" provider_id="slcompani" >에스엘컴퍼니</option>
+									<option value="203" provider_id="sm11332" >에스엠퓨처스</option>
+									<option value="22" provider_id="sypolytech" >에스와이폴리텍</option>
+									<option value="12" provider_id="sjbiz1975" >에스제이비즈</option>
+									<option value="180" provider_id="sjco02" >에스제이씨오</option>
+									<option value="31" provider_id="instaxmall" >에스제이코어퍼레이션</option>
+									<option value="53" provider_id="starmall" >에스티트레이딩</option>
+									<option value="206" provider_id="avinside" >에이브이인사이드</option>
+									<option value="209" provider_id="ablecompany" >에이블컴퍼니</option>
+									<option value="303" provider_id="ashopno1" >에이샵</option>
+									<option value="300" provider_id="aceelec" >에이스일렉트로닉스</option>
+									<option value="66" provider_id="acetec" >에이스텍</option>
+									<option value="321" provider_id="azkorea" >에이젯코리아</option>
+									<option value="113" provider_id="hcommerce" >에이치커머스</option>
+									<option value="227" provider_id="aport" >에이포트</option>
+									<option value="352" provider_id="ecogreen84" >에코그린</option>
+									<option value="106" provider_id="ecodeco" >에코데코</option>
+									<option value="116" provider_id="fndnet" >에프앤디넷</option>
+									<option value="291" provider_id="fmbiz" >에프엠비아이지</option>
+									<option value="41" provider_id="leadersnet" >엘디네트웍스</option>
+									<option value="158" provider_id="arim" >엘리시아룸</option>
+									<option value="313" provider_id="eilte2000" >엘리트북</option>
+									<option value="332" provider_id="landk" >엘앤케이</option>
+									<option value="222" provider_id="ljoptimum" >엘제이옵티멈</option>
+									<option value="471" provider_id="nubirapark" >엘지데코</option>
+									<option value="238" provider_id="lkgkorea" >엘케이지</option>
+									<option value="270" provider_id="l2zone" >엘투존</option>
+									<option value="400" provider_id="MIDMI2013" >엠&지코리아</option>
+									<option value="159" provider_id="embros" >엠브로스</option>
+									<option value="393" provider_id="ecomnc" >엠씨랩</option>
+									<option value="312" provider_id="mnskoreagt" >엠앤에스코리아</option>
+									<option value="363" provider_id="zazz49" >엠에프매직하우스</option>
+									<option value="190" provider_id="mpnavi" >엠피나비</option>
+									<option value="35" provider_id="youmi2015" >여우미</option>
+									<option value="141" provider_id="kongnoris" >연금술차</option>
+									<option value="322" provider_id="clubyh" >영현아이앤씨</option>
+									<option value="18" provider_id="odind" >오디아이앤디</option>
+									<option value="170" provider_id="ovia" >오비아</option>
+									<option value="160" provider_id="oviamedic" >오비아메디칼</option>
+									<option value="319" provider_id="auvil" >오빌</option>
+									<option value="132" provider_id="ostarkorea" >오스타코리아</option>
+									<option value="474" provider_id="okgood" >오케이굳</option>
+									<option value="383" provider_id="okokmart" >오케이마트</option>
+									<option value="338" provider_id="carriercrk" >오텍캐리어냉장</option>
+									<option value="107" provider_id="autolimed" >오토리메드</option>
+									<option value="280" provider_id="oksem6867" >옥샘코리아</option>
+									<option value="477" provider_id="skonlinemall" >온라인몰</option>
+									<option value="171" provider_id="onf0423" >온앤오프커머스</option>
+									<option value="351" provider_id="gsb1544" >온우리가구</option>
+									<option value="155" provider_id="joy0801" >올펀</option>
+									<option value="42" provider_id="wasabimango" >와사비망고</option>
+									<option value="177" provider_id="wowgoodpick" >와우굿픽</option>
+									<option value="337" provider_id="wowint" >와우인터내셔널</option>
+									<option value="397" provider_id="ydmall" >와이디</option>
+									<option value="385" provider_id="ydintl" >와이디인터내셔널</option>
+									<option value="475" provider_id="ylsic" >와이엘사이언스</option>
+									<option value="406" provider_id="proseat" >와이지에프</option>
+									<option value="175" provider_id="wanstore" >완스토어</option>
+									<option value="297" provider_id="whatup1201" >왓스업</option>
+									<option value="110" provider_id="uju123456" >우주에이치앤비</option>
+									<option value="228" provider_id="wjfood" >웅진식품</option>
+									<option value="241" provider_id="oneofus16" >워너버스</option>
+									<option value="243" provider_id="waterpnd" >워터피앤디</option>
+									<option value="144" provider_id="wonderfly" >원더플라이</option>
+									<option value="473" provider_id="wonderfly2020" >원더플라이2020</option>
+									<option value="79" provider_id="oncehome" >원스</option>
+									<option value="327" provider_id="onestar1" >원스타인터내셔널</option>
+									<option value="467" provider_id="onestop" >원스톱퍼니처</option>
+									<option value="121" provider_id="oneinter" >원인터내셔널</option>
+									<option value="26" provider_id="wonha0108" >원하조명</option>
+									<option value="263" provider_id="welldeco3102" >웰데코</option>
+									<option value="376" provider_id="welrixrental" >웰릭스렌탈</option>
+									<option value="201" provider_id="babosarang1" >웹이즈</option>
+									<option value="78" provider_id="sdeco" >위너스유</option>
+									<option value="36" provider_id="withpps" >위드피플즈</option>
+									<option value="427" provider_id="wecanhi" >위캔하이</option>
+									<option value="335" provider_id="winco2019" >윈코커머스</option>
+									<option value="169" provider_id="winterior" >윈테리어</option>
+									<option value="81" provider_id="unicnc" >유니씨앤씨</option>
+									<option value="304" provider_id="youliving" >유리빙</option>
+									<option value="476" provider_id="umu2016" >유무</option>
+									<option value="275" provider_id="unitrad" >유앤아이트레이딩</option>
+									<option value="148" provider_id="bftrading" >유영강업</option>
+									<option value="375" provider_id="yuwonps" >유원피.에스_보노하우스</option>
+									<option value="311" provider_id="ukss1" >유케이</option>
+									<option value="184" provider_id="uitmall" >유환아이텍</option>
+									<option value="395" provider_id="innoview" >이노뷰</option>
+									<option value="146" provider_id="eroomn" >이룸앤</option>
+									<option value="350" provider_id="eroomhome" >이룸홈</option>
+									<option value="211" provider_id="emac0903" >이맥</option>
+									<option value="164" provider_id="ddasum19" >이불연구소</option>
+									<option value="265" provider_id="e-sang" >이상네트웍스</option>
+									<option value="226" provider_id="zzasc" >이영컴퍼니</option>
+									<option value="242" provider_id="eodyne01" >이오다인 컴퍼니</option>
+									<option value="139" provider_id="eunwha" >이좋은 은화페이트</option>
+									<option value="114" provider_id="martinkorea" >이카루스</option>
+									<option value="55" provider_id="ecare" >이케어</option>
+									<option value="345" provider_id="cooljung25" >이큐브인더스트리</option>
+									<option value="379" provider_id="haa9364" >이프조명</option>
+									<option value="286" provider_id="lhanict" >이한아이씨티</option>
+									<option value="3" provider_id="innsbruck" >인스브룩크</option>
+									<option value="221" provider_id="incroma" >인크로마</option>
+									<option value="293" provider_id="interonic" >인테로닉</option>
+									<option value="451" provider_id="binsun4" >일구팔공</option>
+									<option value="117" provider_id="illysystem" >일리시스템</option>
+									<option value="93" provider_id="ilsinchem" >일신엠알오</option>
+									<option value="256" provider_id="wh917" >일신전기조명</option>
+									<option value="271" provider_id="iletech12" >일이테크</option>
+									<option value="197" provider_id="ilzalnam" >일잘하는남자</option>
+									<option value="30" provider_id="inksystem" >잉스</option>
+									<option value="301" provider_id="zanette" >자네트가구</option>
+									<option value="109" provider_id="jm3699" >자몽나라</option>
+									<option value="14" provider_id="jjincns" >정진씨앤에스</option>
+									<option value="325" provider_id="1108608827A" >정진유통</option>
+									<option value="40" provider_id="geneforce" >제네포스</option>
+									<option value="39" provider_id="zeraka" >제라카</option>
+									<option value="448" provider_id="zeromoment" >제로모먼트</option>
+									<option value="439" provider_id="minerala" >제이비에프</option>
+									<option value="122" provider_id="clarara" >제이앤니들워크</option>
+									<option value="65" provider_id="jnsyss" >제이앤시스</option>
+									<option value="422" provider_id="pjy017" >제이앤씨</option>
+									<option value="399" provider_id="jssquare" >제이에스스퀘어</option>
+									<option value="138" provider_id="jsmglobal" >제이에스엠글로벌</option>
+									<option value="101" provider_id="jhlinternational" >제이에이치엘인터네셔널</option>
+									<option value="202" provider_id="jhcp0125" >제이에이치컴퍼니</option>
+									<option value="151" provider_id="jmsenc01" >제이엠즈이엔씨</option>
+									<option value="9" provider_id="jjplanet11" >제이제이플래닛</option>
+									<option value="419" provider_id="gtgagu" >젠틱가구</option>
+									<option value="28" provider_id="jbcns" >종부씨엔에스</option>
+									<option value="431" provider_id="naeunlife" >주식회사 나은생활</option>
+									<option value="200" provider_id="crtek" >주식회사 씨알텍</option>
+									<option value="331" provider_id="aria2015" >주식회사 아리아</option>
+									<option value="298" provider_id="coit01" >주식회사 코잇</option>
+									<option value="98" provider_id="jycnc0522" >주윤씨앤씨</option>
+									<option value="367" provider_id="jjunwood" >준우드</option>
+									<option value="183" provider_id="djtjswo483" >준현디지털</option>
+									<option value="223" provider_id="gno0225" >지노네트웍스</option>
+									<option value="369" provider_id="zives" >지베스</option>
+									<option value="444" provider_id="nchmall" >지애</option>
+									<option value="217" provider_id="goobnemall" >지앤몰</option>
+									<option value="258" provider_id="gnkcomp" >지앤케이컴퍼니</option>
+									<option value="143" provider_id="gm0214" >지엠트레이드</option>
+									<option value="262" provider_id="jiwoomall" >지우몰</option>
+									<option value="17" provider_id="gestory" >지이스토리</option>
+									<option value="156" provider_id="jin0303" >진커머스</option>
+									<option value="90" provider_id="jincom74" >진컴</option>
+									<option value="225" provider_id="yechang7" >창앤롤</option>
+									<option value="70" provider_id="happyput" >채우리</option>
+									<option value="244" provider_id="cherryaroma" >체리향기</option>
+									<option value="77" provider_id="pnbstore" >커넥팅피앤비</option>
+									<option value="95" provider_id="coverico" >커버리코</option>
+									<option value="281" provider_id="comgill" >컴길</option>
+									<option value="274" provider_id="kdlab" >케이디랩</option>
+									<option value="373" provider_id="kds1101" >케이디에스</option>
+									<option value="123" provider_id="knb150123" >케이앤비커머스</option>
+									<option value="46" provider_id="khplaza" >케이에이치프라자</option>
+									<option value="71" provider_id="krcocen3" >코리아센터(SK매직총판)</option>
+									<option value="339" provider_id="causetech" >코즈테크</option>
+									<option value="316" provider_id="wineqok" >콕닷컴</option>
+									<option value="89" provider_id="sualc" >콤비나</option>
+									<option value="75" provider_id="cubist" >큐비스트</option>
+									<option value="408" provider_id="cubing" >큐빙</option>
+									<option value="458" provider_id="melliz" >클라드카카</option>
+									<option value="149" provider_id="clicknara" >클릭나라</option>
+									<option value="199" provider_id="type1" >타입원</option>
+									<option value="454" provider_id="tarryworld" >태리</option>
+									<option value="134" provider_id="piuup114" >태림상사</option>
+									<option value="85" provider_id="hangil37" >태진씨앤아이</option>
+									<option value="365" provider_id="TAJINCOM" >태진컴</option>
+									<option value="8" provider_id="teratonic" >테라토닉</option>
+									<option value="153" provider_id="teatlab001" >테스트랩</option>
+									<option value="219" provider_id="torolife" >토로라이프</option>
+									<option value="459" provider_id="tomi" >토미</option>
+									<option value="162" provider_id="talkndata" >토크엔데이타</option>
+									<option value="418" provider_id="totobiz" >토토비즈</option>
+									<option value="137" provider_id="travelgear" >트래블기어</option>
+									<option value="435" provider_id="tmthong" >트랜드앳홈</option>
+									<option value="358" provider_id="traders87" >트레이더스</option>
+									<option value="309" provider_id="goodstree" >트리(Tree)</option>
+									<option value="430" provider_id="timnco" >티아이엠앤코</option>
+									<option value="69" provider_id="tsdint" >티에스디인터내셔널</option>
+									<option value="229" provider_id="tswin77" >티에스윈</option>
+									<option value="74" provider_id="tscpdj1" >티에스퍼니처</option>
+									<option value="305" provider_id="bluewhale813" >파란고래</option>
+									<option value="349" provider_id="queens" >파란들</option>
+									<option value="362" provider_id="sgcar1326" >퍼니원</option>
+									<option value="368" provider_id="flgagu" >퍼스트레이디가구</option>
+									<option value="302" provider_id="behrpaint" >페인트박스</option>
+									<option value="173" provider_id="oheimint" >포더홈</option>
+									<option value="285" provider_id="kyr8311" >포시즌센트</option>
+									<option value="15" provider_id="fourtrees" >포트리스</option>
+									<option value="172" provider_id="minkuly" >푸른언덕</option>
+									<option value="314" provider_id="greenhaje" >푸른하제</option>
+									<option value="306" provider_id="pureland" >퓨어랜드</option>
+									<option value="168" provider_id="lacuzin" >프로스페리티</option>
+									<option value="178" provider_id="prome_nade" >프롬나드컴퍼니</option>
+									<option value="392" provider_id="priviaskinlab" >프리비아스킨랩</option>
+									<option value="161" provider_id="plafarm" >플라팜</option>
+									<option value="359" provider_id="plandeco" >플랜데코</option>
+									<option value="128" provider_id="playonshopping" >플레이온쇼핑</option>
+									<option value="409" provider_id="gyeol" >플렌테리어결</option>
+									<option value="436" provider_id="mobel" >피엠에스모벨카펜터</option>
+									<option value="112" provider_id="pgshop" >피지랜드</option>
+									<option value="49" provider_id="peoplesq" >피플스퀘어 인터내셔널</option>
+									<option value="76" provider_id="pixmall" >픽스몰</option>
+									<option value="347" provider_id="gkskzj119" >하나커머즈</option>
+									<option value="415" provider_id="hypot" >하이팟</option>
+									<option value="277" provider_id="heimdesign" >하임디자인</option>
+									<option value="187" provider_id="koreaihe2018" >한국주택환경연구원</option>
+									<option value="308" provider_id="bonaque2020" >한솔일렉트로닉스</option>
+									<option value="287" provider_id="buja2727" >한아름</option>
+									<option value="288" provider_id="hanildnc" >한일디엔씨</option>
+									<option value="174" provider_id="hancooks" >한쿡스</option>
+									<option value="318" provider_id="halderroemheld" >할더룀헬드코리아 주식회사</option>
+									<option value="377" provider_id="wnghdwls1" >해피아이</option>
+									<option value="220" provider_id="rsmoo" >행복인</option>
+									<option value="147" provider_id="heodak" >허닭</option>
+									<option value="279" provider_id="sunabout3307" >헤라PNT</option>
+									<option value="48" provider_id="hessedhouse" >헤세드하우스</option>
+									<option value="82" provider_id="wontem" >헤이즈가구</option>
+									<option value="334" provider_id="hyundailivart" >현대리바트</option>
+									<option value="251" provider_id="hs51987" >현성전자</option>
+									<option value="80" provider_id="hodoodeco" >호두데코</option>
+									<option value="447" provider_id="cookplus" >홈앤</option>
+									<option value="20" provider_id="hsint" >효성인터내셔널</option>
+									<option value="207" provider_id="hooscommerce" >후즈커머스</option>
+									<option value="237" provider_id="hwewin" >휘인테크</option>
+									<option value="456" provider_id="huegoring" >휴고링</option>
+									<option value="249" provider_id="gmfma" >흐름INC</option>
+									<option value="276" provider_id="hickies" >히키스</option>
+									<option value="118" provider_id="hit0822" >히트</option>
+									<option value="102" provider_id="mobi4u" >(사용안함)모비</option>
+									<option value="461" provider_id="joyimall" >(주)동서가구</option>
+									<option value="421" provider_id="hanssemozen" >(주)오젠</option>
+									<option value="460" provider_id="37point" >37포인트</option>
+									<option value="91" provider_id="43outlet" >43번가아울렛</option>
+									<option value="398" provider_id="ehomedeco" >e-homedeco</option>
+									<option value="100" provider_id="here1am" >here1am</option>
+									<option value="23" provider_id="kpk7598" >kpk7598</option>
+									<option value="179" provider_id="kpp2018" >kpp쓰임자리연구소</option>
+									<option value="384" provider_id="smartshop82" >MH상사</option>
+									<option value="445" provider_id="our_bueok" >our_bueok</option>
+									<option value="247" provider_id="ecofriendz" >SSOAK[:쏙]</option>
+									<option value="11" provider_id="ttukttak1" >ttukttak(test)</option>
+									<option value="411" provider_id="ttukttak3" >ttukttak(test)2</option>
+									<option value="182" provider_id="test123456" >_개발_테스트용_</option>
+								</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="hidden" class="shipping_provider_seq" name="shipping_provider_seq" value="" default_none />
+								<input type="text" name="shipping_provider_name" value="" style="width:150px;" readonly class="disabled"  default_none />
+								<script type="text/javascript">
+									$(function(){
+										$( "select[name='shipping_provider_seq_selector']" )
+										.combobox()
+										.change(function(){
+											if( $(this).val() > 0 ){
+												$("input[name='shipping_provider_seq']").val($(this).val());
+												$("input[name='shipping_provider_name']").val($("option:selected",this).attr("provider_id"));
+												if	($(this).val() > 1){
+													$(this).closest('td').find('span.ptc-charges').html('(입점사 위탁배송상품 제외)').show();
+												}else{
+													$(this).closest('td').find('span.ptc-charges').html('(입점사 위탁배송상품 포함)').show();
+												}
+											}else{
+												$("input[name='shipping_provider_seq']").val('');
+												$("input[name='shipping_provider_name']").val('');
+												$(this).closest('td').find('span.ptc-charges').html('').hide();
+											}
+										})
+										.next(".ui-combobox").children("input")
+										.bind('focus',function(){
+											if($(this).val()==$( "select[name='shipping_provider_seq_selector'] option:first-child" ).text()){
+												$(this).val('');
+											}
+										})
+										.bind('mouseup',function(){
+											if($(this).val()==''){
+												$( "select[name='shipping_provider_seq_selector']").next(".ui-combobox").children("a.ui-combobox-toggle").click();
+											}
+										});
+									});
+								</script>
+							</div>
+							<span class="ptc-charges hide" style="display:inline-block; margin:5px 0 0 5px"></span>
+						</td>
+					</tr>
+				
+					<tr><!-- 날짜 -->
+						<th>날짜</th>
+						<td colspan="5">
+							<input type="hidden" name="regist_date_type" value="" default_none />
+							<select name="date_field" class="line" style="width:100px;">
+								<option value="regist_date" selected>주문일</option>
+								<option value="deposit_date" >입금일</option>
+							</select>
+							<input type="text" name="regist_date[]" value="2020-12-01" class="datepicker line"  maxlength="10" style="width:80px;" default_none />
+							&nbsp;<span class="gray">-</span>&nbsp;
+							<input type="text" name="regist_date[]" value="2020-12-01" class="datepicker line" maxlength="10" style="width:80px;" default_none />
+							&nbsp;
+							<span class="btn small"><input type="button" value="오늘" id="today" class="select_date" settarget="regist_date"/></span>
+							<span class="btn small"><input type="button" value="3일간" id="3day" class="select_date" settarget="regist_date"/></span>
+							<span class="btn small"><input type="button" value="일주일" id="1week" class="select_date" settarget="regist_date"/></span>
+							<span class="btn small"><input type="button" value="1개월" id="1month" class="select_date" settarget="regist_date"/></span>
+							<span class="btn small"><input type="button" value="3개월" id="3month" class="select_date" settarget="regist_date"/></span>
+							<span class="btn small"><input type="button" value="전체" id="all" class="select_date" settarget="regist_date" /></span>
+						</td>
+					</tr>
+					<!-- 주문상태 출고 전 -->
+					<tr>
+						<th style="letter-spacing:-1px;"><span class='red'>주문상태</span> 출고 전</th>
+						<td colspan="5">
+							<label class="search_label mr5"><input type="checkbox" name="chk_step[15]" value="1" checked /> <span class="icon-order-step-15">주문접수</span></label>
+							<label class="search_label mr5"><input type="checkbox" name="chk_step[25]" value="1" checked /> <span class="icon-order-step-25">결제확인</span></label>
+							<label class="search_label mr5"><input type="checkbox" name="chk_step[35]" value="1"  /> <span class="icon-order-step-35">상품준비</span></label>
+							<label class="search_label mr5"><input type="checkbox" name="chk_step[40]" value="1"  /> <span class="icon-order-step-40">부분출고준비</span></label>
+							<label class="search_label mr5"><input type="checkbox" name="chk_step[45]" value="1"  /> <span class="icon-order-step-45">출고준비</span></label>
+							<label class="search_label mr5"><input type="checkbox" name="chk_step[85]" value="1"  /> <span class="icon-order-step-85">결제취소</span></label>
+							<label class="search_label mr5"><input type="checkbox" name="chk_step[95]" value="1"  /> <span class="icon-order-step-95">주문무효</span></label>
+							<label class="search_label mr5"><input type="checkbox" name="chk_step[99]" value="1"  /> <span class="icon-order-step-99">결제실패</span></label>
+							<span class="icon-check hand all-check"><b>전체</b></span>
+						</td>
+					</tr>
+					<!-- 주문상태 출고 후 -->
+					<tr>
+						<th style="letter-spacing:-1px;"><span class='red'>주문상태</span> 출고 후</th>
+						<td colspan="5" style="position:relative;">
+							<label class="search_label mr5"><input type="checkbox" name="chk_step[50]" value="1"  /> <span class="icon-order-step-50">부분출고완료</span></label>
+							<label class="search_label mr5"><input type="checkbox" name="chk_step[55]" value="1"  /> <span class="icon-order-step-55">출고완료</span></label>
+							<label class="search_label mr5"><input type="checkbox" name="chk_step[60]" value="1"  /> <span class="icon-order-step-60">부분배송중</span></label>
+							<label class="search_label mr5"><input type="checkbox" name="chk_step[65]" value="1"  /> <span class="icon-order-step-65">배송중</span></label>
+							<label class="search_label mr5"><input type="checkbox" name="chk_step[70]" value="1"  /> <span class="icon-order-step-70">부분배송완료</span></label>
+							<label class="search_label mr5"><input type="checkbox" name="chk_step[75]" value="1"  /> <span class="icon-order-step-75">배송완료</span></label>
+							<span class="icon-check hand all-check"><b>전체</b></span>
+							&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+							<label>
+								<input type="checkbox" name="chk_bundle_yn" value="1"  wrapped/>
+								<span>합포장(묶음배송)</span>
+							</label>
+							<span class="helpicon2 detailDescriptionLayerBtn" title="합포장(묶음배송) 출고"></span>
+							<!-- 합포장(묶음배송) 설명 -->
+							<div class="detailDescriptionLayer wx300 hide" style="right:50px;">
+								2개 이상의 주문에 대하여<br />합포장(묶음배송)으로 출고된 주문 조회
+							</div>
+						</td>
+					</tr>
+					<!-- 배송방법 -->
+					<tr>
+						<th>배송방법
+							<span class="helpicon2 detailDescriptionLayerBtn" title="배송방법"></span>
+							<!-- 배송방법 설명 -->
+							<div class="detailDescriptionLayer hide">선택된 배송국가의 배송방법으로 주문된 주문 조회</div>
+						</th>
+						<td colspan="5">
+							<label class="search_label" style="width:65px;"><input type="checkbox" name="nation[]" value="domestic" /> 대한민국</label>
+							(							<label style="width:auto;letter-spacing:-1px;"><input type="checkbox" name="shipping_set_code[domestic][]" value="delivery" groupset='domestic' grouplast="n"  /> <span  class="fx11">택배</span></label>
+							<label style="width:auto;letter-spacing:-1px;"><input type="checkbox" name="shipping_set_code[domestic][]" value="direct_delivery" groupset='domestic' grouplast="n"  /> <span  class="fx11">직접배송</span></label>
+							<label style="width:auto;letter-spacing:-1px;"><input type="checkbox" name="shipping_set_code[domestic][]" value="quick" groupset='domestic' grouplast="n"  /> <span  class="fx11">퀵서비스</span></label>
+							<label style="width:auto;letter-spacing:-1px;"><input type="checkbox" name="shipping_set_code[domestic][]" value="freight" groupset='domestic' grouplast="n"  /> <span  class="fx11">화물배송</span></label>
+							<label style="width:auto;letter-spacing:-1px;"><input type="checkbox" name="shipping_set_code[domestic][]" value="direct_store" groupset='domestic' grouplast="n"  /> <span  class="fx11">매장수령</span></label>
+							<label style="width:auto;letter-spacing:-1px;"><input type="checkbox" name="shipping_set_code[domestic][]" value="custom" groupset='domestic' grouplast="y"  /> <span  class="fx11">직접입력</span></label>
+)
+							<label class="search_label ml10" style="width:65px;"><input type="checkbox" name="nation[]" value="international" br='y'
+/> 해외국가</label>
+							(							<label style="width:auto;letter-spacing:-1px;"><input type="checkbox" name="shipping_set_code[international][]" value="delivery"  groupset='international' grouplast="n"  /> <span  class="fx11">택배</span></label>
+							<label style="width:auto;letter-spacing:-1px;"><input type="checkbox" name="shipping_set_code[international][]" value="direct_delivery"  groupset='international' grouplast="n"  /> <span  class="fx11">직접배송</span></label>
+							<label style="width:auto;letter-spacing:-1px;"><input type="checkbox" name="shipping_set_code[international][]" value="quick"  groupset='international' grouplast="n"  /> <span  class="fx11">퀵서비스</span></label>
+							<label style="width:auto;letter-spacing:-1px;"><input type="checkbox" name="shipping_set_code[international][]" value="freight"  groupset='international' grouplast="n"  /> <span  class="fx11">화물배송</span></label>
+							<label style="width:auto;letter-spacing:-1px;"><input type="checkbox" name="shipping_set_code[international][]" value="direct_store"  groupset='international' grouplast="n"  /> <span  class="fx11">매장수령</span></label>
+							<label style="width:auto;letter-spacing:-1px;"><input type="checkbox" name="shipping_set_code[international][]" value="custom"  groupset='international' grouplast="y"  /> <span  class="fx11">직접입력</span></label>
+)
+							&nbsp;|&nbsp;
+							<label class="search_label" style="width:auto;letter-spacing:-1px;"><input type="checkbox" name="shipping_set_code[ticket]" value="ticket" br='y'  /> 문자/이메일 (티켓발송)</label>
+						</td>
+					</tr>
+					<!-- 배송예정 -->
+					<tr>
+						<th>배송예정
+							<span class="helpicon2 detailDescriptionLayerBtn" title="배송예정"></span>
+							<!-- 배송방법 설명 -->
+							<div class="detailDescriptionLayer wx300 hide">희망배송일이 입력기간인 주문조회<br />예약상품발송일이 입력기간인 주문조회</div>
+						</th>
+						<td colspan="5">
+							<label class="search_label" ><input type="checkbox" name="shipping_hop_use" value="y" /> 희망배송일</label>
+							<input type="text" name="shipping_hope_sdate" value="" class="datepicker line"  maxlength="10" style="width:80px" default_none />
+							<span class="gray">-</span>
+							<input type="text" name="shipping_hope_edate" value="" class="datepicker line" maxlength="10" style="width:80px" default_none />
+							&nbsp;<span class="btn small"><input type="button" value="오늘" id="today" class="select_date" settarget="shipping_hope" /></span>
+							<label class="search_label ml20" style="width:110px;"><input type="checkbox" name="shipping_reserve_use" value="y" /> 예약상품발송일</label>
+							<input type="text" name="shipping_reserve_sdate" value="" class="datepicker line"  maxlength="10" style="width:80px" default_none />
+							<span class="gray">-</span>
+							<input type="text" name="shipping_reserve_edate" value="" class="datepicker line" maxlength="10" style="width:80px" default_none />
+							&nbsp;<span class="btn small"><input type="button" value="오늘" id="today" class="select_date" settarget="shipping_reserve"/></span>
+						</td>
+					</tr>
+					<!-- 주문상품 -->
+					<tr>
+						<th>주문상품
+							<span class="helpicon2 detailDescriptionLayerBtn" title="주문상품"></span>
+							<!-- 배송방법 설명 -->
+							<div class="detailDescriptionLayer hide">
+								<table class='helpicon_table' cellpadding=0 cellspacing=0>
+									<tr><th class="center">구분</th><th class="center">주문상품</th><th class="center">주문 조회 결과</th></tr>
+									<tr><td>일반/티켓</td><td>성인상품</td><td class='red left'>성인상품이 있는 주문 조회</td></tr>
+									<tr><td>일반/티켓</td><td>청약철회불가</td><td class='red left'>청약철회불가상품이 있는 주문 조회</td></tr>
+									<tr><td>일반/티켓</td><td>구매대행</td><td class='red left'>구매대행상품이 있는 주문 조회</td></tr>
+									<tr><td>일반</td><td>예약상품</td><td class='red left'>예약상품이 있는 주문 조회</td></tr>
+									<tr><td>일반</td><td>패키지/복합상품</td><td class='red left'>패키지/복합상품이 있는 주문 조회</td></tr>
+									<tr><td>일반</td><td>사은품</td><td class='red left'>사은품이 있는 주문 조회</td></tr>
+									<tr><td>티켓</td><td>티켓</td><td class='red left'>티켓이 있는 주문 조회</td></tr>
+									<tr><td>일반</td><td>위탁배송상품</td><td class='red left'>위탁배송이 있는 주문 조회</td></tr>
+								</table>
+							</div>
+						</th>
+						<td colspan="3">
+							<label class="search_label" no="1" >
+								<input type="checkbox" name="goodstype[]" value="adult" row_group="주문상품"   /> <img src="http://www.ttukttak.kr/admin/skin/default/images/design/icon_order_adult.gif" align="absmiddle" />
+								성인상품
+							</label>
+							<label class="search_label" no="1" style="width:120px;">
+								<input type="checkbox" name="goodstype[]" value="withdraw" row_group="주문상품"   /> <img src="http://www.ttukttak.kr/admin/skin/default/images/design/icon_order_withdraw.gif" align="absmiddle" />
+								청약철회불가
+							</label>
+							<label class="search_label" no="1" >
+								<input type="checkbox" name="goodstype[]" value="international_shipping" row_group="주문상품"   /> <img src="http://www.ttukttak.kr/admin/skin/default/images/design/icon_order_international_shipping.gif" align="absmiddle" />
+								구매대행
+							</label>
+							<label class="search_label" no="1" >
+								<input type="checkbox" name="goodstype[]" value="reserve" row_group="주문상품"   /> <img src="http://www.ttukttak.kr/admin/skin/default/images/design/icon_order_reserve.gif" align="absmiddle" />
+								예약상품
+							</label>
+ | &nbsp; 							<label class="search_label" no="1" style="width:130px;">
+								<input type="checkbox" name="goodstype[]" value="package" row_group="주문상품"   /> <img src="http://www.ttukttak.kr/admin/skin/default/images/design/icon_order_package.gif" align="absmiddle" />
+								패키지/복합상품
+							</label>
+							<label class="search_label" no="1" >
+								<input type="checkbox" name="goodstype[]" value="gift" row_group="주문상품"   /> <img src="http://www.ttukttak.kr/admin/skin/default/images/design/icon_order_gift.gif" align="absmiddle" />
+								사은품
+							</label>
+							<label class="search_label" no="1" >
+								<input type="checkbox" name="goodstype[]" value="ticket" row_group="주문상품"   /> <img src="http://www.ttukttak.kr/admin/skin/default/images/design/icon_order_ticket.gif" align="absmiddle" />
+								티켓
+							</label>
+						</td>
+						<th style="vertical-align:middle" class="pdt3">중요주문</span></th>
+						<td>
+							<label class="mr10"><input type="checkbox" name="important[]" value="1"  /> <span class="icon-star-gray hand checked list-important"></span></label>
+							<label><input type="checkbox" name="important[]" value="0"  /> <span class="icon-star-gray hand list-important "></span></label>
+						</td>
+					</tr>
+					<!-- 주문환경/주문유형 -->
+					<tr>
+						<th>주문환경</th>
+						<td no=0>
+							<label class="search_label"  ><input type="checkbox" name="sitetype[]" value="P"  /> PC</label>
+							<label class="search_label" style="width:120px" ><input type="checkbox" name="sitetype[]" value="M"  /> 모바일/테블릿</label>
+							<label class="search_label"  ><input type="checkbox" name="sitetype[]" value="F"  /> 페이스북</label>
+							<label class="search_label"  ><input type="checkbox" name="sitetype[]" value="APP_ANDROID"  /> Android 앱</label>
+							<label class="search_label"  ><input type="checkbox" name="sitetype[]" value="APP_IOS"  /> iOS 앱</label>
+							<label class="search_label"  ><input type="checkbox" name="sitetype[]" value="POS"  /> 오프라인매장 </label>
+						</td>
+						<th>주문유형</th>
+						<td no=1 colspan="3">
+							<label class="search_label" ><input type="checkbox" name="ordertype[]" value="change"  /> <img src="http://www.ttukttak.kr/admin/skin/default/images/design/icon_order_exchange.gif" align="absmiddle" /> 교환주문</label>
+							<label><input type="checkbox" name="ordertype[]" value="admin"   /> <img src="http://www.ttukttak.kr/admin/skin/default/images/design/icon_order_admin.gif" align="absmiddle" /> 관리자주문</label>
+							<label><input type="checkbox" name="ordertype[]" value="personal"   /> <img src="http://www.ttukttak.kr/admin/skin/default/images/design/icon_order_personal.gif" align="absmiddle" /> 개인결제</label>
+						</td>
+					</tr>
+					<!-- 주문결제/주문유입 -->
+					<tr>
+						<th style="vertical-align:top" class="pdt10">주문결제</span></th>
+						<td no=0 class="pdt5">
+							<div class="selectbox_multi">
+								<div class="cont bank pdt5">
+									<label class="search_label"><input type="checkbox" name="payment[]" value="bank"  /> 무통장</label>
+									<label class="search_label"><input type="checkbox" name="payment[]" value="pos_pay"  /> 매장결제</label>
+								</div>
+								<div class="cont multiselect">
+									<h2><label><input type="checkbox" name="allpg" class="allSelectDrop" br='y' value='y' > <span class="allpg">모든 결제사</span></label></h2>
+									<div class="list">
+									<ul>
+										<li><label><input type="checkbox" name="pg[]" value="normal" title="일반PG사" > 일반PG사</label></li>
+										<li><label><input type="checkbox" name="pg[]" value="kakaopay" title="카카오페이" > 카카오페이</label></li>
+										<li><label><input type="checkbox" name="pg[]" value="payco" title="페이코" > 페이코</label></li>
+										<li><label><input type="checkbox" name="pg[]" value="npay" title="네이버페이" > 네이버페이</label></li>
+										<li><label><input type="checkbox" name="pg[]" value="paypal" title="페이팔" > 페이팔</label></li>
+										<li><label><input type="checkbox" name="pg[]" value="eximbay" title="엑심베이" > 엑심베이</label></li>
+									</ul>
+									</div>
+								</div>								
+								<div class="cont multiselect">
+									<h2><label><input type="checkbox" name="allpayment" class="allSelectDrop" br='y' value='y' > <span class="allpayment">모든 결제수단</span></label></h2>
+									<div class="list">
+									<ul>
+										<li><label><input type="checkbox" name="payment[]" value="card" title="신용카드" > 신용카드</label></li>
+										<li><label><input type="checkbox" name="payment[]" value="cellphone" title="휴대폰" > 휴대폰</label></li>
+										<li><label><input type="checkbox" name="payment[]" value="account" title="계좌이체" > 계좌이체</label></li>
+										<li><label><input type="checkbox" name="payment[]" value="escrow_account" title="에스크로계좌이체" > 에스크로계좌이체</label></li>
+										<li><label><input type="checkbox" name="payment[]" value="virtual" title="가상계좌" > 가상계좌</label></li>
+										<li><label><input type="checkbox" name="payment[]" value="escrow_virtual" title="에스크로가상계좌" > 에스크로가상계좌</label></li>
+										<li><label><input type="checkbox" name="payment[]" value="point" title="포인트" > 포인트</label></li>
+									</ul>
+									</div>
+								</div>
+							</div>
+						</td>
+						<th style="vertical-align:top;" class="pdt10"><span>주문유입</span></th>
+						<td no=1 class="pdt5">
+							<div class="selectbox_multi">
+								<div class="cont multiselect">
+									<h2><label><input type="checkbox" name="allreferer" class="allSelectDrop" default_none value='y' > <span class="allreferer">모든 유입경로</span></label></h2>
+									<div class="list">
+									<ul>
+										<li><label><input type="checkbox" name="referer[]" value="shopping_kakao" title="쇼핑하우 카카오" default_none > 쇼핑하우 카카오</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="direct" title="직접입력" default_none > 직접입력</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="search_google" title="구글검색" default_none > 구글검색</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="ad_google" title="구글검색_광고" default_none > 구글검색_광고</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="plus_google" title="구글플러스" default_none > 구글플러스</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="search_naver" title="네이버검색" default_none > 네이버검색</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="adcr_naver" title="네이버검색_광고" default_none > 네이버검색_광고</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="pla_naver" title="네이버검색_광고" default_none > 네이버검색_광고</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="mail_naver" title="네이버메일" default_none > 네이버메일</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="bookmark_naver" title="네이버북마크" default_none > 네이버북마크</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="blog_naver" title="네이버블로그" default_none > 네이버블로그</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="shopping_naver" title="네이버쇼핑" default_none > 네이버쇼핑</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="cafe_naver" title="네이버카페" default_none > 네이버카페</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="pay_naver" title="네이버페이" default_none > 네이버페이</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="search_nate" title="네이트검색" default_none > 네이트검색</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="mail_nate" title="네이트메일" default_none > 네이트메일</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="search_daum" title="다음검색" default_none > 다음검색</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="biz_daum" title="다음검색_광고" default_none > 다음검색_광고</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="mail_daum" title="다음메일" default_none > 다음메일</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="cafe_daum" title="다음카페" default_none > 다음카페</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="shopping_daum" title="쇼핑하우" default_none > 쇼핑하우</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="cyworld" title="싸이월드" default_none > 싸이월드</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="youtube" title="유투브" default_none > 유투브</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="interpark" title="인터파크" default_none > 인터파크</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="kakao_story" title="카카오스토리" default_none > 카카오스토리</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="kakao" title="카카오톡" default_none > 카카오톡</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="twitter" title="트위터" default_none > 트위터</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="facebook" title="페이스북" default_none > 페이스북</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="11st" title="11번가" default_none > 11번가</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="AK_MALL" title="AK몰" default_none > AK몰</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="gmarket" title="G마켓" default_none > G마켓</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="slrclub" title="SLR클럽" default_none > SLR클럽</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="search_zum" title="ZUM검색" default_none > ZUM검색</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="etc" title="기타" default_none > 기타</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="mypeople" title="[종료] 마이피플" default_none > [종료] 마이피플</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="me2day" title="[종료] 미투데이" default_none > [종료] 미투데이</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="basket" title="[종료] 바스켓" default_none > [종료] 바스켓</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="about" title="[종료] 어바웃" default_none > [종료] 어바웃</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="checkout_naver" title="[종료] 체크아웃" default_none > [종료] 체크아웃</label></li>
+										<li><label><input type="checkbox" name="referer[]" value="google" title="구글" default_none > 구글</label></li>
+									</ul>
+									</div>
+								</div>
+							</div>
+						</td>
+						<th style="vertical-align:top" class="pdt10"></span></th>
+						<td no=1 class="pdt5">
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</div>
+<!-- 상세검색 끝 -->
+	</form>
+<div class="right pdr20">※ 렌탈상품 주문처리 안내 : 결제확인(상담접수) / 출고완료(상담완료) / 구매확정(설치완료) / 결제취소(상담취소)</div>
+</div>
+<!-- 주문리스트 검색폼 : 끝 -->
+
+<!-- 주문리스트 테이블 : 시작 -->
+<table class="list-table-style" cellspacing="0">
+	<!-- 테이블 헤더 : 시작 -->
+	<colgroup>
+		<col width="30" />
+		<col width="30" />
+		<col width="30" />
+		<col width="30" />
+		<col width="30" />
+		<col width="80" />
+		<col width="40" />
+		<col width="225" />
+		<col />
+		<col width="45" />
+		<col width="60" />
+		<col width="120" />
+		<col width="120" />
+		<col width="80" />
+		<col width="80" />
+	</colgroup>
+	<thead class="lth">
+		<tr>
+			<th>선택</th>
+			<th>중요</th>
+			<th>번호</th>
+			<th>유입</th>
+			<th>마켓</th>
+			<th>주문일시</th>
+			<th>환경</th>
+			<th>주문번호</th>
+			<th>주문상품</th>
+			<th>수(종)</th>
+			<th>출고
+				<span class="helpicon2 detailDescriptionLayerBtn" title="출고"></span>
+				<div class="detailDescriptionLayer hide">해당 주문의 출고리스트를 확인합니다.</div>
+			</th>
+			<th>받는분/주문자</th>
+			<th>결제수단/일시</th>
+			<th>결제금액</th>
+			<th>주문상태</th>
+		</tr>
+	</thead>
+	<!-- 테이블 헤더 : 끝 -->
+	<!-- 리스트 : 시작 -->
+	<tbody class="ltb order-ajax-list"></tbody>
+	<!-- 리스트 : 끝 -->
+</table>
+
+<div id="goods_export_dialog"></div>
+
+<div id="export_upload" class="hide">
+<style>
+	table.excel-export-form-table {border-collapse:collapse;border:1px solid #aaaaaa;}
+	table.excel-export-form-table tr th {padding:10px;border-bottom:1px solid #c7c7c7; background-color:#e8e8e8; font-size:14px;color:#000;font-weight:bold;text-align:left;}
+	table.excel-export-form-table tr td {padding:10px;border-left:1px solid #dadada;border-bottom:1px solid #dadada;}
+	table.excel-export-form-table tr th span.step {font-size:11px;color:#8d8d8d;font-weight:bold;}
+	table.excel-export-form-table tr td table.excel-export-info-table {border-collapse:collapse;border:1px solid #aaaaaa;}
+	table.excel-export-form-table tr td table.excel-export-info-table tr th {padding:10px;border-left:1px solid #c7c7c7;border-bottom:1px solid #c7c7c7;background-color:#e8e8e8;font-size:11px;color:#000;font-weight:normal;text-align:left;}
+	table.excel-export-form-table tr td table.excel-export-info-table tr td {padding:10px;border-left:1px solid #dadada;border-bottom:1px solid #dadada;font-size:11px;}
+	table.excel-export-form-table tr td table.excel-export-info-table tr td span.excel-highlight-link{color:#e06d18;text-decoration: underline;}
+	table.excel-export-form-table tr td table.export-form-table {border-collapse:collapse;border:2px solid #8fbcec;}
+	table.excel-export-form-table tr td table.export-form-table th { padding:5px; border-left:1px solid #8fbcec; font-size:11px; background-color:#f3f8fd; border-bottom:1px solid #8fbcec; }
+	table.excel-export-form-table tr td table.export-form-table td { padding:5px; border-left:1px solid #8fbcec;font-size:11px; border-bottom:1px solid #8fbcec;}
+	div.attention {font-size:16px;font-weight:bold;}
+</style>
+<form name="excelRegist" id="excelRegist" method="post" action="../order_process/excel_upload_check" enctype="multipart/form-data"  target="actionFrame" onsubmit="loadingStart();">
+
+<table class="excel-export-form-table" width="100%">
+	<col width="140" />
+	<col />
+	<tr>
+		<th>
+		<span class="step">STEP 1.</span> 다운로드
+		</th>
+		<td>
+			<img src="http://www.ttukttak.kr/admin/skin/default/images/design/img_excel_release.gif" />
+		</td>
+	</tr>
+	<tr>
+		<th>
+		<span class="step">STEP 2.</span> 수정
+		</th>
+		<td>
+			<table class="excel-export-info-table" width="100%">
+			<col width="120" />
+			<col />
+			<col />
+			<tr>
+				<th>중요한 셀</th>
+				<th style="text-align:center;">주문기준 엑셀파일 수정 안내</th>
+				<th style="text-align:center;">상품기준 엑셀파일 수정 안내</th>
+			</tr>
+			<tr>
+				<th>보낼수량</th>
+				<td>
+					<div class="attention">해당 주문에 속한 → 상품별 보낼수량의 합</div>
+					<div class="red">※ 다운로드 된 보낼수량으로 출고처리됨</div>
+				</td>
+				<td>
+					<div class="attention">해당 주문에 속한 → 상품별 보낼수량</div>
+					<div class="red">※ 다운로드 된 ‘보낼수량’ 이하이고 ‘0’보다 클 때 출고처리됨</div>
+					<div class="red">※ 보낼수량을 조정하여 상품별 부분출고 가능함</div>
+				</td>
+			</tr>
+			<tr>
+				<th>택배사</th>
+				<td>
+					<div class="attention">택배사 명칭</div>
+					<div>※ 배송방법이 택배일 때 변경 가능 <span class="excel-highlight-link hand" onclick="view_excel_code_help();">안내)택배사</span></div>
+				</td>
+				<td>
+					<div class="attention">택배사 명칭</div>
+					<div>※ 배송방법이 택배일 때 변경 가능 <span class="excel-highlight-link hand" onclick="view_excel_code_help();">안내)택배사</span></div>
+				</td>
+			</tr>
+			<tr>
+				<th>운송장번호</th>
+				<td>
+					<div class="attention">운송장번호</div>
+					<div>※ 배송방법이 택배일 때 택배사의 운송장번호</div>
+					<div>※ 단, 우체국(AUTO) : 엑셀 입력 불필요 (자동할당됨)</div>
+					<div>※ 단, 롯데택배(자동화) : 엑셀 입력 불필요 (자동할당됨)</div>
+					<div>※ 단, 굿스플로(자동화) : 엑셀 입력 불필요 (아래와 같이 처리)</div>
+					<div style="margin-left:15px;">① ‘출고준비’ 처리 후</div>
+					<div style="margin-left:15px;">② 굿스플로 [운송장받기/출력] 버튼 클릭하여 운송장 받은 후</div>
+					<div style="margin-left:15px;">③ ‘출고완료’ 처리함</div>
+				</td>
+				<td>
+					<div class="attention">운송장번호</div>
+					<div>※ 배송방법이 택배일 때 택배사의 운송장번호</div>
+					<div>※ 단, 우체국(AUTO) : 엑셀 입력 불필요 (자동할당됨)</div>
+					<div>※ 단, 롯데택배(자동화) : 엑셀 입력 불필요 (자동할당됨)</div>
+					<div>※ 단, 굿스플로(자동화) : 엑셀 입력 불필요 (아래와 같이 처리)</div>
+					<div style="margin-left:15px;">① ‘출고준비’ 처리 후</div>
+					<div style="margin-left:15px;">② 굿스플로 [운송장받기/출력] 버튼 클릭하여 운송장 받은 후</div>
+					<div style="margin-left:15px;">③ ‘출고완료’ 처리함</div>
+				</td>
+			</tr>
+			<tr>
+				<th>출고그룹<br/>/출고상품번호</th>
+				<td>
+					<div class="attention">출고그룹</div>
+					<div class="red">※ 필수값으로 출고그룹이 있어야만 출고처리가 가능함</div>
+				</td>
+				<td>
+					<div class="attention">출고상품번호</div>
+					<div class="red">※ 필수값으로 출고상품번호가 있어야만 출고처리가 가능함</div>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<th>
+		<span class="step">STEP 3.</span> 저장
+		</th>
+		<td>
+			수정된 엑셀파일을 .csv 형식으로 저장하십시오<br/>
+			<br/>
+			※ 저장방법 : '파일'탭 클릭 → '다른 이름으로 저장' 클릭 → '파일 형식'중 'CSV(쉼표로 분리)' 선택 → [저장] 클릭<br/>
+			※ 주의사항 : .csv 파일의 특성상 .csv파일을 다시 '파일열기'하면 주문번호 등의 숫자필드를 올바르게 표현하지 못합니다.<br/>
+			<span style="display:inline-block;width:80px;"></span>수정이 필요할 경우 .xls 파일을 열어 수정 후 .csv 파일로 다시 저장해 주십시오.
+		</td>
+	</tr>
+
+	<tr>
+		<th>
+		<span class="step">STEP 4.</span> 업로드
+		</th>
+		<td>
+			<div>수정된 엑셀파일(.csv 형식)을 업로드하십시오.</div>
+			<div><input type="file" name="excel_file" id="excel_file" /></div>
+		</td>
+	</tr>
+
+	<tr>
+		<th>
+		<span class="step">STEP 5.</span> 처리
+		</th>
+		<td>
+			<table class="export-form-table" width="100%">
+				<col width="130" />
+				<col />
+				<tr>
+					<th>
+						출고일자
+					</th>
+					<th>출고처리</th>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" name="export_date" class="datepicker line"  maxlength="10" size="10" readonly value="2020-12-01">
+					</td>
+					<td>
+						<div>
+							실물 :
+							<span class="hide">
+							<select name="stockable" id="excel_export_stockable" style="width:330px;">
+								<option value="limit">출고되는 모든 실물의 재고가 있으면</option>
+								<option value="unlimit">출고되는 모든 실물의 재고가 부족해도</option>
+							</select>
+							→ 재고 차감 → (설정 시) SMS/EMAIL 발송 →
+							</span>
+							<select name="export_step" id="excel_export_step" onchange="check_excel_stock_policy_step();">
+								<option value="55">출고완료</option>
+								<option value="45">출고준비</option>
+							</select>로 상태 처리
+							<script>check_excel_stock_policy_step();</script>
+						</div>
+						<div class="pdt5">
+							티켓 :
+							<select name="ticket_stockable" style="width:330px;">
+								<option value="limit">출고되는 모든 티켓의 재고가 있고 티켓번호가 있으면</option>
+								<option value="limit_ticket">출고되는 모든 티켓의 재고가 부족해도 티켓번호가 있으면</option>
+							</select>
+							→ 재고 차감 → (설정 시) SMS/EMAIL 발송 →
+							<select name="ticket_step" style="background-color:#efefef;">
+								<option value="55">출고완료</option>
+							</select>로 상태 처리
+						</div>
+					</td>
+				</tr>
+			</table>
+
+			<div style="width:100%;text-align:center;padding-top:10px;" id="upload_submit_layer">
+				<span class="btn large cyanblue">
+					<button type="submit" id="upload_submit" style="width:150px;">
+						출고처리 실행
+					</button>
+				</span>
+			</div>
+			<div style="width:100%;text-align:center;padding-top:10px;" id="upload_information_layer" class="hide">
+				<span class="red bold">출고처리가 진행중 입니다...</span>
+			</div>
+		</td>
+	</tr>
+</table>
+</form>
+
+<div class="center pdt10">
+<span class="btn small gray">
+	<button type="button" onclick="closeDialog('export_upload');reset_iframe('','');">창닫기</button>
+</span>
+</div>
+</div>
+
+<div id="excel_code_help" style="display:none;">
+<table class="info-table-style" class="info-table-style" style="width:100%">
+	<colgroup>
+		<col width="25%" />
+		<col width="25%" />
+		<col width="25%" />
+		<col width="25%" />
+	</colgroup>
+	<thead>
+	<tr>
+		<th class="its-th-align center">택배사</th>		
+		<th class="its-th-align center">택배사</th>
+		<th class="its-th-align center">택배사</th>		
+		<th class="its-th-align center">택배사</th>		
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td class="its-td-align center">굿스플로 업무자동화</td>		
+		<td class="its-td-align center">우체국택배 업무자동화</td>		
+		<td class="its-td-align center">CJ대한통운</td>		
+		<td class="its-td-align center">DHL코리아</td>		
+</tr><tr>		<td class="its-td-align center">KGB택배</td>		
+		<td class="its-td-align center">경동택배</td>		
+		<td class="its-td-align center">대한통운</td>		
+		<td class="its-td-align center">로젠택배</td>		
+</tr><tr>		<td class="its-td-align center">우체국택배</td>		
+		<td class="its-td-align center">하나로택배</td>		
+		<td class="its-td-align center">한진택배</td>		
+		<td class="its-td-align center">롯데택배</td>		
+</tr><tr>		<td class="its-td-align center">동원택배</td>		
+		<td class="its-td-align center">대신택배</td>		
+		<td class="its-td-align center">세덱스</td>		
+		<td class="its-td-align center">동부익스프레스</td>		
+</tr><tr>		<td class="its-td-align center">천일택배</td>		
+		<td class="its-td-align center">사가와택배</td>		
+		<td class="its-td-align center">일양택배</td>		
+		<td class="its-td-align center">이노지스</td>		
+</tr><tr>		<td class="its-td-align center">편의점택배</td>		
+		<td class="its-td-align center">건영택배</td>		
+		<td class="its-td-align center">옐로우캡</td>		
+		<td class="its-td-align center">ACI</td>		
+</tr><tr>		<td class="its-td-align center">EMS</td>		
+		<td class="its-td-align center">FEDEX</td>		
+		<td class="its-td-align center">합동택배</td>		
+		<td class="its-td-align center">호남택배</td>		
+</tr><tr>		<td class="its-td-align center">우체국EMS</td>		
+		<td class="its-td-align center">HPL(한의사랑)</td>		
+		<td class="its-td-align center">용마로지스</td>		
+		<td class="its-td-align center">대운통운택배</td>		
+</tr><tr>		<td class="its-td-align center">FEDEX</td>		
+		<td class="its-td-align center">고려택배</td>		
+		<td class="its-td-align center">GTX로지스</td>		
+		<td class="its-td-align center">KG로지스</td>		
+</tr><tr>		<td class="its-td-align center">판토logistics</td>		
+		<td class="its-td-align center">CR로지텍</td>		
+		<td class="its-td-align center">GSMNtoN</td>		
+		<td class="its-td-align center">SF EXPRESS</td>		
+</tr><tr>		<td class="its-td-align center">CU편의점택배</td>		
+		<td class="its-td-align center">YTO Express</td>		
+		<td class="its-td-align center">농협택배</td>		
+		<td class="its-td-align center">GSPostbox택배</td>		
+</tr><tr>		<td class="its-td-align center">범한판토스</td>		
+		<td class="its-td-align center">우체국등기</td>		
+		<td class="its-td-align center">퍼레버택배</td>		
+		<td class="its-td-align center">CJ대한국제택배</td>		
+</tr><tr>		<td class="its-td-align center">롯데택배 업무자동화</td>		
+		<td class="its-td-align center" colspan="1"></td>	
+	
+	</tr>
+	</tbody>
+</table>
+<br/><br/>
+</div>
+
+<div id="order_type_help" style="display:none;">
+	<table width="100%" class="info-table-style">
+		<colgroup>
+			<col width="15%" />
+			<col width="30%" />
+			<col width="30%" />
+			<col />
+		</colgroup>
+		<tr>
+			<th class="its-th-align"></th>
+			<th class="its-th-align">1. 관리자 행동</th>
+			<th class="its-th-align">2. 구매자 행동</th>
+			<th class="its-th-align">3. 관리자의 주문 처리</th>
+		</tr>
+		<tr>
+			<th class="its-th-align">일반적인 주문</th>
+			<td class="its-td-align center">-</td>
+			<td class="its-td-align left red pdl5">구매자가 주문서 작성과 결제를 완료함</td>
+			<td class="its-td-align left pdl5" rowspan="3">
+				<span class="red">모든 주문은 주문리스트에 쌓이며<br/>
+				결제완료된 주문건만 출고처리함<br/></span>
+				개인결제는 <img src="http://www.ttukttak.kr/admin/skin/default/images/design/icon_order_personal.gif" /> 아이콘 표시됨<br/>
+				관리자주문은 <img src="http://www.ttukttak.kr/admin/skin/default/images/design/icon_order_admin.gif" /> 아이콘 표시됨
+			</td>
+		</tr>
+		<tr>
+			<th class="its-th-align">개인 결제</th>
+			<td class="its-td-align left pdl5">
+				<u>관리자는 에누리 금액 적용과 결제수단을 지정하여</u><br />
+				구매자 전용의 개인결제를 만들어 줌<br />
+				관리환경 > 주문 > <a href="http://www.ttukttak.kr/admin/order/personal"><span class=" highlight-link-text hand">개인결제리스트</span></a>에 쌓임
+			</td>
+			<td class="its-td-align left pdl5">
+				구매자는 관리자가 만들어준 자신의 개인결제를<br />
+				MY페이지에서 확인하고<br />
+				<span class="red">구매자가 주문서 작성과 결제를 완료함</span>
+			</td>
+		</tr>
+		<tr>
+			<th class="its-th-align">관리자 주문</th>
+			<td class="its-td-align left pdl5">
+				<u>관리자는 에누리 금액 적용과 무통장결제로</u><br />
+				<span class="red">구매자 대신 주문서 작성을 완료함</span>
+			</td>
+			<td class="its-td-align left red pdl5">구매자가 무통장 입금을 완료함</td>
+		</tr>
+	</table>
+</div>
+
+<div id="openmarket_order_receive_guide" class="hide">
+	<span class="fx12">외부 판매마켓에서 발생한 주문은 <strong>매시 20분마다 자동으로 수집</strong>합니다.<br />
+	자동으로 수집되는 시간을 기다리기 힘드시면 <strong>[지금바로 주문수집]</strong> 버튼을 클릭하십시오.
+	</span>
+</div>
+
+<div id="invoice_manual_dialog" class="hide">
+1. ‘롯데택배(업무자동화)’로 출고처리 하세요.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;→ 운송장번호가 자동으로 할당됩니다.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;→ 택배사 시스템에 주문정보가 자동으로 전송됩니다.<br />
+<br />
+2. 운송장 출력 버튼( <img src="http://www.ttukttak.kr/admin/skin/default/images/common/btn_print_b_ivc.gif" align="absmiddle" /> <img src="http://www.ttukttak.kr/admin/skin/default/images/common/btn_print_m_ivc.gif" align="absmiddle" /> <img src="http://www.ttukttak.kr/admin/skin/default/images/common/btn_print_s_ivc.gif" align="absmiddle" /> )을 클릭하여 프린트 하세요.<br />
+<br />
+<br />
+3. 자동으로 배송상태를 추적하여 자동으로 배송완료가 처리됩니다.<br />
+</div>
+
+<div id="print_setting_dialog" class="hide" style="line-height:20px;">
+<form action="../setting_process/print_setting" method="post" enctype="multipart/form-data" target="actionFrame">
+	<span class="fx12 black">1. 주문내역서에 주문번호를 바코드로 출력하시겠습니까?</span><br />
+	<span class="fx11 gray">주문 검색창에서 바코드를 스캔하면 해당 주문건의 출고화면으로 바로 이동하여 출고처리가 편리해집니다.</span><br />
+	<label><input type="radio" name="orderPrintOrderBarcode" value="1" checked /> 예</label> &nbsp; <label><input type="radio" name="orderPrintOrderBarcode" value=""  /> 아니오</label><br />
+	<br />
+	<span class="fx12 black">2. 주문내역서에 주문상품의 상품코드를 출력하시겠습니까?</span><br />
+	<label><input type="radio" name="orderPrintGoodsCode" value="1" checked /> 예</label> &nbsp; <label><input type="radio" name="orderPrintGoodsCode" value=""  /> 아니오</label><br />
+	<br />
+	<span class="fx12 black">3. 주문내역서에 주문상품의 상품코드를 바코드로 출력하시겠습니까?</span><br />
+	<span class="fx11 gray">해당 주문의 출고처리화면에서 실제 상품의 바코드를 스캔하면 주문상품이 맞는지 검증하여 <br />
+	오배송 없이 정확하게 출고가 가능합니다. 해당 상품의 바코드를 계속 스캔하면 출고수량이 +1씩 증가합니다.</span><br />
+	<label><input type="radio" name="orderPrintGoodsBarcode" value="1"  /> 예</label> &nbsp; <label><input type="radio" name="orderPrintGoodsBarcode" value="" checked /> 아니오</label><br /><br />
+	<span class="fx12 black">4. 주문내역서에 주문상품의 이미지를 출력하시겠습니까?</span><br />
+	<label><input type="radio" name="orderPrintGoodsImage" value="1"  /> 예</label> &nbsp; <label><input type="radio" name="orderPrintGoodsImage" value="" checked /> 아니오</label><br /><br />
+	<span class="fx12 black">5. 출고내역서에 출고번호를 바코드로 출력하시겠습니까?</span><br />
+	<span class="fx11 gray">출고 검색창에서 바코드를 스캔하면 해당 출고건의 출고화면으로 바로 이동하여 출고처리가 편리해집니다.</span><br />
+	<label><input type="radio" name="exportPrintExportcodeBarcode" value="1" checked /> 예</label> &nbsp; <label><input type="radio" name="exportPrintExportcodeBarcode" value=""  /> 아니오</label><br />
+	<br />
+	<span class="fx12 black">6. 출고내역서에 출고상품의 상품코드를 출력하시겠습니까?</span><br />
+	<label><input type="radio" name="exportPrintGoodsCode" value="1" checked /> 예</label> &nbsp; <label><input type="radio" name="exportPrintGoodsCode" value=""  /> 아니오</label><br />
+	<br />
+	<span class="fx12 black">7. 출고내역서에 출고상품의 상품코드를 바코드로 출력하시겠습니까?</span><br />
+	<span class="fx11 gray">해당 출고의 출고처리화면에서 실제 상품의 바코드를 스캔하면 출고상품이 맞는지 검증하여 <br />
+	오배송 없이 정확하게 출고가 가능합니다. 해당 상품의 바코드를 계속 스캔하면 출고수량이 +1씩 증가합니다.</span><br />
+	<label><input type="radio" name="exportPrintGoodsBarcode" value="1" checked /> 예</label> &nbsp; <label><input type="radio" name="exportPrintGoodsBarcode" value=""  /> 아니오</label><br /><br />
+	<span class="fx12 black">8. 출고내역서에 주문상품의 이미지를 출력하시겠습니까?</span><br />
+	<label><input type="radio" name="exportPrintGoodsImage" value="1" checked /> 예</label> &nbsp; <label><input type="radio" name="exportPrintGoodsImage" value=""  /> 아니오</label><br /><br />
+	<span class="fx12 black">9. 내역서 타이틀 우측에 로고 또는 타이틀 삽입</span><br />
+	<label>
+		<input type="radio" name="shopLogoType" value="text" checked />
+		<input name="shopLogoText" type="text" value="퍼스트몰" />
+		<span class="desc">예시) 퍼스트몰</span>
+	</label><br />
+	<label>
+		<input type="radio" name="shopLogoType" value="img"  />
+		<input type="file" name="shopLogoImg" style="letter-spacing:-1px !important" />
+	</label><br /><br />
+
+	<div class="center">
+		<span class="btn large cyanblue"><input type="submit" value="저장" /></span>
+	</div>
+</form>
+</div>
+<div id="openmarket_order_receive_dialog" class="hide">
+	<form name="orderReceiveForm" action="../order_process/openmarket_order_receive" target="actionFrame">
+	<input type="hidden" name="mall_code" value="" />
+	<table class="simpleinfo-table-style" width="100%" border="0" cellpadding="0" cellspacing="0">
+		<col /><col width="60" />
+	</table>
+	</form>
+</div>
+
+<div id="gift_use_lay"></div>
+<div id="excel_download_dialog" style="display:none;">
+<style>
+.tip-darkgray {z-index:10000; left:0px; top:0px;}
+
+/* 엑셀 검색 테이블 */
+table.search_export_tbl {border-collapse:collapse;border:1px solid #c8c8c8;width:100%;}
+table.search_export_tbl th {padding:10px; border:1px solid #c8c8c8;}
+table.search_export_tbl td {padding:10px; border:1px solid #c8c8c8; height:30px;}
+table.search_export_tbl th {background-color:#efefef;}
+
+/* 배송책임 */
+table.search_export_tbl tr td input.ui-state-default {width:100px;}
+table.search_export_tbl tr td span.ui-combobox {width:140px;}
+
+table.search_export_tbl tr td select.excel_ship_set_code {
+	width: 130px; /* 원하는 너비설정 */
+	padding: 3px 0px 3px 3px; /* 여백으로 높이 설정 */
+	font-family: inherit;  /* 폰트 상속 */
+	border: 1px solid #ccc;
+	border-radius: 0px; /* iOS 둥근모서리 제거 */
+	appearance: none;
+}
+table.search_export_tbl tr td span.excel_ship_set_code {
+	display:inline-block;
+	padding:0px 0px 0px 5px;
+}
+</style>
+<form id="excel_down_form" name="excel_down_form" method="post" action="../order_process/excel_down" target="actionFrame">
+<input type="hidden" name="order_seq" value="" />
+<input type="hidden" name="seq" value="" />
+<input type="hidden" name="excel_step" />
+<input type="hidden" name="excel_type" />
+<input type="hidden" name="params" />
+
+<table class="search_export_tbl" style="border-collapse:collapse" border='1'>
+	<col width="120" />
+	<col />
+	<col width="63" />
+	<tr>
+		<th>배송책임</th>
+		<td>
+			<div class="ui-widget"  style="float:left;">
+				<select name="excel_provider_seq_selector" style="vertical-align:middle;" default_none>
+				<option value="0">검색</option>
+				<option value="1" provider_id="본사">본사</option>
+				<option value="208" provider_id="gagufeeling">가구느낌</option>
+				<option value="466" provider_id="gagooya">가구야</option>
+				<option value="268" provider_id="garam1000">가람테크놀러지</option>
+				<option value="44" provider_id="gaunet">가우넷</option>
+				<option value="424" provider_id="buypass">가이드삼정</option>
+				<option value="366" provider_id="gaion1">가이온퍼니처</option>
+				<option value="254" provider_id="nhgamk">가죽스토리</option>
+				<option value="414" provider_id="fourm-wine">갈기산포도농원</option>
+				<option value="133" provider_id="gm201706">거목</option>
+				<option value="63" provider_id="guerilla">게릴라</option>
+				<option value="67" provider_id="gog5202">고그인터내셔날</option>
+				<option value="341" provider_id="goworld68">고월드</option>
+				<option value="472" provider_id="goldmall">골드몰</option>
+				<option value="62" provider_id="gonggam">공감담음</option>
+				<option value="299" provider_id="lgonlinemall">공식 온라인몰</option>
+				<option value="50" provider_id="fruitsasak">과일아삭협동조합</option>
+				<option value="152" provider_id="spiderloc">굿센스</option>
+				<option value="129" provider_id="goodmd0820">굿앰디</option>
+				<option value="29" provider_id="kcg2179">굿커머스</option>
+				<option value="469" provider_id="gh280211">그림같은집</option>
+				<option value="289" provider_id="greetstore">그릿스토어</option>
+				<option value="13" provider_id="geumsagang">금사강</option>
+				<option value="181" provider_id="ngenius">기술자들</option>
+				<option value="326" provider_id="aka200701">꾸안꾸</option>
+				<option value="96" provider_id="treevillage">나무마을</option>
+				<option value="140" provider_id="nazel">나즐</option>
+				<option value="464" provider_id="nh-kimchi">남현푸드랩</option>
+				<option value="214" provider_id="violetlia">내곁의작은정원</option>
+				<option value="329" provider_id="neobiz01">네오비즈</option>
+				<option value="57" provider_id="noroo1">노루하우홈(시공)</option>
+				<option value="58" provider_id="noroo2">노루하우홈(일반)</option>
+				<option value="462" provider_id="noble">노블콜렉션</option>
+				<option value="185" provider_id="nulijib">누리집</option>
+				<option value="186" provider_id="nulijib7007">누리집_렌탈</option>
+				<option value="310" provider_id="toplighting8">뉴)탑라이팅</option>
+				<option value="157" provider_id="iunique">뉴니끄</option>
+				<option value="374" provider_id="nyf1101">뉴욕퍼니처</option>
+				<option value="463" provider_id="ndoctors">뉴트리션닥터스</option>
+				<option value="193" provider_id="nplus76">뉴하이텍</option>
+				<option value="232" provider_id="nixkms75">닉스케이엠에스</option>
+				<option value="127" provider_id="daniela">다니엘라</option>
+				<option value="10" provider_id="dalink01">다링크</option>
+				<option value="94" provider_id="damie">다미에홀딩스</option>
+				<option value="25" provider_id="david">다비드커뮤니케이션</option>
+				<option value="372" provider_id="davinciled">다빈치스타일</option>
+				<option value="405" provider_id="daon0605">다온에스아이</option>
+				<option value="248" provider_id="daoncc79">다온컴퍼니</option>
+				<option value="72" provider_id="daallmoa">다올모아</option>
+				<option value="283" provider_id="judawri">다우리전자</option>
+				<option value="307" provider_id="dwstory">다원스토리</option>
+				<option value="402" provider_id="dajung">다정</option>
+				<option value="198" provider_id="aop80">다크호스</option>
+				<option value="434" provider_id="daho6457">다호코리아</option>
+				<option value="282" provider_id="doctorcos">닥터코스</option>
+				<option value="378" provider_id="krencia">대명크렌시아</option>
+				<option value="216" provider_id="dsglobal2016">대성글로벌</option>
+				<option value="381" provider_id="lkc5343">대승에프엔피</option>
+				<option value="336" provider_id="lucoms">대우씨엔디</option>
+				<option value="273" provider_id="daewonelect">대원</option>
+				<option value="239" provider_id="dwcts">대원씨티에스</option>
+				<option value="355" provider_id="daeun">대은솔루션</option>
+				<option value="43" provider_id="dhcnc3291">대현씨앤씨</option>
+				<option value="236" provider_id="theloel">더로엘코리아</option>
+				<option value="61" provider_id="bluenine">더블루나인</option>
+				<option value="296" provider_id="stone0510">더블루스톤</option>
+				<option value="357" provider_id="wj12020">더블유제이</option>
+				<option value="315" provider_id="double106">더블커머스</option>
+				<option value="452" provider_id="thebm">더비엠</option>
+				<option value="234" provider_id="thewaltz">더왈츠</option>
+				<option value="27" provider_id="theoneplatform">더원플랫폼</option>
+				<option value="343" provider_id="thewayat">더웨이앳</option>
+				<option value="259" provider_id="thebf2020">더푸른미래</option>
+				<option value="433" provider_id="dailychae">데일리차이</option>
+				<option value="189" provider_id="epzhckd">데코뱅크</option>
+				<option value="136" provider_id="dodmtech1">도담테크</option>
+				<option value="446" provider_id="dotoro">도토로</option>
+				<option value="45" provider_id="dmsnd">동명에스앤디</option>
+				<option value="390" provider_id="dfgagu">동서가구</option>
+				<option value="361" provider_id="dongsuh100">동서카살라</option>
+				<option value="235" provider_id="doosi">두시</option>
+				<option value="388" provider_id="dreamus7">드림어스</option>
+				<option value="240" provider_id="acskang10m">디디코퍼레이션</option>
+				<option value="333" provider_id="demade">디마드</option>
+				<option value="86" provider_id="dmark">디마크</option>
+				<option value="389" provider_id="diasbed">디아스침대</option>
+				<option value="292" provider_id="dstkorea">디에스트레이딩코리아</option>
+				<option value="73" provider_id="dyntec">디와이엔텍</option>
+				<option value="479" provider_id="designryu">디자인류</option>
+				<option value="195" provider_id="elxodid">디지탈태양</option>
+				<option value="218" provider_id="dicamall">디카몰</option>
+				<option value="290" provider_id="dcomma">디콤마</option>
+				<option value="204" provider_id="trarae">뜨라래</option>
+				<option value="47" provider_id="lassiette">라씨에뜨</option>
+				<option value="16" provider_id="liongroup">라이온그룹코리아</option>
+				<option value="83" provider_id="latexmg">라텍스명가</option>
+				<option value="348" provider_id="rumble">럼블</option>
+				<option value="423" provider_id="lemonart1">레몬아트</option>
+				<option value="99" provider_id="realel">레알에코리빙</option>
+				<option value="449" provider_id="oheimint02">레이디가구</option>
+				<option value="108" provider_id="reptech">렙테크</option>
+				<option value="252" provider_id="unigame1">렛츠커머스</option>
+				<option value="245" provider_id="royche">로이체</option>
+				<option value="410" provider_id="lookhome2013">룩홈</option>
+				<option value="267" provider_id="itbirth">리버스</option>
+				<option value="6" provider_id="ldlab1018">리빙디자인연구소</option>
+				<option value="364" provider_id="leadmall">리빙월드</option>
+				<option value="135" provider_id="lvhouse">리빙하우스</option>
+				<option value="442" provider_id="tygroup87">리턴라이프</option>
+				<option value="130" provider_id="manishop">마니샵</option>
+				<option value="391" provider_id="marangjeju">마랑제주</option>
+				<option value="59" provider_id="maruneuru">마루느루</option>
+				<option value="111" provider_id="myselfinterior">마이셀프인테리어</option>
+				<option value="213" provider_id="mytiny0806">마이타이니</option>
+				<option value="401" provider_id="markinc">마크</option>
+				<option value="38" provider_id="moms4u">맘스포유</option>
+				<option value="105" provider_id="dustdc">먼지방어사령부</option>
+				<option value="370" provider_id="multiscan">멀티스캔텍</option>
+				<option value="453" provider_id="megatrade">메가트레이드</option>
+				<option value="104" provider_id="medipresso">메디프레소</option>
+				<option value="142" provider_id="gift8996">명성</option>
+				<option value="284" provider_id="mono">모노</option>
+				<option value="295" provider_id="factory2046">모던팩토리</option>
+				<option value="119" provider_id="moduba">모두바</option>
+				<option value="51" provider_id="bestmif">모리프</option>
+				<option value="103" provider_id="mobi4you">모비포유</option>
+				<option value="412" provider_id="mobilight">모빌라이트</option>
+				<option value="52" provider_id="ttukttakmong(test)">몽땅뚝딱 주식회사</option>
+				<option value="354" provider_id="homuro">무로코퍼레이션</option>
+				<option value="84" provider_id="mediness">미래바이텍</option>
+				<option value="212" provider_id="miraeecp">미래이씨피</option>
+				<option value="261" provider_id="mima0900">미마인터내셔널</option>
+				<option value="194" provider_id="zzzzzzzzzzzzzzzz">미입점 제휴사</option>
+				<option value="115" provider_id="sk3155530">미퓨어</option>
+				<option value="407" provider_id="vitalbra">미호비즈텍</option>
+				<option value="396" provider_id="bananabd">바나나코퍼레이션</option>
+				<option value="330" provider_id="jhysj08">바로방가구</option>
+				<option value="342" provider_id="baren">바른디자인</option>
+				<option value="246" provider_id="iimiyoung">바스몰</option>
+				<option value="360" provider_id="vasphor">바스포르</option>
+				<option value="344" provider_id="boundlab">바운드랩</option>
+				<option value="432" provider_id="bioshield">바이오쉴드</option>
+				<option value="60" provider_id="bam2018">밤(BAM)</option>
+				<option value="5" provider_id="bestliving">베스트리빙(bestliving)</option>
+				<option value="269" provider_id="betty2020">베티</option>
+				<option value="233" provider_id="starlighting">별별조명</option>
+				<option value="192" provider_id="ttukttakad">본사</option>
+				<option value="210" provider_id="ttukttak2">본사</option>
+				<option value="413" provider_id="vnb101">브이앤비리빙</option>
+				<option value="328" provider_id="vone704">브이원 주식회사</option>
+				<option value="166" provider_id="blanche">블랑쉬하우스</option>
+				<option value="420" provider_id="blockgarden">블록가든</option>
+				<option value="266" provider_id="bdfu01">비디퓨</option>
+				<option value="154" provider_id="bngintl">비앤지인터내셔날</option>
+				<option value="21" provider_id="bsm1215">비에스몰</option>
+				<option value="250" provider_id="nho5809">비엔</option>
+				<option value="231" provider_id="bizonemall">비즈온플레이스</option>
+				<option value="230" provider_id="vicfus">빅퍼스</option>
+				<option value="425" provider_id="teambp">빅픽처코퍼레이션</option>
+				<option value="56" provider_id="canterki">삐더리</option>
+				<option value="443" provider_id="inperson">사람인사람</option>
+				<option value="126" provider_id="safa1425">사파헬스케어</option>
+				<option value="255" provider_id="sdinc1011">산들리빙</option>
+				<option value="88" provider_id="senteur">샤토에르</option>
+				<option value="176" provider_id="shopion">샵피온</option>
+				<option value="403" provider_id="shpms1107">서현피엠에스</option>
+				<option value="380" provider_id="hihometech">선경산업</option>
+				<option value="387" provider_id="sunwoo">선우케미칼</option>
+				<option value="429" provider_id="4merit">선진컴퍼니</option>
+				<option value="124" provider_id="ss140206">성심</option>
+				<option value="4" provider_id="goldmom">성진리테일</option>
+				<option value="19" provider_id="sesangdamgi">세상담기</option>
+				<option value="2" provider_id="sytst">세윤티에스티</option>
+				<option value="317" provider_id="solid">솔리드네트워크</option>
+				<option value="163" provider_id="smcompany7">송명</option>
+				<option value="455" provider_id="towel79">송월타올수건이야기(주)</option>
+				<option value="125" provider_id="insoo2400">송월타올코리아</option>
+				<option value="386" provider_id="naturelovemere">수미</option>
+				<option value="54" provider_id="subininfo">수빈인포텍</option>
+				<option value="196" provider_id="suazinter1389">수아즈인터내셔널</option>
+				<option value="97" provider_id="sualc5715">수어플라이언스</option>
+				<option value="426" provider_id="forest11">숲에서</option>
+				<option value="131" provider_id="smithinit">스미스이니셔티브</option>
+				<option value="356" provider_id="skinplayer">스킨플레이어</option>
+				<option value="87" provider_id="star233">스타미디홈</option>
+				<option value="120" provider_id="stylek">스타일K</option>
+				<option value="323" provider_id="statech">스타텍</option>
+				<option value="191" provider_id="stemkor">스템</option>
+				<option value="441" provider_id="steelart">스틸아트</option>
+				<option value="428" provider_id="spl123">스팔라</option>
+				<option value="34" provider_id="spacedm">스페이스디엠</option>
+				<option value="272" provider_id="spaceon2750">스페이스온</option>
+				<option value="353" provider_id="spacewick">스페이스윅</option>
+				<option value="404" provider_id="8311ssh">슬로시티 수산협동조합</option>
+				<option value="260" provider_id="plant8994">식물맛집</option>
+				<option value="37" provider_id="prestiges">신민전자</option>
+				<option value="320" provider_id="sbrtrading">신바람트레이딩</option>
+				<option value="32" provider_id="sinsujnginet">신성아이넷</option>
+				<option value="33" provider_id="BOSOMI">신성아이넷</option>
+				<option value="257" provider_id="sinyoungsm">신영에스엠</option>
+				<option value="394" provider_id="shinukorea">신유코리아</option>
+				<option value="167" provider_id="daesung10">실리프</option>
+				<option value="470" provider_id="seelectric">쎄전기</option>
+				<option value="205" provider_id="cynex1314">씨넥스존</option>
+				<option value="165" provider_id="cnmade">씨앤메이드</option>
+				<option value="371" provider_id="cscommerce">씨에스커머스</option>
+				<option value="324" provider_id="clps2016">씨엘피에스</option>
+				<option value="438" provider_id="cyint2019">씨와이인터내셔널</option>
+				<option value="346" provider_id="cysale">씨와이컴퍼니</option>
+				<option value="68" provider_id="adorar">아도라</option>
+				<option value="253" provider_id="adullamint01">아둘람인터내셔널</option>
+				<option value="457" provider_id="adico">아디코</option>
+				<option value="478" provider_id="aramedia">아라미디어솔루션</option>
+				<option value="278" provider_id="apropkc">아름다운프로</option>
+				<option value="215" provider_id="avade1120">아바드</option>
+				<option value="340" provider_id="imama01">아이마마</option>
+				<option value="224" provider_id="imixyou">아이믹스유</option>
+				<option value="416" provider_id="aiwana0201">아이와나테크</option>
+				<option value="450" provider_id="ichelsea">아이첼시</option>
+				<option value="145" provider_id="bigant">아이피글로벌</option>
+				<option value="64" provider_id="dlinkkorea">아이피드림</option>
+				<option value="437" provider_id="dkdlafnzl">아임루키</option>
+				<option value="24" provider_id="archiinfo">아키인포</option>
+				<option value="417" provider_id="andongbanga">안동반가 주식회사</option>
+				<option value="465" provider_id="daehantd">알찬재래김</option>
+				<option value="264" provider_id="yamuzida">야무지다</option>
+				<option value="382" provider_id="yangjisa">양지사</option>
+				<option value="150" provider_id="urbancom">어반커머스</option>
+				<option value="188" provider_id="mkmsmy02">어썸팩토리</option>
+				<option value="92" provider_id="slmedianet">에스엘미디어넷</option>
+				<option value="440" provider_id="slcompani">에스엘컴퍼니</option>
+				<option value="203" provider_id="sm11332">에스엠퓨처스</option>
+				<option value="22" provider_id="sypolytech">에스와이폴리텍</option>
+				<option value="12" provider_id="sjbiz1975">에스제이비즈</option>
+				<option value="180" provider_id="sjco02">에스제이씨오</option>
+				<option value="31" provider_id="instaxmall">에스제이코어퍼레이션</option>
+				<option value="53" provider_id="starmall">에스티트레이딩</option>
+				<option value="206" provider_id="avinside">에이브이인사이드</option>
+				<option value="209" provider_id="ablecompany">에이블컴퍼니</option>
+				<option value="303" provider_id="ashopno1">에이샵</option>
+				<option value="300" provider_id="aceelec">에이스일렉트로닉스</option>
+				<option value="66" provider_id="acetec">에이스텍</option>
+				<option value="321" provider_id="azkorea">에이젯코리아</option>
+				<option value="113" provider_id="hcommerce">에이치커머스</option>
+				<option value="227" provider_id="aport">에이포트</option>
+				<option value="352" provider_id="ecogreen84">에코그린</option>
+				<option value="106" provider_id="ecodeco">에코데코</option>
+				<option value="116" provider_id="fndnet">에프앤디넷</option>
+				<option value="291" provider_id="fmbiz">에프엠비아이지</option>
+				<option value="41" provider_id="leadersnet">엘디네트웍스</option>
+				<option value="158" provider_id="arim">엘리시아룸</option>
+				<option value="313" provider_id="eilte2000">엘리트북</option>
+				<option value="332" provider_id="landk">엘앤케이</option>
+				<option value="222" provider_id="ljoptimum">엘제이옵티멈</option>
+				<option value="471" provider_id="nubirapark">엘지데코</option>
+				<option value="238" provider_id="lkgkorea">엘케이지</option>
+				<option value="270" provider_id="l2zone">엘투존</option>
+				<option value="400" provider_id="MIDMI2013">엠&지코리아</option>
+				<option value="159" provider_id="embros">엠브로스</option>
+				<option value="393" provider_id="ecomnc">엠씨랩</option>
+				<option value="312" provider_id="mnskoreagt">엠앤에스코리아</option>
+				<option value="363" provider_id="zazz49">엠에프매직하우스</option>
+				<option value="190" provider_id="mpnavi">엠피나비</option>
+				<option value="35" provider_id="youmi2015">여우미</option>
+				<option value="141" provider_id="kongnoris">연금술차</option>
+				<option value="322" provider_id="clubyh">영현아이앤씨</option>
+				<option value="18" provider_id="odind">오디아이앤디</option>
+				<option value="170" provider_id="ovia">오비아</option>
+				<option value="160" provider_id="oviamedic">오비아메디칼</option>
+				<option value="319" provider_id="auvil">오빌</option>
+				<option value="132" provider_id="ostarkorea">오스타코리아</option>
+				<option value="474" provider_id="okgood">오케이굳</option>
+				<option value="383" provider_id="okokmart">오케이마트</option>
+				<option value="338" provider_id="carriercrk">오텍캐리어냉장</option>
+				<option value="107" provider_id="autolimed">오토리메드</option>
+				<option value="280" provider_id="oksem6867">옥샘코리아</option>
+				<option value="477" provider_id="skonlinemall">온라인몰</option>
+				<option value="171" provider_id="onf0423">온앤오프커머스</option>
+				<option value="351" provider_id="gsb1544">온우리가구</option>
+				<option value="155" provider_id="joy0801">올펀</option>
+				<option value="42" provider_id="wasabimango">와사비망고</option>
+				<option value="177" provider_id="wowgoodpick">와우굿픽</option>
+				<option value="337" provider_id="wowint">와우인터내셔널</option>
+				<option value="397" provider_id="ydmall">와이디</option>
+				<option value="385" provider_id="ydintl">와이디인터내셔널</option>
+				<option value="475" provider_id="ylsic">와이엘사이언스</option>
+				<option value="406" provider_id="proseat">와이지에프</option>
+				<option value="175" provider_id="wanstore">완스토어</option>
+				<option value="297" provider_id="whatup1201">왓스업</option>
+				<option value="110" provider_id="uju123456">우주에이치앤비</option>
+				<option value="228" provider_id="wjfood">웅진식품</option>
+				<option value="241" provider_id="oneofus16">워너버스</option>
+				<option value="243" provider_id="waterpnd">워터피앤디</option>
+				<option value="144" provider_id="wonderfly">원더플라이</option>
+				<option value="473" provider_id="wonderfly2020">원더플라이2020</option>
+				<option value="79" provider_id="oncehome">원스</option>
+				<option value="327" provider_id="onestar1">원스타인터내셔널</option>
+				<option value="467" provider_id="onestop">원스톱퍼니처</option>
+				<option value="121" provider_id="oneinter">원인터내셔널</option>
+				<option value="26" provider_id="wonha0108">원하조명</option>
+				<option value="263" provider_id="welldeco3102">웰데코</option>
+				<option value="376" provider_id="welrixrental">웰릭스렌탈</option>
+				<option value="201" provider_id="babosarang1">웹이즈</option>
+				<option value="78" provider_id="sdeco">위너스유</option>
+				<option value="36" provider_id="withpps">위드피플즈</option>
+				<option value="427" provider_id="wecanhi">위캔하이</option>
+				<option value="335" provider_id="winco2019">윈코커머스</option>
+				<option value="169" provider_id="winterior">윈테리어</option>
+				<option value="81" provider_id="unicnc">유니씨앤씨</option>
+				<option value="304" provider_id="youliving">유리빙</option>
+				<option value="476" provider_id="umu2016">유무</option>
+				<option value="275" provider_id="unitrad">유앤아이트레이딩</option>
+				<option value="148" provider_id="bftrading">유영강업</option>
+				<option value="375" provider_id="yuwonps">유원피.에스_보노하우스</option>
+				<option value="311" provider_id="ukss1">유케이</option>
+				<option value="184" provider_id="uitmall">유환아이텍</option>
+				<option value="395" provider_id="innoview">이노뷰</option>
+				<option value="146" provider_id="eroomn">이룸앤</option>
+				<option value="350" provider_id="eroomhome">이룸홈</option>
+				<option value="211" provider_id="emac0903">이맥</option>
+				<option value="164" provider_id="ddasum19">이불연구소</option>
+				<option value="265" provider_id="e-sang">이상네트웍스</option>
+				<option value="226" provider_id="zzasc">이영컴퍼니</option>
+				<option value="242" provider_id="eodyne01">이오다인 컴퍼니</option>
+				<option value="139" provider_id="eunwha">이좋은 은화페이트</option>
+				<option value="114" provider_id="martinkorea">이카루스</option>
+				<option value="55" provider_id="ecare">이케어</option>
+				<option value="345" provider_id="cooljung25">이큐브인더스트리</option>
+				<option value="379" provider_id="haa9364">이프조명</option>
+				<option value="286" provider_id="lhanict">이한아이씨티</option>
+				<option value="3" provider_id="innsbruck">인스브룩크</option>
+				<option value="221" provider_id="incroma">인크로마</option>
+				<option value="293" provider_id="interonic">인테로닉</option>
+				<option value="451" provider_id="binsun4">일구팔공</option>
+				<option value="117" provider_id="illysystem">일리시스템</option>
+				<option value="93" provider_id="ilsinchem">일신엠알오</option>
+				<option value="256" provider_id="wh917">일신전기조명</option>
+				<option value="271" provider_id="iletech12">일이테크</option>
+				<option value="197" provider_id="ilzalnam">일잘하는남자</option>
+				<option value="30" provider_id="inksystem">잉스</option>
+				<option value="301" provider_id="zanette">자네트가구</option>
+				<option value="109" provider_id="jm3699">자몽나라</option>
+				<option value="14" provider_id="jjincns">정진씨앤에스</option>
+				<option value="325" provider_id="1108608827A">정진유통</option>
+				<option value="40" provider_id="geneforce">제네포스</option>
+				<option value="39" provider_id="zeraka">제라카</option>
+				<option value="448" provider_id="zeromoment">제로모먼트</option>
+				<option value="439" provider_id="minerala">제이비에프</option>
+				<option value="122" provider_id="clarara">제이앤니들워크</option>
+				<option value="65" provider_id="jnsyss">제이앤시스</option>
+				<option value="422" provider_id="pjy017">제이앤씨</option>
+				<option value="399" provider_id="jssquare">제이에스스퀘어</option>
+				<option value="138" provider_id="jsmglobal">제이에스엠글로벌</option>
+				<option value="101" provider_id="jhlinternational">제이에이치엘인터네셔널</option>
+				<option value="202" provider_id="jhcp0125">제이에이치컴퍼니</option>
+				<option value="151" provider_id="jmsenc01">제이엠즈이엔씨</option>
+				<option value="9" provider_id="jjplanet11">제이제이플래닛</option>
+				<option value="419" provider_id="gtgagu">젠틱가구</option>
+				<option value="28" provider_id="jbcns">종부씨엔에스</option>
+				<option value="431" provider_id="naeunlife">주식회사 나은생활</option>
+				<option value="200" provider_id="crtek">주식회사 씨알텍</option>
+				<option value="331" provider_id="aria2015">주식회사 아리아</option>
+				<option value="298" provider_id="coit01">주식회사 코잇</option>
+				<option value="98" provider_id="jycnc0522">주윤씨앤씨</option>
+				<option value="367" provider_id="jjunwood">준우드</option>
+				<option value="183" provider_id="djtjswo483">준현디지털</option>
+				<option value="223" provider_id="gno0225">지노네트웍스</option>
+				<option value="369" provider_id="zives">지베스</option>
+				<option value="444" provider_id="nchmall">지애</option>
+				<option value="217" provider_id="goobnemall">지앤몰</option>
+				<option value="258" provider_id="gnkcomp">지앤케이컴퍼니</option>
+				<option value="143" provider_id="gm0214">지엠트레이드</option>
+				<option value="262" provider_id="jiwoomall">지우몰</option>
+				<option value="17" provider_id="gestory">지이스토리</option>
+				<option value="156" provider_id="jin0303">진커머스</option>
+				<option value="90" provider_id="jincom74">진컴</option>
+				<option value="225" provider_id="yechang7">창앤롤</option>
+				<option value="70" provider_id="happyput">채우리</option>
+				<option value="244" provider_id="cherryaroma">체리향기</option>
+				<option value="77" provider_id="pnbstore">커넥팅피앤비</option>
+				<option value="95" provider_id="coverico">커버리코</option>
+				<option value="281" provider_id="comgill">컴길</option>
+				<option value="274" provider_id="kdlab">케이디랩</option>
+				<option value="373" provider_id="kds1101">케이디에스</option>
+				<option value="123" provider_id="knb150123">케이앤비커머스</option>
+				<option value="46" provider_id="khplaza">케이에이치프라자</option>
+				<option value="71" provider_id="krcocen3">코리아센터(SK매직총판)</option>
+				<option value="339" provider_id="causetech">코즈테크</option>
+				<option value="316" provider_id="wineqok">콕닷컴</option>
+				<option value="89" provider_id="sualc">콤비나</option>
+				<option value="75" provider_id="cubist">큐비스트</option>
+				<option value="408" provider_id="cubing">큐빙</option>
+				<option value="458" provider_id="melliz">클라드카카</option>
+				<option value="149" provider_id="clicknara">클릭나라</option>
+				<option value="199" provider_id="type1">타입원</option>
+				<option value="454" provider_id="tarryworld">태리</option>
+				<option value="134" provider_id="piuup114">태림상사</option>
+				<option value="85" provider_id="hangil37">태진씨앤아이</option>
+				<option value="365" provider_id="TAJINCOM">태진컴</option>
+				<option value="8" provider_id="teratonic">테라토닉</option>
+				<option value="153" provider_id="teatlab001">테스트랩</option>
+				<option value="219" provider_id="torolife">토로라이프</option>
+				<option value="459" provider_id="tomi">토미</option>
+				<option value="162" provider_id="talkndata">토크엔데이타</option>
+				<option value="418" provider_id="totobiz">토토비즈</option>
+				<option value="137" provider_id="travelgear">트래블기어</option>
+				<option value="435" provider_id="tmthong">트랜드앳홈</option>
+				<option value="358" provider_id="traders87">트레이더스</option>
+				<option value="309" provider_id="goodstree">트리(Tree)</option>
+				<option value="430" provider_id="timnco">티아이엠앤코</option>
+				<option value="69" provider_id="tsdint">티에스디인터내셔널</option>
+				<option value="229" provider_id="tswin77">티에스윈</option>
+				<option value="74" provider_id="tscpdj1">티에스퍼니처</option>
+				<option value="305" provider_id="bluewhale813">파란고래</option>
+				<option value="349" provider_id="queens">파란들</option>
+				<option value="362" provider_id="sgcar1326">퍼니원</option>
+				<option value="368" provider_id="flgagu">퍼스트레이디가구</option>
+				<option value="302" provider_id="behrpaint">페인트박스</option>
+				<option value="173" provider_id="oheimint">포더홈</option>
+				<option value="285" provider_id="kyr8311">포시즌센트</option>
+				<option value="15" provider_id="fourtrees">포트리스</option>
+				<option value="172" provider_id="minkuly">푸른언덕</option>
+				<option value="314" provider_id="greenhaje">푸른하제</option>
+				<option value="306" provider_id="pureland">퓨어랜드</option>
+				<option value="168" provider_id="lacuzin">프로스페리티</option>
+				<option value="178" provider_id="prome_nade">프롬나드컴퍼니</option>
+				<option value="392" provider_id="priviaskinlab">프리비아스킨랩</option>
+				<option value="161" provider_id="plafarm">플라팜</option>
+				<option value="359" provider_id="plandeco">플랜데코</option>
+				<option value="128" provider_id="playonshopping">플레이온쇼핑</option>
+				<option value="409" provider_id="gyeol">플렌테리어결</option>
+				<option value="436" provider_id="mobel">피엠에스모벨카펜터</option>
+				<option value="112" provider_id="pgshop">피지랜드</option>
+				<option value="49" provider_id="peoplesq">피플스퀘어 인터내셔널</option>
+				<option value="76" provider_id="pixmall">픽스몰</option>
+				<option value="347" provider_id="gkskzj119">하나커머즈</option>
+				<option value="415" provider_id="hypot">하이팟</option>
+				<option value="277" provider_id="heimdesign">하임디자인</option>
+				<option value="187" provider_id="koreaihe2018">한국주택환경연구원</option>
+				<option value="308" provider_id="bonaque2020">한솔일렉트로닉스</option>
+				<option value="287" provider_id="buja2727">한아름</option>
+				<option value="288" provider_id="hanildnc">한일디엔씨</option>
+				<option value="174" provider_id="hancooks">한쿡스</option>
+				<option value="318" provider_id="halderroemheld">할더룀헬드코리아 주식회사</option>
+				<option value="377" provider_id="wnghdwls1">해피아이</option>
+				<option value="220" provider_id="rsmoo">행복인</option>
+				<option value="147" provider_id="heodak">허닭</option>
+				<option value="279" provider_id="sunabout3307">헤라PNT</option>
+				<option value="48" provider_id="hessedhouse">헤세드하우스</option>
+				<option value="82" provider_id="wontem">헤이즈가구</option>
+				<option value="334" provider_id="hyundailivart">현대리바트</option>
+				<option value="251" provider_id="hs51987">현성전자</option>
+				<option value="80" provider_id="hodoodeco">호두데코</option>
+				<option value="447" provider_id="cookplus">홈앤</option>
+				<option value="20" provider_id="hsint">효성인터내셔널</option>
+				<option value="207" provider_id="hooscommerce">후즈커머스</option>
+				<option value="237" provider_id="hwewin">휘인테크</option>
+				<option value="456" provider_id="huegoring">휴고링</option>
+				<option value="249" provider_id="gmfma">흐름INC</option>
+				<option value="276" provider_id="hickies">히키스</option>
+				<option value="118" provider_id="hit0822">히트</option>
+				<option value="102" provider_id="mobi4u">(사용안함)모비</option>
+				<option value="461" provider_id="joyimall">(주)동서가구</option>
+				<option value="421" provider_id="hanssemozen">(주)오젠</option>
+				<option value="460" provider_id="37point">37포인트</option>
+				<option value="91" provider_id="43outlet">43번가아울렛</option>
+				<option value="398" provider_id="ehomedeco">e-homedeco</option>
+				<option value="100" provider_id="here1am">here1am</option>
+				<option value="23" provider_id="kpk7598">kpk7598</option>
+				<option value="179" provider_id="kpp2018">kpp쓰임자리연구소</option>
+				<option value="384" provider_id="smartshop82">MH상사</option>
+				<option value="445" provider_id="our_bueok">our_bueok</option>
+				<option value="247" provider_id="ecofriendz">SSOAK[:쏙]</option>
+				<option value="11" provider_id="ttukttak1">ttukttak(test)</option>
+				<option value="411" provider_id="ttukttak3">ttukttak(test)2</option>
+				<option value="182" provider_id="test123456">_개발_테스트용_</option>
+				</select>
+				<input type="hidden" class="shipping_provider_seq" name="excel_provider_seq" value="" default_none />
+				<input type="text" name="excel_provider_name" value="" readonly class="disabled"  default_none />
+			</div>
+			<span class="ptc-charges hide"></span>
+
+			<script type="text/javascript">
+			$(function(){
+				$( "select[name='excel_provider_seq_selector']" )
+				.combobox()
+				.change(function(){
+					if( $(this).val() > 0 ){
+						$("input[name='excel_provider_seq']").val($(this).val());
+						$("input[name='excel_provider_name']").val($("option:selected",this).attr("provider_id"));
+					}else{
+						$("input[name='excel_provider_seq']").val('1');
+						$("input[name='excel_provider_name']").val('본사');
+					}
+				})
+				.next(".ui-combobox").children("input")
+				.bind('focus',function(){
+					if($(this).val()==$( "select[name='excel_provider_seq_selector'] option:first-child" ).text()){
+						$(this).val('');
+					}
+				})
+				.bind('mouseup',function(){
+					if($(this).val()==''){
+						$( "select[name='excel_provider_seq_selector']").next(".ui-combobox").children("a.ui-combobox-toggle").click();
+					}
+				});
+			});
+			</script>
+			<span class="excel_ship_set_code">
+				<select name="excel_ship_set_code" class="excel_ship_set_code">
+					<option value=''>배송방법 전체</option>
+					<option value='delivery' >택배</option>
+					<option value='direct_delivery' >직접배송</option>
+					<option value='quick' >퀵서비스</option>
+					<option value='freight' >화물배송</option>
+					<option value='direct_store' >매장수령</option>
+					<option value='custom' >직접입력</option>
+				</select>
+			</span>
+		</td>
+	</tr>
+</table>
+<div class="center pdt10">
+	<span class="btn large black"><button type="submit" style="width:100px;">다운로드</button></span>
+</div>
+</form>
+</div>
+<div id="batch_status_popup_layer"></div>
+
+<!-- 기본검색설정 -->
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/js/admin-searchDefaultConfig.js"></script>
+
+<!--[ 레이아웃 바디(본문) : 끝 ]-->
+		</div>
+	</div>
+
+	<iframe name="actionFrame" id="actionFrame" src="/main/blank" frameborder="0" width="100%" height="0"></iframe>
+</div>
+
+<div id="main_demo" class="hide"></div>
+<div id="openDialogLayer" class="hide">
+	<div align="center" id="openDialogLayerMsg"></div>
+</div>
+
+<div id="goodsSelectDialog" class="hide"></div>
+
+<div id="ajaxLoadingLayer" class="hide"></div>
+
+<div id="qrcodeGuideLayer" class="hide" style="padding:10px;"></div>
+
+<style type="text/css">
+#addsaleGuideLayer .GuideTitle {height:40px;line-height:40px;font-size:14px;text-align:center;border:1px solid #aaaaaa;background-color:#f1f1f1;font-weight:bold;}
+#addsaleGuideLayer ul.addsaleGuideLayer li {padding-top:5px;font-size:11px;}
+table.info-table-style td.bgyellow {background-color:#fffeca;}
+</style>
+<div id="addsaleGuideLayer" class="hide">
+	<div class="GuideTitle">소비자에게 다양한 추가 혜택 제공으로 매출을 높이십시오.</div>
+	<div class="item-title">
+		<table width="100%" cellpadding="0" cellspacing="0">
+		<tr><td>추가 혜택 세팅</td></tr>
+		</table>
+	</div>
+	<div>
+		<table class="info-table-style" style="margin:auto;" width="100%">
+		<colgroup>
+			<col width="15%" />
+			<col width="30%" />
+			<col />
+			<col width="20%" />
+		</colgroup>
+		<thead>
+		<tr>
+			<th class="its-th-align center">추가 혜택</th>
+			<th class="its-th-align center">세팅</th>
+			<th class="its-th-align center">조건</th>
+			<th class="its-th-align center">혜택</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<th class="its-th-align center">대량구매</th>
+			<td class="its-td-align left pdl5">상품 > <a href="../goods/catalog" target="_blank"><span class="highlight-link">상품리스트</span></a></td>
+			<td class="its-td-align left pdl5">한 상품을 여러 개를 구매하였을 때</td>
+			<td class="its-td-align left pdl5">추가 할인</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">이벤트</th>
+			<td class="its-td-align left pdl5">프로모션 > <a href="../event/catalog" target="_blank"><span class="highlight-link">할인 이벤트</span></a></td>
+			<td class="its-td-align left pdl5">이벤트 상품을 구매하였을 때</td>
+			<td class="its-td-align left pdl5">추가 할인 및 추가 적립</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">등급</th>
+			<td class="its-td-align left pdl5">설정 > 회원 > <a href="../setting/member" target="_blank"><span class="highlight-link">등급별 구매혜택</span></a></td>
+			<td class="its-td-align left pdl5">해당 등급이 구매하였을 때</td>
+			<td class="its-td-align left pdl5">추가 할인 및 추가 적립</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">모바일</th>
+			<td class="its-td-align left pdl5">설정 > <a href="../setting/config" target="_blank"><span class="highlight-link">판매환경</span></a></td>
+			<td class="its-td-align left pdl5">모바일에서 구매하였을 때</td>
+			<td class="its-td-align left pdl5">추가 할인 및 추가 적립</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">쿠폰</th>
+			<td class="its-td-align left pdl5">프로모션 > <a href="../coupon/catalog" target="_blank"><span class="highlight-link">할인 쿠폰</span></a></td>
+			<td class="its-td-align left pdl5">할인 쿠폰을 사용하여 구매하였을 때</td>
+			<td class="its-td-align left pdl5">추가 할인 및 적립</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">코드</th>
+			<td class="its-td-align left pdl5">프로모션 > <a href="../promotion/catalog" target="_blank"><span class="highlight-link">할인 코드</span></a></td>
+			<td class="its-td-align left pdl5">할인 코드를 사용하여 구매하였을 때</td>
+			<td class="its-td-align left pdl5">추가 할인</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">유입경로</th>
+			<td class="its-td-align left pdl5">프로모션 > <a href="../referer/catalog" target="_blank"><span class="highlight-link">할인 유입경로</span></a></td>
+			<td class="its-td-align left pdl5">특정 유입경로로 접속하여 구매하였을 때 </td>
+			<td class="its-td-align left pdl5">추가 할인</td>
+		</tr>
+		</tbody>
+		</table>
+		<ul class="addsaleGuideLayer" >
+			<li>추가 혜택 세팅 시 혜택 적용 조건을 설정할 수 있습니다.</li>
+			<li>예를 들어 쿠폰의 경우 아래와 같이 혜택 적용 조건 설정이 가능합니다.</li>
+			<li>발급시작/중지, 다운로드기간/수량/등급, 유효기간, 제한금액, 최대할인, 중복할인, 타쿠폰동시사용, 모바일, 결제수단, 중복할인, 유입경로, 할인분담, 적용 상품</li>
+		</ul>
+	</div>
+
+	<br style="line-height:30px;" />
+
+	<div class="item-title">
+		<table width="100%" cellpadding="0" cellspacing="0">
+		<tr><td>추가 혜택 적용 페이지</td></tr>
+		</table>
+	</div>
+	<div>
+		<table class="info-table-style" style="margin:auto;" width="100%">
+		<colgroup>
+			<col />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+		</colgroup>
+		<thead>
+		<tr>
+			<th class="its-th-align center" rowspan="2">데스크탑/모바일</th>
+			<th class="its-th-align center" colspan="7">추가 혜택</th>
+		</tr>
+		<tr>
+			<th class="its-th-align center">대량구매</th>
+			<th class="its-th-align center">이벤트</th>
+			<th class="its-th-align center">등급</th>
+			<th class="its-th-align center">모바일</th>
+			<th class="its-th-align center">쿠폰</th>
+			<th class="its-th-align center">코드</th>
+			<th class="its-th-align center">유입경로</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<th class="its-th-align center">위시리스트</th>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">최근 본 상품</th>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">검색 페이지</th>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">검색 자동 완성</th>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">최근 본 상품</th>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">스크롤 배너</th>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">리스트</th>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">상세</th>
+			<td class="its-td-align center bgyellow">△</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">△</td>
+			<td class="its-td-align center bgyellow">△</td>
+			<td class="its-td-align center bgyellow">△</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">상세 - 관련상품</th>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">장바구니</th>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">주문</th>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+		</tr>
+		</tbody>
+		</table>
+		<ul class="addsaleGuideLayer" >
+			<li><font size="1.5">△</font> : 추가 혜택이 안내되어짐</li>
+			<li><font size="3">○</font> : 추가 혜택 금액이 계산되어 판매가에 적용됨</li>
+		</ul>
+	</div>
+
+	<br style="line-height:30px;" />
+
+	<div class="item-title">
+		<table width="100%" cellpadding="0" cellspacing="0">
+		<tr><td>추가 혜택 적용 페이지에서 상품옵션의 범위</td></tr>
+		</table>
+	</div>
+	<div>
+		<table class="info-table-style" style="margin:auto;" width="100%">
+		<colgroup>
+			<col />
+			<col width="15%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+		</colgroup>
+		<thead>
+		<tr>
+			<th class="its-th-align center" rowspan="2" colspan="2">데스크탑/모바일</th>
+			<th class="its-th-align center" colspan="7">추가 혜택</th>
+		</tr>
+		<tr>
+			<th class="its-th-align center">대량구매</th>
+			<th class="its-th-align center">이벤트</th>
+			<th class="its-th-align center">등급</th>
+			<th class="its-th-align center">모바일</th>
+			<th class="its-th-align center">쿠폰</th>
+			<th class="its-th-align center">코드</th>
+			<th class="its-th-align center">유입경로</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<th class="its-th-align center" rowspan="2">필수 옵션<br/>(옷, 신발)</th>
+			<th class="its-th-align center">추가 할인</th>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">추가 마일리지/포인트</th>
+			<td class="its-td-align center">-</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">-</td>
+			<td class="its-td-align center">-</td>
+			<td class="its-td-align center">-</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center" rowspan="2">추가 구성 옵션<br/>(벨트, 깔창)</th>
+			<th class="its-th-align center">추가 할인</th>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">추가 마일리지/포인트</th>
+			<td class="its-td-align center">-</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">-</td>
+			<td class="its-td-align center">-</td>
+			<td class="its-td-align center">-</td>
+		</tr>
+		</tbody>
+		</table>
+	</div>
+
+	<br style="line-height:30px;" />
+
+</div>
+
+<script type="text/javascript" >
+	// 업그레이드 안내 :: 2016-12-07 lwh
+	function noProvideService(msg, width, height){
+		/*if(msg){
+			$("#noProvideService_msg").html(msg)
+		}
+		if(!width)	width	= 550;
+		if(!height)	height	= 440;
+
+		openDialog("무료몰 제한<span class='desc'></span>", "noProvideService", {"width":width,"height":height});*/
+
+		$.ajax({
+			type: "get",
+			url: "http://www.ttukttak.kr/admin/main/main_free",
+			success: function(result){
+				$("#main_demo").html(result);
+				openDialog("무료몰 제한", "main_demo", {"width":"700","height":"700","show" : "fade","hide" : "fade"});
+			}
+		});
+	}
+
+	// facebook config (무료몰인경우 연결 및 스킨설정
+	$('#freefacebookconfignone').bind('click', function() {
+		
+	});
+
+	// onlyfacebook config (facebook전용인경우 설정불가
+	$('#onlyfacebooklinknone').bind('click', function() {
+		if($(this).attr("config")){
+			openDialog("PC, Mobile/Table 쇼핑몰 업그레이드 안내<span class='desc'></span>", "onlyfacebookService", {"width":600,"height":350});
+		}else{
+			openDialog("PC, Mobile/Table 쇼핑몰 안내<span class='desc'></span>", "onlyfacebookService", {"width":600,"height":350});
+		}
+	});
+
+	/* 추가 혜택 적용 범위 안내 */
+	$(".addsaleGuideBtn").live('click',function(){
+		openDialog("추가 혜택 적용 범위 안내","addsaleGuideLayer",{"width":720,"height":500});
+	});
+</script>
+<div id="freefacebookService" class="hide">
+<div>
+		<table width="100%">
+		<tr>
+		<td align="left">
+			무료몰 Plus+ : PC 및 Mobile/Tablet 쇼핑몰 운영이 가능합니다.<br />
+			Facebook PC 쇼핑몰 운영을 위해서는<br />
+			프리미엄몰 Plus+ 또는 독립몰 Plus+로 업그레이드 하시길 바랍니다.<br />
+		</td>
+		</tr>
+		<tr>
+			<td>
+<div style="width:90%; padding-top:10px; text-align:center;">&lt; 서비스 상품별 판매 상품 등록 안내 &gt;</div>
+<table cellspacing='0' cellpadding='0' class='sale_service' >
+<tr>
+	<th>구분</th>
+	<th>서비스상품</th>
+	<th>실물 배송 상품</th>
+	<th>쿠폰 발송 상품</th>
+</tr>
+<tr>
+	<td rowspan='2'>오픈마켓 쇼핑몰</td>
+	<td>입점몰 Plus+</td>
+	<td>무제한</td>
+	<td>무제한</td>
+</tr>
+<tr>
+	<td>입점몰 Plus+ Lite</td>
+	<td>무제한</td>
+	<td>미지원</td>
+</tr>
+<tr>
+	<td rowspan='3'>일반 쇼핑몰</td>
+	<td>독립몰 Plus+</td>
+	<td>무제한</td>
+	<td>3개(무료) 또는 무제한(유료)</td>
+</tr>
+<tr>
+	<td>프리미엄몰 Plus+</td>
+	<td>무제한</td>
+	<td>미지원</td>
+</tr>
+<tr>
+	<td>무료몰 Plus+</td>
+	<td>무제한</td>
+	<td>미지원</td>
+</tr>
+<tr>
+	<td>오프라인용 쇼핑몰</td>
+	<td>오프라인 Shop</td>
+	<td>미지원</td>
+	<td>무제한</td>
+</tr>
+</table>
+			</td>
+		</tr>
+		<tr>
+		<td align="center"><br /><br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<img src="http://www.ttukttak.kr/admin/skin/default/images/common/btn_upgrade.gif" class="hand" onclick="serviceUpgrade();" align="absmiddle" />
+		</td>
+		</tr>
+		</table>
+	</div>
+	<br style="line-height:20px;" />
+</div>
+
+<div id="onlyfacebookService" class="hide">
+<div>
+		<table width="100%">
+		<tr>
+		<td align="left">
+			페이머스 Plus+ : Facebook 쇼핑몰 운영이 가능합니다.<br />
+			PC, Mobile/Tablet  쇼핑몰 운영을 위해서는<br />
+			프리미엄몰 Plus+ 또는 독립몰 Plus+로 업그레이드 하시길 바랍니다.<br />
+		</td>
+		</tr>
+		<tr>
+			<td>
+<div style="width:90%; padding-top:10px; text-align:center;">&lt; 서비스 상품별 판매 상품 등록 안내 &gt;</div>
+<table cellspacing='0' cellpadding='0' class='sale_service' >
+<tr>
+	<th>구분</th>
+	<th>서비스상품</th>
+	<th>실물 배송 상품</th>
+	<th>쿠폰 발송 상품</th>
+</tr>
+<tr>
+	<td rowspan='2'>오픈마켓 쇼핑몰</td>
+	<td>입점몰 Plus+</td>
+	<td>무제한</td>
+	<td>무제한</td>
+</tr>
+<tr>
+	<td>입점몰 Plus+ Lite</td>
+	<td>무제한</td>
+	<td>미지원</td>
+</tr>
+<tr>
+	<td rowspan='3'>일반 쇼핑몰</td>
+	<td>독립몰 Plus+</td>
+	<td>무제한</td>
+	<td>3개(무료) 또는 무제한(유료)</td>
+</tr>
+<tr>
+	<td>프리미엄몰 Plus+</td>
+	<td>무제한</td>
+	<td>미지원</td>
+</tr>
+<tr>
+	<td>무료몰 Plus+</td>
+	<td>무제한</td>
+	<td>미지원</td>
+</tr>
+<tr>
+	<td>오프라인용 쇼핑몰</td>
+	<td>오프라인 Shop</td>
+	<td>미지원</td>
+	<td>무제한</td>
+</tr>
+</table>
+			</td>
+		</tr>
+		<tr>
+		<td align="center"><br /><br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<img src="http://www.ttukttak.kr/admin/skin/default/images/common/btn_upgrade.gif" class="hand" onclick="serviceUpgrade();" align="absmiddle" />
+		</td>
+		</tr>
+		</table>
+	</div>
+	<br style="line-height:20px;" />
+</div>
+
+<div id="noProvideService" class="hide">
+<div>
+		<table width="100%">
+		<tr>
+			<td class="pdt10" id="noProvideService_msg" align="center">
+				사용중이신 서비스에서는 해당기능이 지원되지 않습니다.<br/>
+				업그레이드 하시길 바랍니다.
+			</td>
+		</tr>
+		<tr>
+		<td class="pdt30" align="center">
+			<br/>
+			<img src="http://www.ttukttak.kr/admin/skin/default/images/common/btn_upgrade.gif" class="hand" onclick="serviceUpgrade();" align="absmiddle" />
+		</td>
+		</tr>
+		</table>
+	</div>
+	<br style="line-height:20px;" />
+</div>
+
+<div id="nostorfreeServiceBigdata" class="hide">
+	<p>사용중이신 서비스에서는 해당기능이 지원되지 않습니다.</p>
+	<p>상위 버전으로 업그레이드 하시길 바랍니다.</p>
+	<br /><p class="center"> <빅데이터 큐레이션 기능 이용 안내> </p><br />
+	<table class="info-table-style" width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td class="its-th-align center">구분</td>
+			<td class="its-th-align center">서비스 상품</td>
+			<td class="its-th-align center">빅데이터 큐레이션</td>
+			<td class="its-th-align center">비고</td>
+		</tr>
+		<tr>
+			<td class="its-td-align center" rowspan="2">오픈마켓</td>
+			<td class="its-td-align center">입점몰 Plus</td>
+			<td class="its-td-align center">모든 기능 제한 없음</td>
+			<td class="its-td-align center">큐레이션당 최대 3개까지 복수 설정 가능</td>
+		</tr>
+		<tr>
+			<td class="its-td-align center">입점몰 Plus Lite</td>
+			<td class="its-td-align center">모든 기능 제한 없음</td>
+			<td class="its-td-align center">큐레이션당 최대 3개까지 복수 설정 가능</td>
+		</tr>
+		<tr>
+			<td class="its-td-align center" rowspan="3">일반 쇼핑몰</td>
+			<td class="its-td-align center">독립몰 Plus</td>
+			<td class="its-td-align center">모든 기능 제한 없음</td>
+			<td class="its-td-align center">큐레이션당 최대 3개까지 복수 설정 가능</td>
+		</tr>
+		<tr>
+			<td class="its-td-align center">프리미엄몰 Plus</td>
+			<td class="its-td-align center">모든 기능 제한 없음</td>
+			<td class="its-td-align center">큐레이션당 최대 3개까지 복수 설정 가능</td>
+		</tr>
+		<tr>
+			<td class="its-td-align center">무료몰 Plus</td>
+			<td class="its-td-align center">'관리자가 직접 지정'만 사용 가능</td>
+			<td class="its-td-align center">최대 1개 가능. 다른 조건으로 변경불가</td>
+		</tr>
+		<tr>
+			<td class="its-td-align center">O2O</td>
+			<td class="its-td-align center">홈페이지 Shop</td>
+			<td class="its-td-align center">모든 기능 제한 없음</td>
+			<td class="its-td-align center">큐레이션당 최대 3개까지 복수 설정 가능</td>
+		</tr>
+	</table>
+	<div class="center mt10">
+		<img align="absmiddle" class="hand" onclick="serviceUpgrade();" src="http://www.ttukttak.kr/admin/skin/default/images/common/btn_upgrade.gif">
+	</div>
+</div>
+
+<div id="nofreeService" class="hide">	
+	<table width="100%">
+		<tr>
+			<td>
+				사용중이신 서비스에서는 해당기능이 지원되지 않습니다.<br />
+				프리미엄몰 Plus+ 또는 독립몰 Plus+로 업그레이드 하시길 바랍니다.<br />
+			</td>
+		</tr>
+		<tr class="center">
+			<td><a href="#" class="hand btn_resp mt15" onclick="serviceUpgrade();">업그레이드</a></td>
+		</tr>
+	</table>	
+</div>
+
+
+<script>
+	Lpad=function(str, len){
+		str = str + "";
+		while(str.length < len){
+			str = "0"+str;
+		}
+		return str;
+	}
+
+	// 자동로그아웃 시간 셋팅
+	var iMinute = "60";
+	var noticeSecond = 1;
+
+	var iSecond = iMinute * 60 ;
+	var timerchecker = null;
+
+	initTimer=function(){
+
+		//이벤트 발생 체크
+		if(window.event){
+			iSecond = iMinute * 60 ;;
+			clearTimeout(timerchecker);
+		}
+		rMinute = parseInt(iSecond / 60);
+		rSecond = iSecond % 60;
+
+		if(iSecond > 0){
+		//지정한 시간동안 마우스, 키보드 이벤트가 발생되지 않았을 경우
+			timer.innerHTML =  "<font family=tahoma style='font-size:70;'>AUTO LOG OUT</font> </h1> <font color=red>" + Lpad(rMinute, 2)+":"+Lpad(rSecond, 2) ;
+			iSecond--;
+			timerchecker = setTimeout("initTimer()", 1000); // 1초 간격으로 체크
+		}else{
+			clearTimeout(timerchecker);
+			openDialog("관리자 자동 로그아웃 알림", "autoLogoutMsg", {"width":"600","height":"240", "noClose":true});
+			actionFrame.location.href = "../login_process/logout?mode=autoLogout"; // 로그아웃 처리
+		}
+	}
+	onload = initTimer;///현재 페이지 대기시간
+	document.onclick = initTimer; /// 현재 페이지의 사용자 마우스 클릭이벤트 캡춰
+	document.onkeypress = initTimer;/// 현재 페이지의 키보트 입력이벤트 캡춰
+</script>
+
+<!-- 자동로그아웃시까지 남은 시간을 보여주는 레이어-->
+<div id="timer" style="position:absolute; right:10px; bottom:20px; width:200px; visibility:hidden; border:0;  color:black; font-family:tahoma; font-size:150;font-weight:bold;text-align:center"></div>
+<div id="autoLogoutMsg" class="hide">
+<center><h2>자동으로 로그아웃 되었습니다.</h2></center>
+<div style="height:20px;"></div>
+- 안전한 관리를 위하여 1시간 동안 사용이 없어 자동로그아웃 되었습니다.
+<div style="height:5px;"></div>
+- 다시 로그인 하시려면 [로그인]버튼을 클릭하십시오.
+<div style="height:20px;"></div>
+<div align="center">
+<span class="btn large gray"><input type="button" value="로그인" onclick="location.href='../login/index'"></span>
+</div>
+</div>
+
+</body>
+
+</html>

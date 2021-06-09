@@ -1,0 +1,2541 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+<title>뚝딱 관리자환경 :: 퍼스트몰, 오직 운영자만을 생각한 가장 앞선 쇼핑몰입니다.</title>
+<!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />  -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="http://www.ttukttak.kr/admin/skin/default/css/style.css" />
+<link rel="stylesheet" type="text/css" href="http://www.ttukttak.kr/app/javascript/plugin/editor/css/editor.css" />
+
+<link rel="stylesheet" type="text/css" href="http://www.ttukttak.kr/admin/skin/default/css/common-ui.css?mm=20201201" />
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="/data/icon/favicon/favicon1568624146.ico" />
+<!-- 자바스크립트 [순서변경하지마세요] -->
+<script nonce="kiN/F52PTqvd9j3jfrzZqffBPZ1ZI3CW8igIE5qQhSA=">window.Firstmall = window.Firstmall || {};
+window.Firstmall.Config = {"Environment":{"MobileMode":false,"SetMode":null,"Language":"KR","Currency":{"Basic":{"Id":"KRW","Symbol":"원","Position":"after"},"Skin":{"Id":"KRW","Symbol":"원","Position":"after"}},"serviceLimit":{"H_FR":false,"H_AD":true},"OperationType":"light","Protocol":"https","CacheBreaker":null},"Security":{"PreventDrag":false,"PreventContextMenu":false},"Search":{"AutoComplete":true,"Suggest":false}};
+(function(){ var aliases = {"gl_operation_type":window.Firstmall.Config.Environment.OperationType,"gl_mobile_mode":window.Firstmall.Config.Environment.MobileMode,"gl_set_mode":window.Firstmall.Config.Environment.SetMode,"gl_language":window.Firstmall.Config.Environment.Language,"gl_basic_currency":window.Firstmall.Config.Environment.Currency.Basic.Id,"gl_skin_currency":window.Firstmall.Config.Environment.Currency.Skin.Id,"gl_basic_currency_symbol":window.Firstmall.Config.Environment.Currency.Basic.Symbol,"gl_basic_currency_symbol_position":window.Firstmall.Config.Environment.Currency.Basic.Position,"gl_protocol":window.Firstmall.Config.Environment.Protocol+"://"}; for(var attr in aliases) { window[attr] = aliases[attr]; }})();</script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/plugin/jquery.hotkeys.js"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/plugin/jquery.poshytip.min.js"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/plugin/jquery.activity-indicator-1.0.0.min.js"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/plugin/jquery.cookie.js"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/plugin/custom-select-box.js"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/js/dev-tools.js"></script>
+<script type="text/javascript" src="/data/js/language/L10n_KR.js?dummy=20201201095812"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/js/common.js?dummy=20201201095812"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/js/admin-layout.js?dummy=20201201095812&krdomain=http://ttukttak.firstmall.kr"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/js/admin-common-ui.js?mm=20201201"></script>
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/jquery/html5shiv.js"></script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/jquery/respond.min.js"></script>
+<![endif]-->
+<script type="text/javascript">
+var video_use = 'Y';//동영상설정여부
+</script>
+<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/plugin/validate/jquery.validate.js"></script>
+
+<script type="text/javascript">
+//<![CDATA[
+var isAdminpage = true;
+
+//한글도메인체크@2013-03-12
+var fdomain = document.domain;
+var krdomain = gl_protocol+'ttukttak.firstmall.kr';
+var kordomainck = false;
+for(i=0; i<fdomain.length; i++){
+ if (((fdomain.charCodeAt(i) > 0x3130 && fdomain.charCodeAt(i) < 0x318F) || (fdomain.charCodeAt(i) >= 0xAC00 && fdomain.charCodeAt(i) <= 0xD7A3)))
+{
+	kordomainck = true;
+	break;
+}
+}
+if( !kordomainck ){
+krdomain = '';
+}
+var gl_amout_list						= new Array();
+gl_amout_list['KRW'] = '1000';
+gl_amout_list['CNY'] = '1';
+gl_amout_list['JPY'] = '100';
+gl_amout_list['EUR'] = '1';
+gl_amout_list['USD'] = '1';
+var gl_currency_exchange = "1137.30";
+
+//]]>
+</script>
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0; t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '643451206191859', {}, {'agent':'plgabia'});fbq('track', 'PageView');</script><noscript><img height='1' width='1' style='display:none' src='https://www.facebook.com/tr?id=643451206191859&ev=PageView&noscript=1' /></noscript><script async src='https://www.googletagmanager.com/gtag/js?id=AW-593611280'></script><script>window.dataLayer=window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-593611280');</script><script src="http://www.ttukttak.kr/app/javascript/js/admin/gSearchForm.js?v=a310faacabb50864f129"></script><script src="http://www.ttukttak.kr/app/javascript/plugin/jquery.bxslider.js?v=a310faacabb50864f129"></script>
+</head>
+<style>
+.page-manual-btn.btn_resp {border:1px #a7a8aa solid; display:none; background: #FFF; }
+.page-title .status-isY {margin:-8px 0 0 5px;}
+.page-manual-btn {margin-left:7px !important; top:14px !important; padding:0 !important; height: 25px !important; }
+.page-manual-btn a {margin-top:1px !important; border:0 !important; background-color:#FFF !important; border-radius:0 !important; width:auto !important; box-shadow:none !important; padding:0 5px 0 20px !important; color:#000 !important; height:24px !important; line-height:24px !important; background:url(/admin/skin/default/images/common/ico_manual.png) 6px 4px no-repeat !important;}
+#page-title-bar-area #page-title-bar.flyingMode .page-manual-btn.btn_resp{border:0;}
+#page-title-bar-area #page-title-bar.flyingMode {background:#3e424e; opacity:0.94}
+</style>
+
+<script type="text/javascript">
+
+	setTimeout(function(){
+		loadIssueCounts();
+	},500);
+
+	$(function(){
+		$(".platformhelp").poshytip({
+			className: 'tip-darkgray',
+			bgImageFrameSize: 8,
+			alignTo: 'target',
+			alignX: 'up',
+			alignY: 'bottom',
+			offsetX: -55,
+			offsetY: 6,
+			allowTipHover: false,
+			slide: false,
+			showTimeout : 0
+		});
+
+		// 매뉴얼 버튼 링크
+		$("#page-title-bar").each(function(){
+			$(".page-global-btn").appendTo($(this)).show().children("a");
+			$(".page-manual-btn").appendTo($(this)).show().children("a").attr('href','http://gmanual.firstmall.kr/html/manual.php?url=provider%2Fcatalog');
+		});
+
+		// 매뉴얼 설정창 띄우기
+		$("#hs-global, #page-global-btn").bind("click", function(){
+			env = $(this).attr('env');
+			if	(env != 'all'){
+				title = ' 관리환경 이동';
+				$("#global-setting .global-setting-layer").fadeIn("slow");
+				$("#global-setting .global-setting-bg").fadeIn();
+				$("#global-setting .global-setting-layer a.btn_link").bind("click", function(){
+					$(this).css({"border":"1px solid #b9b9b9",  "color":"#b9b9b9"});
+				});
+				$('#global-setting #global-title').html(title);
+			}
+		});
+		$(".global-setting-bg, .global-setting-layer .close").bind("click", function(){
+			$("#global-setting .global-setting-layer").fadeOut("slow");
+			$("#global-setting .global-setting-bg").fadeOut();
+		});
+	});
+
+	$(function(){
+		$("#layout-header .header-gnb-container ul.header-gnb li.mitem-td").each(function(){
+			$(this)
+			.bind('mouseenter',function(){
+				$("div.submenu",this).stop(true,true).show();
+			})
+			.bind('mouseleave',function(){
+				$("div.submenu",this).stop(true,true).hide();
+			});
+		});
+
+		$("#layout-header .header-gnb-container ul.header-qnb li.gnb-item").each(function(){
+			$(this)
+			.bind('mouseenter',function(){
+				$("ul.gnb-subnb",this).stop(true,true).slideDown('fast');
+			})
+			.bind('mouseleave',function(){
+				$("ul.gnb-subnb",this).stop(true,true).slideUp('fast');
+			});
+		});
+
+		// 상단 메모, 중요알림,myfirstmall link,관리자정보 메뉴 활성 비활성
+		var hsnbClass = ["hsnb-memo","hsnb-notice","hsnb-link","hsnb-admin"];
+		for(var hsnbnum=0; hsnbnum<hsnbClass.length; hsnbnum++){
+			$("#layout-header ul.header-snb li."+hsnbClass[hsnbnum]+" a").eq(0).click(function(){
+				if( $(this).hasClass('opened') ){
+					$("#layout-header ul.header-snb .item > a, #layout-header ul.header-snb .item > .hsnbm-menu").removeClass('opened');
+				}else{
+					$("#layout-header ul.header-snb .item > a, #layout-header ul.header-snb .item > .hsnbm-menu").removeClass('opened');
+					$(this).addClass('opened');
+					$(this).next().addClass('opened');
+				}
+			});
+		}
+		$(".manager_alert_view_btn").bind('click',function(){
+			$("#manager_alert_dialog").load('/admin/common/manager_alert_history');
+			openDialog("중요행위발생을 알려 드립니다!", "manager_alert_dialog", {"width":800});
+		});
+		
+		$( window ).resize(function() {
+			manualPostion()
+		});
+			manualPostion()
+	});
+
+	function manualPostion()
+	{
+		var len = $(".page-title > h2").length
+		var obj
+		if(len>1)
+		{
+			obj = $(".page-title > h2:last-child");
+		}else{
+			obj = $(".page-title > h2");
+		}
+		if( obj.length > 0){
+			$(".page-manual-btn").css("left", obj.position().left+obj.width());
+			var select = $(".page-title > select");
+			if(select.width() > 0 && select.css("display")!="none")
+			{
+				$(".page-manual-btn").css("left", select.position().left + select.width()+15);
+			}
+			$(".page-manual-btn").css("display", "inline-block");
+		}
+	}
+
+	//-->
+</script>
+
+<body>
+<div id="dumy" style="display:none"></div>
+<div id="env_move" style="display:none">
+	<table class="info-table-style" cellspacing="0">
+		<colgroup>
+			<col width="100px"/>
+			<col width="400px"/>
+			<col width="200px"/>
+			<col width="200px"/>
+			<col width="100px"/>
+		</colgroup>
+		<thead>
+			<tr>
+				<th class="its-th-align">관리명</th>
+				<th class="its-th-align">사용자 화면</th>
+				<th class="its-th-align">안내 언어</th>
+				<th class="its-th-align">기본통화</th>
+				<th class="its-th-align">관리환경</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div id="member_info_layer" class="member_info_layer hide"></div>
+<!-- 다국어 통합설정 -->
+<div id="page-global-btn" class="page-global-btn hide" env="뚝딱">	
+	<a href="javascript:;" title="관리환경 이동" style="display:none;"><img src="/data/brand_country/kr.png" alt="KR"> <strong>뚝딱</strong> KRW</a>
+</div>
+<!-- 매뉴얼 버튼 -->
+<div class="page-manual-btn btn_resp hide">
+	<a href="#" target="_blank">매뉴얼</a>
+</div>
+<!-- 다국어 관리환경 이동 -->
+<div id="global-setting">
+	<div class="global-setting-layer">
+		<h1 id="global-title">관리환경 이동</h1>
+		<table width="650" border="0" cellpadding="0" cellspacing="0">
+			<colgroup>
+				<col /><col /><col width="18%" /><col width="16%" /><col width="16%" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th scope="col">관리명</th>
+					<th scope="col">사용자 화면</th>
+					<th scope="col">안내 언어</th>
+					<th scope="col">기본 통화</th>
+					<th scope="col">관리환경</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">뚝딱</th>
+					<td>ttukttak.kr</td>
+					<td class="lang_KR">한국어</td>
+					<td class="center">KRW</td>
+					<td class="center">
+						<a class="btn_link" style="border:1px solid #b9b9b9;color:#b9b9b9;">바로가기</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="javascript:;" class="close">닫기</a>
+	</div>
+	<div class="global-setting-bg"></div>
+</div>
+
+<div id="wrap">
+	<div id="layout-container" class="P_ADVA"><!-- free premium expantion proexpantion -->
+		<div id="layout-background"  ><div class="img_bg P_ADVA"></div></div>
+		<!-- //헤더 : 백그라운드 -->
+
+		<!--[ 레이아웃 헤더 : 시작 ]-->
+		<div id="layout-header" class="icon-view">
+
+			<!-- 헤더 상단부 -->
+			<div class="header-snb-container clearbox">
+				<!-- 로고 -->
+				<a href="http://www.ttukttak.kr/admin"><h1 class="header-logo"><span>Firstmall</span></h1></a>
+
+				<!-- 우측 상단메뉴 -->
+				<ul class="header-snb clearbox">
+					<li class="item hsnb-pc">
+						<a href="//www.ttukttak.kr/?setDesignMode=off&setMode=mobile" target="_blank" title="반응형 쇼핑몰 바로가기">반응형 쇼핑몰 바로가기</a>
+					</li>
+					<li class="item hsnb-memo">
+						<a href="javascript:;" title="메모">메모</a>
+						<div class="hsnbm-menu">
+							<span class="point_b"></span>
+							<script type="text/javascript" src="http://www.ttukttak.kr/app/javascript/plugin/jquery_pagination/jquery.pager.js" charset="utf8"></script>
+
+							<div id="admin-memo">
+								<div id="admin-memo-container">
+									<div class="memo-input-container clearbox">
+										<form name="newMemoForm" action="../adminmemo_process/save" method="post" target="actionFrame">
+											<textarea class="memo-input" name="contents" title="메모를 남기세요." rows="5"></textarea>
+											<input type="image" src="http://www.ttukttak.kr/admin/skin/default/images/main/btn_save_memo.gif" class="btn_save" align="absmiddle" />
+										</form>
+									</div>
+									<div class="memo-search">
+										<form name="searchMemoForm" method="post" onsubmit="get_memo_list('',this.search_keyword.value);return false;">
+											<input type="text" class="memo-search-input" name="search_keyword" value="" class="line" title="메모 검색" />
+											<input type="image" class="memo-search-btn" src="http://www.ttukttak.kr/admin/skin/default/images/main/right_search_btn.gif" align="absmiddle"/>
+										</form>
+									</div>
+									<div class="memo-list"></div>
+									<div id="admin-memo-page" class="pager"></div>
+								</div>
+							</div>
+						</div>
+						<script>
+								var memo_page = 1;
+								var memo_animation = false;
+								var addHeight = 0;
+								var memo_opened	= false;
+
+								$(function(){
+									var memoWidth;
+									$("#admin-memo-container").height($("#layout-body").outerHeight());
+									$("#admin-memo-openbtn").toggle(function(){
+										memoWidth = 216;
+										$("#admin-memo-container").outerWidth(memoWidth).height($("#layout-body").outerHeight());
+										if(memo_animation)	$("#admin-memo").animate({'width':memoWidth,'margin-left':-memoWidth});
+										else				$("#admin-memo").css({'width':memoWidth,'margin-left':-memoWidth});
+										$(".memo-closebtn").show();
+										$(".memo-openbtn").hide();
+									},function(){
+										$("#admin-memo").animate({'width':0,'margin-left':0});
+										$(".memo-openbtn").show();
+										$(".memo-closebtn").hide();
+									});
+
+									$("#admin-memo-openbtn").click();
+									memo_animation = true;
+
+									$(".memo-item-openbtn").live('click',function(){
+										$(".memo-item").not($(this).closest('.memo-item')).removeClass('memo-item-opened');
+										$(this).closest('.memo-item').toggleClass('memo-item-opened');
+										if(memo_opened) {
+											$("#admin-memo-container").height(addHeight);		memo_opened = false;
+										} else			{
+											$("#admin-memo-container").height(addHeight + 300); memo_opened = true;
+										}
+										$("#admin-memo").height("100%");
+									});
+
+									$(".memo-item-contents").live('click',function(){
+										if(!$(this).closest('.memo-item').is(".memo-item-opened")){
+											$(this).closest('.memo-item').find(".memo-item-openbtn").click();
+										}
+									});
+
+									$(".memo-item-contents textarea").live('keydown','Ctrl+S',function(event){
+										event.preventDefault();
+										$(this.form).submit();
+										return false;
+									});
+
+									$("#admin-memo-container .memo-input").focus(function(){
+										$(".memo-input-container").addClass('memo-input-container-focused');
+									});
+									get_memo_list();
+								});
+
+								function get_memo_list(page,search_keyword){
+
+									memo_page = page ? page : memo_page;
+
+									if(search_keyword && document.searchMemoForm.search_keyword.value==document.searchMemoForm.search_keyword.title){
+										document.searchMemoForm.search_keyword.value='';
+										search_keyword='';
+									}
+
+									$.ajax({
+										'url' : '../adminmemo_process/get_list',
+										'data' : {'page':page,'search_keyword':search_keyword},
+										'type' : 'post',
+										'dataType' : 'json',
+										'global' : false,
+										'success' : function(result){
+
+											$("#admin-memo-page").show().pager({pagenumber: result.page.nowpage, pagecount: result.page.totalpage, buttonClickCallback:function(clicked_page){
+												get_memo_list(clicked_page,search_keyword);
+											}});
+
+											var html = '';
+											if( result.record ) {
+												for(var i=0;i<result.record.length;i++){
+													html += '<div class="memo-item '+(result.record[i].check=='1'?'checked':'')+'" memo_seq="'+result.record[i].memo_seq+'">';
+													html += '	<form action="../adminmemo_process/edit" method="post" target="actionFrame">';
+													html += '	<input type="hidden" name="memo_seq" value="'+result.record[i].memo_seq+'" />';
+													html += '	<div class="memo-item-important"><span class="icon-star-gray '+(result.record[i].important=='1'?'checked':'')+'" onclick="important_memo('+result.record[i].memo_seq+')"></span></div>';
+													html += '	<div class="memo-item-writer"><span>'+result.record[i].manager_id+'</span></div>';
+													html += '	<div class="memo-item-contents">';
+													html += '		<div class="memo-item-contents-summary">'+result.record[i].contents_htmlspecialchars+'</div>';
+													html += '		<textarea name="contents">'+result.record[i].contents_htmlspecialchars+'</textarea>';
+													html += '	</div>';
+													html += '	<div class="memo-item-openbtn"></div>';
+													html += '	<div class="memo-item-footer clearbox">';
+													html += '		<div class="fl">';
+													html += '			<span class="memo-item-check" onclick="check_memo('+result.record[i].memo_seq+')"></span>';
+													html += '			<input type="image" src="http://www.ttukttak.kr/admin/skin/default/images/main/btn_memo_edit.gif" onmouseover="this.src=\'/admin/skin/default/images/main/btn_memo_edit_on.gif\'" onmouseout="this.src=\'/admin/skin/default/images/main/btn_memo_edit.gif\'" align="absmiddle" title="저장하기" />';
+													html += '			<img src="http://www.ttukttak.kr/admin/skin/default/images/main/btn_memo_del.gif" onmouseover="this.src=\'/admin/skin/default/images/main/btn_memo_del_on.gif\'" onmouseout="this.src=\'/admin/skin/default/images/main/btn_memo_del.gif\'" align="absmiddle" hspace="5" title="삭제하기" class="hand" onclick="delete_memo('+result.record[i].memo_seq+')" />';
+													html += '		</div>';
+													html += '		<div class="fr fx11 gray">'+result.record[i].date+'</div>';
+													html += '	</div>';
+													html += '	</form>';
+													html += '</div>';
+												}
+											}else{
+												html = '<div class="pd5 desc center">검색된 메모가 없습니다.</div>';
+												$("#admin-memo-page").hide();
+											}
+
+											$("#admin-memo .memo-list").html(html);
+
+											addHeight	= $("#layout-body").outerHeight() + $(".memo-list").outerHeight() - 256;
+											if($("#layout-body").outerHeight() <= addHeight )
+												$("#admin-memo-container").height(addHeight);
+											$("#admin-memo").height("100%");
+										}
+									});
+								}
+
+								function delete_memo(memo_seq){
+									openDialogConfirm('메모를 삭제하시겠습니까?',400,200,function(){
+										$.ajax({
+											'url'	: '../adminmemo_process/delete',
+											'type'	: 'post',
+											'data'	: {'memo_seq':memo_seq},
+											'success' : function(){
+												$(".memo-item[memo_seq='"+memo_seq+"']").slideUp();
+												openDialogAlert("메모가 삭제 되었습니다.",400,240,function(){
+													get_memo_list(memo_page);
+												});
+											}
+										});
+									});
+								}
+
+								function important_memo(memo_seq){
+									$.ajax({
+										'url'	: '../adminmemo_process/important',
+										'type'	: 'post',
+										'data'	: {'memo_seq':memo_seq},
+										'global' : false,
+										'success' : function(important){
+											if(important=='1') $(".memo-item[memo_seq='"+memo_seq+"'] .memo-item-important .icon-star-gray").addClass('checked');
+											else $(".memo-item[memo_seq='"+memo_seq+"'] .memo-item-important .icon-star-gray").removeClass('checked');
+										}
+									});
+								}
+
+								function check_memo(memo_seq){
+									$.ajax({
+										'url'	: '../adminmemo_process/check',
+										'type'	: 'post',
+										'data'	: {'memo_seq':memo_seq},
+										'global' : false,
+										'success' : function(check){
+											if(check=='1'){
+												$(".memo-item[memo_seq='"+memo_seq+"']").addClass('checked');
+											}
+											else{
+												$(".memo-item[memo_seq='"+memo_seq+"']").removeClass('checked');
+											}
+										}
+									});
+								}
+							</script>
+					</li>
+					<li class="item hsnb-notice">
+						<div class="header-gnb-issueCount-layer" style="display: block;">
+						</div>
+						<a href="javascript:;" title="알림">알림</a>
+						<div class="hsnbm-menu">
+							<span class="point_c"></span>
+							<strong>알림</strong>
+							<ul class="tb_link">
+								<li style="display:inline-block;width:250px;overflow:hidden;text-overflow:ellipsis;"><a href="#">부관리자는 볼수 없습니다.</a></li>
+							</ul>
+						</div>
+						<div id="manager_alert_dialog" class="hide"></div>
+					</li>
+					<li class="item hsnb-link">
+						<a href="javascript:;" title="더보기">더보기</a>
+						<div class="hsnbm-menu">
+							<span class="point_c"></span>
+							<ul class="tb_link">
+								<li><a href="https://www.firstmall.kr/myshop/shops/539721881/view" target="_blank" title="새창열림">MY퍼스트몰</a></li>
+								<li><a href="https://www.firstmall.kr/ec_hosting/customer/1to1.php" target="_blank" title="새창열림">1:1문의</a></li>
+								<li><a href="https://www.firstmall.kr/ec_hosting/customer/" target="_blank" title="새창열림">고객센터</a></li>
+								<li><a href="http://gmanual.firstmall.kr/" target="_blank" title="새창열림">온라인매뉴얼</a></li>
+								<!--li><a href="http://interface.firstmall.kr/firstmall_plus/data/manual/firstmall_manual.zip">매뉴얼 다운로드</a></li-->
+								<li><a href="https://design.firstmall.kr/" target="_blank" title="새창열림">디자인샵</a></li>
+								<li><a href="javascript:void(window.open('https://www.firstmall.kr/buildservice/customize'));">맞춤개발</a></li>
+									<li><a href="http://webmail.ttukttak.kr/admin/adminhome" target="_blank" title="새창열림">웹메일/세금계산서</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="item hsnb-admin">
+						<a href="javascript:;" title="관리자 정보">관리자 정보</a>
+						<div class="hsnbm-menu">
+							<span class="point_c"></span>
+							<ul class="tb_admin_info">
+								<li class="admin_thumb">
+									<img src="http://www.ttukttak.kr/admin/skin/default/images/main/def_img.png" width="50" height="50" align="absmiddle" />
+								</li>
+								<li class="admin_info">
+									<p>t00020</p>
+									<p>(안근창)</p>
+									<p style="color:#348ddb;">부운영자</p>
+								</li>
+								<li class="admin_link">
+									<a href="../setting/manager_reg?manager_seq=137">정보수정</a>
+									<a href="../login_process/logout">로그아웃</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+
+				<!-- 다국어 통합설정 -->
+				<a href="javascript:;" id="hs-global" class="hs-global hide" env="뚝딱" title="관리환경 이동"><strong>뚝딱</strong><span class="lang_KR"><span class="hide">한국어 </span>KRW</span><span class="hs_arrow"></span></a>
+
+				<!-- 검색창 -->
+				<form name="headForm" id="headForm" class="header-search" action="http://www.ttukttak.kr/admin/order/catalog" style="overflow: visible;">
+					<div class="fl hs-box">
+						<input type="text" name="header_search_keyword" id="header_search_keyword" value="" title="주문, 출고, 실물, 티켓, 회원" />
+						<!-- 검색어 입력시 레이어 박스 : start -->
+						<div class="header_search_type_text hide"></div>
+						<div class="header_searchLayer hide">
+							<input type="hidden" name="header_search_type" id="header_search_type" value="" />
+							<ul class="headerSearchUl">
+								<li><a class="header_link_keyword" s_type="order" href="#">주문검색: <span class="header_txt_keyword"></span> <span class="header_txt_title">-주문 찾기</span></a></li>
+								<li><a class="header_link_keyword" s_type="export" href="#">출고검색: <span class="header_txt_keyword"></span> <span class="header_txt_title">-출고 찾기</span></a></li>
+								<li><a class="header_link_keyword" s_type="goods" href="#">실물상품: <span class="header_txt_keyword"></span> <span class="header_txt_title">-실물 찾기</span></a></li>
+								<li><a class="header_link_keyword" s_type="coupon" href="#">티켓상품: <span class="header_txt_keyword"></span> <span class="header_txt_title">-티켓 찾기</span></a></li>
+								<li><a class="header_link_keyword" s_type="member" href="#">회원검색: <span class="header_txt_keyword"></span> <span class="header_txt_title">-회원 찾기</span></a></li>
+							</ul>
+						</div>
+						<!-- 검색어 입력시 레이어 박스 : end -->
+					</div>
+					<span class="fl"><input type="image" src="http://www.ttukttak.kr/admin/skin/default/images/main/btn_search.png" /></span>
+					<div class="relative">
+						<div class="absolute" style="top:5px; left:300px; z-index:1000"><img src="http://www.ttukttak.kr/admin/skin/default/images/main/q_icon.png" align="absmiddle" id="search_help" class="hand" /></div>
+						<div class="absolute hide" id="search_information" style="z-index:1000">
+							<div class="center pdb10 fn12 bold">아래의 정의된 검색어로 빠르게 검색하세요</div>
+							<table class="simplelist-table-style" style="width:100%; table-layout:fixed">
+								<tr>
+									<th class="bold">주문 → 주문리스트</th>
+									<th class="bold">출고 → 출고리스트</th>
+									<th class="bold">상품 → 실물 배송 상품</th>
+									<th class="bold">티켓 → 티켓 발송 상품</th>
+									<th class="bold">회원  → 회원리스트</th>
+								</tr>
+								<tr>
+									<td style="border:1px solid #c8c8c8;" valign="top">
+										<div class="pdl5">· 주문자</div>
+										<div class="pdl5 pdt5">· 수령자</div>
+										<div class="pdl5 pdt5">· 입금자</div>
+										<div class="pdl5 pdt5">· 아이디</div>
+										<div class="pdl5 pdt5">· 이메일</div>
+										<div class="pdl5 pdt5">· 휴대폰</div>
+										<div class="pdl5 pdt5">· 상품명</div>
+										<div class="pdl5 pdt5">· 상품 고유값</div>
+										<div class="pdl5 pdt5">· 상품코드</div>
+										<div class="pdl5 pdt5">· 사은품</div>
+										<div class="pdl5 pdt5">· 운송장번호</div>
+										<div class="pdl5 pdt5">· 주문번호</div>
+										<div class="pdl5 pdt5">· 출고번호</div>
+										<div class="pdl5 pdt5">· 반품번호</div>
+										<div class="pdl5 pdt5">· 환불번호</div>
+									</td>
+									<td style="border:1px solid #c8c8c8;" valign="top">
+										<div class="pdl5">· 주문자</div>
+										<div class="pdl5 pdt5">· 수령자</div>
+										<div class="pdl5 pdt5">· 입금자</div>
+										<div class="pdl5 pdt5">· 아이디</div>
+										<div class="pdl5 pdt5">· 이메일</div>
+										<div class="pdl5 pdt5">· 휴대폰</div>
+										<div class="pdl5 pdt5">· 상품명</div>
+										<div class="pdl5 pdt5">· 상품 고유값</div>
+										<div class="pdl5 pdt5">· 상품코드</div>
+										<div class="pdl5 pdt5">· 사은품</div>
+										<div class="pdl5 pdt5">· 운송장번호</div>
+										<div class="pdl5 pdt5">· 주문번호</div>
+										<div class="pdl5 pdt5">· 출고번호</div>
+										<div class="pdl5 pdt5">· 반품번호</div>
+										<div class="pdl5 pdt5">· 환불번호</div>
+									</td>
+									<td style="border:1px solid #c8c8c8;" valign="top">
+										<div class="pdl5">· 상품명</div>
+										<div class="pdl5 pdt5">· 상품 고유값</div>
+										<div class="pdl5 pdt5">· 상품코드</div>
+										<div class="pdl5 pdt5">· 태그</div>
+										<div class="pdl5 pdt5">· 간략설명</div>
+									</td>
+									<td style="border:1px solid #c8c8c8;" valign="top">
+										<div class="pdl5">· 상품명</div>
+										<div class="pdl5 pdt5">· 상품 고유값</div>
+										<div class="pdl5 pdt5">· 상품코드</div>
+										<div class="pdl5 pdt5">· 태그</div>
+										<div class="pdl5 pdt5">· 간략설명</div>
+									</td>
+									<td style="border:1px solid #c8c8c8;" valign="top">
+										<div class="pdl5">· 아이디</div>
+										<div class="pdl5 pdt5">· 회원명</div>
+										<div class="pdl5 pdt5">· 닉네임</div>
+										<div class="pdl5 pdt5">· 이메일</div>
+										<div class="pdl5 pdt5">· 주소</div>
+										<div class="pdl5 pdt5">· 전화번호</div>
+										<div class="pdl5 pdt5">· 핸드폰</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<script type="text/javascript">
+						$("#search_help").bind("click",function(){
+							openDialog("빠른 검색", "search_information", {"width":800});
+						});
+						$("#header_search_keyword").blur(function(){
+							if("" == $("#header_search_keyword").val()){
+								$(".header_search_type_text").show();
+							}
+							setTimeout(function(){
+								$('.header_searchLayer').hide()}, 500
+							);
+						});
+					</script>
+				</form>
+			</div>
+
+			<!-- 헤더 네비게이션바 -->
+			<div class="header-gnb-container">
+				<ul class="header-gnb-warp clearbox">
+					<li class="fl">
+						<!-- 좌측 GNB -->
+						<ul class="header-gnb">
+							<li class="mitem-td ">
+								<span class="mitem mitem_main"><a href="../main/index"><span>홈</span></a></span>
+							</li>
+							<li class="mitem-td " code="goods">
+								<div class="header-gnb-issueCount-layer" code="goods"></div>
+								<span class="mitem mitem_goods"><a href="../goods/index"><span>판매상품</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../goods/catalog">[실물] 상품</a>
+										</li>
+										<li>
+											
+											<a href="../goods/package_catalog">[실물] 패키지/복합 상품</a>
+										</li>
+										<li>
+											
+											<a href="../goods/social_catalog">[티켓] 티켓상품</a>
+										</li>
+										<li>
+											
+											<a href="../goods/gift_catalog">[실물] 사은품</a>
+										</li>
+										<li>
+											
+											<a href="../goods/batch_regist">[실물] 상품 빠른등록</a>
+										</li>
+										<li>
+											
+											<a href="../goods/batch_modify">[실물] 일괄 업데이트</a>
+										</li>
+										</ul>
+										<ul>
+										<li>
+											
+											<a href="../goods/restock_notify_catalog">재입고 알림</a>
+										</li>
+										<li>
+											
+											<a href="../category/catalog">카테고리</a>
+										</li>
+										<li>
+											
+											<a href="../brand/catalog">브랜드</a>
+										</li>
+										<li>
+											
+											<a href="../page_manager/catalog">상품리스트 페이지</a>
+										</li>
+										<li>
+											
+											<a href="../barcode/catalog">바코드 출력</a>
+										</li>
+										<li>
+											
+											<a href="../goods/excel_download">엑셀 다운로드</a>
+										</li>
+										</ul>
+										<ul>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="order">
+								<div class="header-gnb-issueCount-layer" code="order"></div>
+								<span class="mitem mitem_order"><a href="../order/index"><span>주문</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../order/catalog">통합주문리스트</a>
+										</li>
+										<li>
+											
+											<a href="../order/company_catalog">└ 본사배송 주문상품</a>
+										</li>
+										<li>
+											
+											<a href="../order/personal">개인결제리스트</a>
+										</li>
+										<li>
+											
+											<a href="../order/autodeposit">자동입금확인</a>
+										</li>
+										<li>
+											
+											<a href="../export/catalog">출고리스트</a>
+										</li>
+										<li>
+											
+											<a href="../returns/catalog">반품리스트</a>
+										</li>
+										</ul>
+										<ul>
+										<li>
+											
+											<a href="../refund/catalog">환불리스트</a>
+										</li>
+										<li>
+											
+											<a href="../order/sales">매출증빙리스트</a>
+										</li>
+										<li>
+											
+											<a href="../order/temporary">삭제리스트</a>
+										</li>
+										<li>
+											
+											<a href="../order/excel_download">엑셀 다운로드</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="market_connector">
+								<div class="header-gnb-issueCount-layer" code="market_connector"></div>
+								<span class="mitem mitem_market_connector"><a href="../market_connector/index"><span>오픈마켓</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../market_connector/market_order_list">주문수집/등록</a>
+										</li>
+										<li>
+											
+											<a href="../market_connector/market_cancel_list">취소관리</a>
+										</li>
+										<li>
+											
+											<a href="../market_connector/market_return_list">반품관리</a>
+										</li>
+										<li>
+											
+											<a href="../market_connector/market_exchange_list">교환관리</a>
+										</li>
+										<li>
+												<div style="border-top:1px solid #C2C2C2;padding-top:3px;width:95%;margin-left:5px;"></div>
+											
+											<a href="../market_connector/distributor">상품등록</a>
+										</li>
+										<li>
+											
+											<a href="../market_connector/market_product_list">상품관리</a>
+										</li>
+										<li>
+												<div style="border-top:1px solid #C2C2C2;padding-top:3px;width:95%;margin-left:5px;"></div>
+											
+											<a href="../market_connector/market_qna_list">문의관리</a>
+										</li>
+										<li>
+												<div style="border-top:1px solid #C2C2C2;padding-top:3px;width:95%;margin-left:5px;"></div>
+											
+											<a href="../market_connector/market_linkage">연동설정</a>
+										</li>
+										<li>
+											
+											<a href="../market_connector/market_setting">마켓설정</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="member">
+								<div class="header-gnb-issueCount-layer" code="member"></div>
+								<span class="mitem mitem_member"><a href="../member/index"><span>회원</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../member/catalog">회원리스트</a>
+										</li>
+										<li>
+											
+											<a href="../member/dormancy_catalog">휴면처리리스트</a>
+										</li>
+										<li>
+											
+											<a href="../member/withdrawal">탈퇴리스트</a>
+										</li>
+										<li>
+											
+											<a href="../member/kakaotalk_index">카카오알림톡</a>
+										</li>
+										<li>
+											
+											<a href="../member/sms">SMS발송관리</a>
+										</li>
+										<li>
+											
+											<a href="../batch/sms">SMS대량발송</a>
+										</li>
+										</ul>
+										<ul>
+										<li>
+											
+											<a href="../member/email">이메일발송관리</a>
+										</li>
+										<li>
+											
+											<a href="../member/amail">이메일대량발송</a>
+										</li>
+										<li>
+											
+											<a href="../member/curation">SMS/EMAIL 고객리마인드</a>
+										</li>
+										<li>
+											
+											<a href="../member/excel_download">엑셀 다운로드</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="board">
+								<div class="header-gnb-issueCount-layer" code="board"></div>
+								<span class="mitem mitem_board"><a href="../board/index"><span>게시판</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../board/index">게시글 리스트</a>
+										</li>
+										<li>
+											
+											<a href="../board/main">게시판 리스트</a>
+										</li>
+										<li>
+											
+											<a href="../board/counsel_catalog">고객상담 통합게시판</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="coupon">
+								<div class="header-gnb-issueCount-layer" code="coupon"></div>
+								<span class="mitem mitem_coupon"><a href="../coupon/index"><span>프로모션/쿠폰</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../coupon/catalog">할인 쿠폰</a>
+										</li>
+										<li>
+											
+											<a href="../promotion/catalog">할인 코드</a>
+										</li>
+										<li>
+											
+											<a href="../referer/index">할인 유입경로</a>
+										</li>
+										<li>
+											
+											<a href="../event/catalog">할인 이벤트</a>
+										</li>
+										<li>
+											
+											<a href="../event/gift_catalog">사은품 이벤트</a>
+										</li>
+										<li>
+											
+											<a href="../joincheck/catalog">출석체크</a>
+										</li>
+										<li>
+											
+											<a href="../banner_management/banner_list">배너 전시 관리</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="marketing">
+								<div class="header-gnb-issueCount-layer" code="marketing"></div>
+								<span class="mitem mitem_marketing"><a href="../marketing/marketplace_url"><span>마케팅</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../marketing/marketplace">마케팅 소개</a>
+										</li>
+										<li>
+											
+											<a href="../marketing/marketplace_url">입점마케팅설정</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="statistic">
+								<div class="header-gnb-issueCount-layer" code="statistic"></div>
+								<span class="mitem mitem_statistic"><a href="../statistic_summary"><span>통계</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../statistic_summary">요약 통계</a>
+										</li>
+										<li>
+											
+											<a href="../statistic_visitor">방문 통계</a>
+										</li>
+										<li>
+											
+											<a href="../statistic_member">가입 통계</a>
+										</li>
+										<li>
+											
+											<a href="../statistic_sales">판매 통계</a>
+										</li>
+										<li>
+											
+											<a href="../statistic_goods">상품 통계</a>
+										</li>
+										<li>
+											
+											<a href="../statistic_epc">적립 통계</a>
+										</li>
+										<li>
+											
+											<a href="../statistic_ga">구글 애널리틱스</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td current" code="provider">
+								<div class="header-gnb-issueCount-layer" code="provider"></div>
+								<span class="mitem mitem_provider"><a href="../provider/"><span>입점사</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../provider/catalog">입점사리스트</a>
+										</li>
+										<li>
+											
+											<a href="../provider/provider_group">입점사등급</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="ttukttak_manage">
+								<div class="header-gnb-issueCount-layer" code="ttukttak_manage"></div>
+								<span class="mitem mitem_ttukttak_manage"><a href="../ttukttak/setting"><span>운영관리</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../ttukttak/setting">운영 설정</a>
+										</li>
+										<li>
+											
+											<a href="../location/catalog">이사/인테리어/매거진 설정</a>
+										</li>
+										<li>
+											
+											<a href="../ttukttak/company">제휴업체 관리</a>
+										</li>
+										<li>
+											
+											<a href="../ttukttak/company_login">외부업체 로그인 계정 관리</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="accountall">
+								<div class="header-gnb-issueCount-layer" code="accountall"></div>
+								<span class="mitem mitem_accountall"><a href="../accountall/index"><span>정산</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../accountall/accountallviewerall">정산리스트 - 주문별</a>
+										</li>
+										<li>
+											
+											<a href="../accountall/accountgroup">정산리스트 - 업체별</a>
+										</li>
+										<li>
+											
+											<a href="../accountall/accountall_setting">정산마감일 설정</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="mobile_app">
+								<div class="header-gnb-issueCount-layer" code="mobile_app"></div>
+								<span class="mitem mitem_mobile_app"><a href="../mobile_app/setting"><span>모바일앱</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../mobile_app/setting">앱 설정</a>
+										</li>
+										<li>
+											
+											<a href="../mobile_app/push_manual">푸시발송관리</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="mitem-td " code="o2oservice">
+								<div class="header-gnb-issueCount-layer" code="o2oservice"></div>
+								<span class="mitem mitem_o2oservice"><a href="../o2o/o2osetting"><span>오프라인 매장</span></a></span>
+								<div class="submenu-wrapper">
+									<div class="submenu">
+										<ul>
+										<li>
+											
+											<a href="../o2o/o2osetting">매장 리스트</a>
+										</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</li>
+					<li class="fr">
+						<!-- 우측 GNB -->
+						<ul class="header-qnb">
+							<!-- 빅데이터 영역 -> 페이지 관리로 대체 :: 2019-01-21 -->
+							<li class="hide gnb-item qnb-bigdata ">
+								<a href="../bigdata/catalog" class="gnb-item-a"><span>빅데이터</span></a>
+								<ul class="gnb-subnb">
+									<li class="gnb-subnb-item"><a href="../bigdata/catalog">전용페이지 설정</a></li>
+									<li class="gnb-subnb-item"><a href="../bigdata/preview">결과 테스트</a></li>
+								</ul>
+							</li>
+							<li class="gnb-item qnb-design ">
+								<a href="../design/index" class="gnb-item-a"><span>디자인</span></a>
+								<ul class="gnb-subnb">
+									<li class="gnb-subnb-item"><a href="../design/skin">스킨 설정</a></li>
+									<li class="gnb-subnb-item"><a href="../design/skin_add" >스킨 추가</a></li>
+									<li class="gnb-subnb-item"><a href="../design/main?setMode=mobile" target="_blank">디자인환경 (반응형)</a></li>
+									<li class="gnb-subnb-item"><a href="#" onclick="DM_window_eyeeditor('data/skin/responsive_v1_7_200506/main/index.html')">HTML 에디터</a></li>
+								</ul>
+							</li>
+							<li class="gnb-item qnb-config ">
+								<a href="../setting/index" class="gnb-item-a"><span>설정</span></a>
+								<ul class="gnb-subnb setting">
+									<li class="gnb-subnb-item ">
+										<a href="../setting/multi"><span class="hide">01.</span> 01. 상점관리</a>
+									</li>
+									<li class="gnb-subnb-item seo">
+										<a href="../setting/seo"><span class="hide">02.</span> 02. 검색엔진최적화[SEO]</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/snsconf"><span class="hide">03.</span> 03. SNS 연동</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/operating"><span class="hide">04.</span> 04. 운영 방식</a>
+									</li>
+									<li class="gnb-subnb-item pg">
+										<a href="../setting/pg"><span class="hide">05.</span> 05. 전자결제</a>
+									</li>
+									<li class="gnb-subnb-item bank">
+										<a href="../setting/bank"><span class="hide">06.</span> 06. 무통장</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/member"><span class="hide">07.</span> 07. 회원</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/goods"><span class="hide">08.</span> 08. 상품 코드</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/search"><span class="hide">09.</span> 09. 검색</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/video"><span class="hide">10.</span> 10. 동영상</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/order"><span class="hide">11.</span> 11. 주문</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/sale"><span class="hide">12.</span> 12. 매출증빙</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/reserve"><span class="hide">13.</span> 13. 마일리지/포인트/예치금</a>
+									</li>
+									<li class="gnb-subnb-item shipping">
+										<a href="../setting/shipping_group"><span class="hide">14.</span> 14. 배송비</a>
+									</li>
+									<li class="gnb-subnb-item delivery">
+										<a href="../setting/delivery_company"><span class="hide">15.</span> 15. 택배사</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/protect"><span class="hide">16.</span> 16. 보안</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/cache"><span class="hide">17.</span> 17. 캐시</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/manager"><span class="hide">18.</span> 18. 관리자</a>
+									</li>
+									<li class="gnb-subnb-item ">
+										<a href="../setting/alert_setting"><span class="hide">19.</span> 19. 안내메시지</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+
+			<!--[ 혜택설정바로가기 : 시작 ]-->
+			<div class="relative">
+				<div class="benifit-popup hide"></div>
+			</div>
+			<!--[ 혜택설정바로가기 : 끝 ]-->
+		</div>
+		<!--[ 레이아웃 헤더 : 끝 ]-->
+
+		<div id="layout-body">
+		<!--[ 레이아웃 바디(본문) : 시작 ]-->
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		var arrSort = {'A.regdate DESC':'최근 입점순',
+						'provider_name DESC':'업체명순',
+						'provider_id DESC':'입점사ID순',
+						'mshop_cnt DESC':'단골미니샵순'};
+		gSearchForm.init({'pageid':'provider_catalog','sc':{"orderby":"A.regdate","page":0,"perpage":10,"sort":"DESC","get_mshop":"y","searchcount":"475","total_page":48,"totalcount":"475","select_date":"select_date_all","calcu_count":["all"],"info_type":["all"],"provider_status":["all"]},'displaySort':arrSort});
+
+		$("button[name='providerDetail']").on('click',function(){
+			document.location.href = "provider_reg?no="+$(this).attr("no");
+		});
+		$(".btnSellerAdminLogin").on("click",function(){
+			$('#provider_seq').val($(this).attr('data-providerSeq'));
+			$('#provider_id').val($(this).attr('data-providerId'));
+			document.selladminLoginForm.submit();
+		});
+		$(".btnSellerGoodsCnt").on("click",function(){
+			var providerSeq = $(this).attr("data-providerSeq");
+			var providerName = $(this).attr("data-providerName");
+			var providerId = $(this).attr("data-providerId");
+			$("#goodsPopup .goodsDefault a span").html($(this).attr('data-goodsDefault'));
+			$("#goodsPopup .goodsSocial a span").html($(this).attr('data-goodsSocial'));
+			$("#goodsPopup .goodsPackage a span").html($(this).attr('data-goodsPackage'));
+
+			$("#goodsPopup .goodsDefault a").attr("href",'./goods/catalog?provider_seq='+providerSeq+'&provider_name='+providerName+'%28'+providerId+'%29');
+			$("#goodsPopup .goodsSocial a").attr("href",'./goods/social_catalog?provider_seq='+providerSeq+'&provider_name='+providerName+'%28'+providerId+'%29');
+			$("#goodsPopup .goodsPackage a").attr("href",'./goods/package_catalog?provider_seq='+providerSeq+'&provider_name='+providerName+'%28'+providerId+'%29');
+
+			openDialog("입점사 상품", "goodsPopup_"+seq, {"width":400});
+		});
+	});
+
+	function goods_set($seq){
+			var seq = $seq
+			openDialog("입점사 상품", "goodsPopup_"+seq, {"width":400});
+		};
+</script>
+
+<!-- 페이지 타이틀 바 : 시작 -->
+<div id="page-title-bar-area">
+	<div id="page-title-bar">
+
+		<!-- 타이틀 -->
+		<div class="page-title">
+			<h2>입점사</h2>
+		</div>
+
+		<!-- 좌측 버튼 -->
+		<ul class="page-buttons-left">
+		</ul>
+
+		<!-- 우측 버튼 -->
+		<ul class="page-buttons-right">
+			<li><input type="button" value="입점사 등록" onclick="document.location.href='provider_reg'" class="resp_btn active2 size_L"></span></li>
+		</ul>
+	</div>
+</div>
+<!-- 페이지 타이틀 바 : 끝 -->
+
+<!-- 서브메뉴 바디 : 시작-->
+<div id="search_container" class="search_container">
+	<form name="providerForm" id="providerForm" class="search_form">
+	<input type="hidden" name="sort" value=""/>
+	<input type="hidden" name="searchcount" value="475"/>
+	<input type="hidden" name="perpage"  id="perpage" value="10" />
+	<input type="hidden" name="page" id="page" value="0" data-defaultPage=0 >
+	
+	<table class="table_search">
+		<tr data-fid='sc_provider'   >
+			<th><span>입점사</span></th>
+			<td>					
+				<select name="provider_seq_selector" style="display: none;"><option value="all" selected="">입점사 검색</option><option value="484">하나엔지니어링코리아(hanaeng01)</option><option value="483">왕궁병과(iwanggung)</option><option value="482">린글로벌테크(linnglo0525)</option><option value="481">에스씨메딕스(scmedics)</option><option value="480">지더블유 파트너스(gwpartners)</option><option value="479">디자인류(designryu)</option><option value="478">아라미디어솔루션(aramedia)</option><option value="477">온라인몰(skonlinemall)</option><option value="476">유무(umu2016)</option><option value="475">와이엘사이언스(ylsic)</option><option value="474">오케이굳(okgood)</option><option value="473">원더플라이2020(wonderfly2020)</option><option value="472">골드몰(goldmall)</option><option value="471">엘지데코(nubirapark)</option><option value="470">쎄전기(seelectric)</option><option value="469">그림같은집(gh280211)</option><option value="467">원스톱퍼니처(onestop)</option><option value="466">가구야(gagooya)</option><option value="465">알찬재래김(daehantd)</option><option value="464">남현푸드랩(nh-kimchi)</option><option value="463">뉴트리션닥터스(ndoctors)</option><option value="462">노블콜렉션(noble)</option><option value="461">(주)동서가구(joyimall)</option><option value="460">37포인트(37point)</option><option value="459">토미(tomi)</option><option value="458">클라드카카(melliz)</option><option value="457">아디코(adico)</option><option value="456">휴고링(huegoring)</option><option value="455">송월타올수건이야기(주)(towel79)</option><option value="454">태리(tarryworld)</option><option value="453">메가트레이드(megatrade)</option><option value="452">더비엠(thebm)</option><option value="451">일구팔공(binsun4)</option><option value="450">아이첼시(ichelsea)</option><option value="449">레이디가구(oheimint02)</option><option value="448">제로모먼트(zeromoment)</option><option value="447">홈앤(cookplus)</option><option value="446">도토로(dotoro)</option><option value="445">our_bueok(our_bueok)</option><option value="444">지애(nchmall)</option><option value="443">사람인사람(inperson)</option><option value="442">리턴라이프(tygroup87)</option><option value="441">스틸아트(steelart)</option><option value="440">에스엘컴퍼니(slcompani)</option><option value="439">제이비에프(minerala)</option><option value="438">씨와이인터내셔널(cyint2019)</option><option value="437">아임루키(dkdlafnzl)</option><option value="436">피엠에스모벨카펜터(mobel)</option><option value="435">트랜드앳홈(tmthong)</option><option value="434">다호코리아(daho6457)</option><option value="433">데일리차이(dailychae)</option><option value="432">바이오쉴드(bioshield)</option><option value="431">주식회사 나은생활(naeunlife)</option><option value="430">티아이엠앤코(timnco)</option><option value="429">선진컴퍼니(4merit)</option><option value="428">스팔라(spl123)</option><option value="427">위캔하이(wecanhi)</option><option value="426">숲에서(forest11)</option><option value="425">빅픽처코퍼레이션(teambp)</option><option value="424">가이드삼정(buypass)</option><option value="423">레몬아트(lemonart1)</option><option value="422">제이앤씨(pjy017)</option><option value="421">(주)오젠(hanssemozen)</option><option value="420">블록가든(blockgarden)</option><option value="419">젠틱가구(gtgagu)</option><option value="418">토토비즈(totobiz)</option><option value="417">안동반가 주식회사(andongbanga)</option><option value="416">아이와나테크(aiwana0201)</option><option value="415">하이팟(hypot)</option><option value="414">갈기산포도농원(fourm-wine)</option><option value="413">브이앤비리빙(vnb101)</option><option value="412">모빌라이트(mobilight)</option><option value="411">ttukttak(test)2(ttukttak3)</option><option value="410">룩홈(lookhome2013)</option><option value="409">플렌테리어결(gyeol)</option><option value="408">큐빙(cubing)</option><option value="407">미호비즈텍(vitalbra)</option><option value="406">와이지에프(proseat)</option><option value="405">다온에스아이(daon0605)</option><option value="404">슬로시티 수산협동조합(8311ssh)</option><option value="403">서현피엠에스(shpms1107)</option><option value="402">다정(dajung)</option><option value="401">마크(markinc)</option><option value="400">엠&amp;지코리아(MIDMI2013)</option><option value="399">제이에스스퀘어(jssquare)</option><option value="398">e-homedeco(ehomedeco)</option><option value="397">와이디(ydmall)</option><option value="396">바나나코퍼레이션(bananabd)</option><option value="395">이노뷰(innoview)</option><option value="394">신유코리아(shinukorea)</option><option value="393">엠씨랩(ecomnc)</option><option value="392">프리비아스킨랩(priviaskinlab)</option><option value="391">마랑제주(marangjeju)</option><option value="390">동서가구(dfgagu)</option><option value="389">디아스침대(diasbed)</option><option value="388">드림어스(dreamus7)</option><option value="387">선우케미칼(sunwoo)</option><option value="386">수미(naturelovemere)</option><option value="385">와이디인터내셔널(ydintl)</option><option value="384">MH상사(smartshop82)</option><option value="383">오케이마트(okokmart)</option><option value="382">양지사(yangjisa)</option><option value="381">대승에프엔피(lkc5343)</option><option value="380">선경산업(hihometech)</option><option value="379">이프조명(haa9364)</option><option value="378">대명크렌시아(krencia)</option><option value="377">해피아이(wnghdwls1)</option><option value="376">웰릭스렌탈(welrixrental)</option><option value="375">유원피.에스_보노하우스(yuwonps)</option><option value="374">뉴욕퍼니처(nyf1101)</option><option value="373">케이디에스(kds1101)</option><option value="372">다빈치스타일(davinciled)</option><option value="371">씨에스커머스(cscommerce)</option><option value="370">멀티스캔텍(multiscan)</option><option value="369">지베스(zives)</option><option value="368">퍼스트레이디가구(flgagu)</option><option value="367">준우드(jjunwood)</option><option value="366">가이온퍼니처(gaion1)</option><option value="365">태진컴(TAJINCOM)</option><option value="364">리빙월드(leadmall)</option><option value="363">엠에프매직하우스(zazz49)</option><option value="362">퍼니원(sgcar1326)</option><option value="361">동서카살라(dongsuh100)</option><option value="360">바스포르(vasphor)</option><option value="359">플랜데코(plandeco)</option><option value="358">트레이더스(traders87)</option><option value="357">더블유제이(wj12020)</option><option value="356">스킨플레이어(skinplayer)</option><option value="355">대은솔루션(daeun)</option><option value="354">무로코퍼레이션(homuro)</option><option value="353">스페이스윅(spacewick)</option><option value="352">에코그린(ecogreen84)</option><option value="351">온우리가구(gsb1544)</option><option value="350">이룸홈(eroomhome)</option><option value="349">파란들(queens)</option><option value="348">럼블(rumble)</option><option value="347">하나커머즈(gkskzj119)</option><option value="346">씨와이컴퍼니(cysale)</option><option value="345">이큐브인더스트리(cooljung25)</option><option value="344">바운드랩(boundlab)</option><option value="343">더웨이앳(thewayat)</option><option value="342">바른디자인(baren)</option><option value="341">고월드(goworld68)</option><option value="340">아이마마(imama01)</option><option value="339">코즈테크(causetech)</option><option value="338">오텍캐리어냉장(carriercrk)</option><option value="337">와우인터내셔널(wowint)</option><option value="336">대우씨엔디(lucoms)</option><option value="335">윈코커머스(winco2019)</option><option value="334">현대리바트(hyundailivart)</option><option value="333">디마드(demade)</option><option value="332">엘앤케이(landk)</option><option value="331">주식회사 아리아(aria2015)</option><option value="330">바로방가구(jhysj08)</option><option value="329">네오비즈(neobiz01)</option><option value="328">브이원 주식회사(vone704)</option><option value="327">원스타인터내셔널(onestar1)</option><option value="326">꾸안꾸(aka200701)</option><option value="325">정진유통(1108608827A)</option><option value="324">씨엘피에스(clps2016)</option><option value="323">스타텍(statech)</option><option value="322">영현아이앤씨(clubyh)</option><option value="321">에이젯코리아(azkorea)</option><option value="320">신바람트레이딩(sbrtrading)</option><option value="319">오빌(auvil)</option><option value="318">할더룀헬드코리아 주식회사(halderroemheld)</option><option value="317">솔리드네트워크(solid)</option><option value="316">콕닷컴(wineqok)</option><option value="315">더블커머스(double106)</option><option value="314">푸른하제(greenhaje)</option><option value="313">엘리트북(eilte2000)</option><option value="312">엠앤에스코리아(mnskoreagt)</option><option value="311">유케이(ukss1)</option><option value="310">뉴)탑라이팅(toplighting8)</option><option value="309">트리(Tree)(goodstree)</option><option value="308">한솔일렉트로닉스(bonaque2020)</option><option value="307">다원스토리(dwstory)</option><option value="306">퓨어랜드(pureland)</option><option value="305">파란고래(bluewhale813)</option><option value="304">유리빙(youliving)</option><option value="303">에이샵(ashopno1)</option><option value="302">페인트박스(behrpaint)</option><option value="301">자네트가구(zanette)</option><option value="300">에이스일렉트로닉스(aceelec)</option><option value="299">공식 온라인몰(lgonlinemall)</option><option value="298">주식회사 코잇(coit01)</option><option value="297">왓스업(whatup1201)</option><option value="296">더블루스톤(stone0510)</option><option value="295">모던팩토리(factory2046)</option><option value="293">인테로닉(interonic)</option><option value="292">디에스트레이딩코리아(dstkorea)</option><option value="291">에프엠비아이지(fmbiz)</option><option value="290">디콤마(dcomma)</option><option value="289">그릿스토어(greetstore)</option><option value="288">한일디엔씨(hanildnc)</option><option value="287">한아름(buja2727)</option><option value="286">이한아이씨티(lhanict)</option><option value="285">포시즌센트(kyr8311)</option><option value="284">모노(mono)</option><option value="283">다우리전자(judawri)</option><option value="282">닥터코스(doctorcos)</option><option value="281">컴길(comgill)</option><option value="280">옥샘코리아(oksem6867)</option><option value="279">헤라PNT(sunabout3307)</option><option value="278">아름다운프로(apropkc)</option><option value="277">하임디자인(heimdesign)</option><option value="276">히키스(hickies)</option><option value="275">유앤아이트레이딩(unitrad)</option><option value="274">케이디랩(kdlab)</option><option value="273">대원(daewonelect)</option><option value="272">스페이스온(spaceon2750)</option><option value="271">일이테크(iletech12)</option><option value="270">엘투존(l2zone)</option><option value="269">베티(betty2020)</option><option value="268">가람테크놀러지(garam1000)</option><option value="267">리버스(itbirth)</option><option value="266">비디퓨(bdfu01)</option><option value="265">이상네트웍스(e-sang)</option><option value="264">야무지다(yamuzida)</option><option value="263">웰데코(welldeco3102)</option><option value="262">지우몰(jiwoomall)</option><option value="261">미마인터내셔널(mima0900)</option><option value="260">식물맛집(plant8994)</option><option value="259">더푸른미래(thebf2020)</option><option value="258">지앤케이컴퍼니(gnkcomp)</option><option value="257">신영에스엠(sinyoungsm)</option><option value="256">일신전기조명(wh917)</option><option value="255">산들리빙(sdinc1011)</option><option value="254">가죽스토리(nhgamk)</option><option value="253">아둘람인터내셔널(adullamint01)</option><option value="252">렛츠커머스(unigame1)</option><option value="251">현성전자(hs51987)</option><option value="250">비엔(nho5809)</option><option value="249">흐름INC(gmfma)</option><option value="248">다온컴퍼니(daoncc79)</option><option value="247">SSOAK[:쏙](ecofriendz)</option><option value="246">바스몰(iimiyoung)</option><option value="245">로이체(royche)</option><option value="244">체리향기(cherryaroma)</option><option value="243">워터피앤디(waterpnd)</option><option value="242">이오다인 컴퍼니(eodyne01)</option><option value="241">워너버스(oneofus16)</option><option value="240">디디코퍼레이션(acskang10m)</option><option value="239">대원씨티에스(dwcts)</option><option value="238">엘케이지(lkgkorea)</option><option value="237">휘인테크(hwewin)</option><option value="236">더로엘코리아(theloel)</option><option value="235">두시(doosi)</option><option value="234">더왈츠(thewaltz)</option><option value="233">별별조명(starlighting)</option><option value="232">지군코리아(nixkms75)</option><option value="231">비즈온플레이스(bizonemall)</option><option value="230">빅퍼스(vicfus)</option><option value="229">티에스윈(tswin77)</option><option value="228">웅진식품(wjfood)</option><option value="227">에이포트(aport)</option><option value="226">이영컴퍼니(zzasc)</option><option value="225">창앤롤(yechang7)</option><option value="224">아이믹스유(imixyou)</option><option value="223">지노네트웍스(gno0225)</option><option value="222">엘제이옵티멈(ljoptimum)</option><option value="221">인크로마(incroma)</option><option value="220">행복인(rsmoo)</option><option value="219">토로라이프(torolife)</option><option value="218">디카몰(dicamall)</option><option value="217">지앤몰(goobnemall)</option><option value="216">대성글로벌(dsglobal2016)</option><option value="215">아바드(avade1120)</option><option value="214">내곁의작은정원(violetlia)</option><option value="213">마이타이니(mytiny0806)</option><option value="212">미래이씨피(miraeecp)</option><option value="211">이맥(emac0903)</option><option value="210">본사(ttukttak2)</option><option value="209">에이블컴퍼니(ablecompany)</option><option value="208">가구느낌(gagufeeling)</option><option value="207">후즈커머스(hooscommerce)</option><option value="206">에이브이인사이드(avinside)</option><option value="205">씨넥스존(cynex1314)</option><option value="204">뜨라래(trarae)</option><option value="203">에스엠퓨처스(sm11332)</option><option value="202">제이에이치컴퍼니(jhcp0125)</option><option value="201">웹이즈(babosarang1)</option><option value="200">주식회사 씨알텍(crtek)</option><option value="199">타입원(type1)</option><option value="198">다크호스(aop80)</option><option value="197">일잘하는남자(ilzalnam)</option><option value="196">수아즈인터내셔널(suazinter1389)</option><option value="195">디지탈태양(elxodid)</option><option value="194">미입점 제휴사(zzzzzzzzzzzzzzzz)</option><option value="193">뉴하이텍(nplus76)</option><option value="192">본사(ttukttakad)</option><option value="191">스템(stemkor)</option><option value="190">엠피나비(mpnavi)</option><option value="189">데코뱅크(epzhckd)</option><option value="188">어썸팩토리(mkmsmy02)</option><option value="187">한국주택환경연구원(koreaihe2018)</option><option value="186">누리집_렌탈(nulijib7007)</option><option value="185">누리집(nulijib)</option><option value="184">유환아이텍(uitmall)</option><option value="183">준현디지털(djtjswo483)</option><option value="182">_개발_테스트용_(test123456)</option><option value="181">기술자들(ngenius)</option><option value="180">에스제이씨오(sjco02)</option><option value="179">kpp쓰임자리연구소(kpp2018)</option><option value="178">프롬나드컴퍼니(prome_nade)</option><option value="177">와우굿픽(wowgoodpick)</option><option value="176">샵피온(shopion)</option><option value="175">완스토어(wanstore)</option><option value="174">한쿡스(hancooks)</option><option value="173">포더홈(oheimint)</option><option value="172">푸른언덕(minkuly)</option><option value="171">온앤오프커머스(onf0423)</option><option value="170">오비아(ovia)</option><option value="169">윈테리어(winterior)</option><option value="168">프로스페리티(lacuzin)</option><option value="167">실리프(daesung10)</option><option value="166">블랑쉬하우스(blanche)</option><option value="165">씨앤메이드(cnmade)</option><option value="164">이불연구소(ddasum19)</option><option value="163">송명(smcompany7)</option><option value="162">토크엔데이타(talkndata)</option><option value="161">플라팜(plafarm)</option><option value="160">오비아메디칼(oviamedic)</option><option value="159">엠브로스(embros)</option><option value="158">엘리시아룸(arim)</option><option value="157">뉴니끄(iunique)</option><option value="156">진커머스(jin0303)</option><option value="155">올펀(joy0801)</option><option value="154">비앤지인터내셔날(bngintl)</option><option value="153">테스트랩(teatlab001)</option><option value="152">굿센스(spiderloc)</option><option value="151">제이엠즈이엔씨(jmsenc01)</option><option value="150">어반커머스(urbancom)</option><option value="149">클릭나라(clicknara)</option><option value="148">유영강업(bftrading)</option><option value="147">허닭(heodak)</option><option value="146">이룸앤(eroomn)</option><option value="145">아이피글로벌(bigant)</option><option value="144">원더플라이(wonderfly)</option><option value="143">지엠트레이드(gm0214)</option><option value="142">명성(gift8996)</option><option value="141">연금술차(kongnoris)</option><option value="140">나즐(nazel)</option><option value="139">이좋은 은화페이트(eunwha)</option><option value="138">제이에스엠글로벌(jsmglobal)</option><option value="137">트래블기어(travelgear)</option><option value="136">도담테크(dodmtech1)</option><option value="135">리빙하우스(lvhouse)</option><option value="134">태림상사(piuup114)</option><option value="133">거목(gm201706)</option><option value="132">오스타코리아(ostarkorea)</option><option value="131">스미스이니셔티브(smithinit)</option><option value="130">마니샵(manishop)</option><option value="129">굿앰디(goodmd0820)</option><option value="128">플레이온쇼핑(playonshopping)</option><option value="127">다니엘라(daniela)</option><option value="126">사파헬스케어(safa1425)</option><option value="125">송월타올코리아(insoo2400)</option><option value="124">성심(ss140206)</option><option value="123">케이앤비커머스(knb150123)</option><option value="122">제이앤니들워크(clarara)</option><option value="121">원인터내셔널(oneinter)</option><option value="120">스타일K(stylek)</option><option value="119">모두바(moduba)</option><option value="118">히트(hit0822)</option><option value="117">일리시스템(illysystem)</option><option value="116">에프앤디넷(fndnet)</option><option value="115">미퓨어(sk3155530)</option><option value="114">이카루스(martinkorea)</option><option value="113">에이치커머스(hcommerce)</option><option value="112">피지랜드(pgshop)</option><option value="111">마이셀프인테리어(myselfinterior)</option><option value="110">우주에이치앤비(uju123456)</option><option value="109">자몽나라(jm3699)</option><option value="108">렙테크(reptech)</option><option value="107">오토리메드(autolimed)</option><option value="106">에코데코(ecodeco)</option><option value="105">먼지방어사령부(dustdc)</option><option value="104">메디프레소(medipresso)</option><option value="103">모비포유(mobi4you)</option><option value="102">(사용안함)모비(mobi4u)</option><option value="101">제이에이치엘인터네셔널(jhlinternational)</option><option value="100">here1am(here1am)</option><option value="99">레알에코리빙(realel)</option><option value="98">주윤씨앤씨(jycnc0522)</option><option value="97">수어플라이언스(sualc5715)</option><option value="96">나무마을(treevillage)</option><option value="95">커버리코(coverico)</option><option value="94">다미에홀딩스(damie)</option><option value="93">일신엠알오(ilsinchem)</option><option value="92">에스엘미디어넷(slmedianet)</option><option value="91">43번가아울렛(43outlet)</option><option value="90">진컴(jincom74)</option><option value="89">콤비나(sualc)</option><option value="88">샤토에르(senteur)</option><option value="87">스타미디홈(star233)</option><option value="86">디마크(dmark)</option><option value="85">태진씨앤아이(hangil37)</option><option value="84">미래바이텍(mediness)</option><option value="83">라텍스명가(latexmg)</option><option value="82">헤이즈가구(wontem)</option><option value="81">유니씨앤씨(unicnc)</option><option value="80">호두데코(hodoodeco)</option><option value="79">원스(oncehome)</option><option value="78">위너스유(sdeco)</option><option value="77">커넥팅피앤비(pnbstore)</option><option value="76">픽스몰(pixmall)</option><option value="75">큐비스트(cubist)</option><option value="74">티에스퍼니처(tscpdj1)</option><option value="73">디와이엔텍(dyntec)</option><option value="72">다올모아(daallmoa)</option><option value="71">코리아센터(SK매직총판)(krcocen3)</option><option value="70">채우리(happyput)</option><option value="69">티에스디인터내셔널(tsdint)</option><option value="68">아도라(adorar)</option><option value="67">고그인터내셔날(gog5202)</option><option value="66">에이스텍(acetec)</option><option value="65">제이앤시스(jnsyss)</option><option value="64">아이피드림(dlinkkorea)</option><option value="63">게릴라(guerilla)</option><option value="62">공감담음(gonggam)</option><option value="61">더블루나인(bluenine)</option><option value="60">밤(BAM)(bam2018)</option><option value="59">마루느루(maruneuru)</option><option value="58">노루하우홈(일반)(noroo2)</option><option value="57">노루하우홈(시공)(noroo1)</option><option value="56">삐더리(canterki)</option><option value="55">이케어(ecare)</option><option value="54">수빈인포텍(subininfo)</option><option value="53">에스티트레이딩(starmall)</option><option value="52">몽땅뚝딱 주식회사(ttukttakmong(test))</option><option value="51">모리프(bestmif)</option><option value="50">과일아삭협동조합(fruitsasak)</option><option value="49">피플스퀘어 인터내셔널(peoplesq)</option><option value="48">헤세드하우스(hessedhouse)</option><option value="47">라씨에뜨(lassiette)</option><option value="46">케이에이치프라자(khplaza)</option><option value="45">동명에스앤디(dmsnd)</option><option value="44">가우넷(gaunet)</option><option value="43">대현씨앤씨(dhcnc3291)</option><option value="42">와사비망고(wasabimango)</option><option value="41">엘디네트웍스(leadersnet)</option><option value="40">제네포스(geneforce)</option><option value="39">제라카(zeraka)</option><option value="38">맘스포유(moms4u)</option><option value="37">신민전자(prestiges)</option><option value="36">위드피플즈(withpps)</option><option value="35">여우미(youmi2015)</option><option value="34">스페이스디엠(spacedm)</option><option value="33">신성아이넷(BOSOMI)</option><option value="32">신성아이넷(sinsujnginet)</option><option value="31">에스제이코어퍼레이션(instaxmall)</option><option value="30">잉스(inksystem)</option><option value="29">굿커머스(kcg2179)</option><option value="28">종부씨엔에스(jbcns)</option><option value="27">더원플랫폼(theoneplatform)</option><option value="26">원하조명(wonha0108)</option><option value="25">다비드커뮤니케이션(david)</option><option value="24">아키인포(archiinfo)</option><option value="23">kpk7598(kpk7598)</option><option value="22">에스와이폴리텍(sypolytech)</option><option value="21">비에스몰(bsm1215)</option><option value="20">효성인터내셔널(hsint)</option><option value="19">세상담기(sesangdamgi)</option><option value="18">오디아이앤디(odind)</option><option value="17">지이스토리(gestory)</option><option value="16">라이온그룹코리아(liongroup)</option><option value="15">포트리스(fourtrees)</option><option value="14">정진씨앤에스(jjincns)</option><option value="13">금사강(geumsagang)</option><option value="12">에스제이비즈(sjbiz1975)</option><option value="11">ttukttak(test)(ttukttak1)</option><option value="10">다링크(dalink01)</option><option value="9">제이제이플래닛(jjplanet11)</option><option value="8">테라토닉(teratonic)</option><option value="6">리빙디자인연구소(ldlab1018)</option><option value="5">베스트리빙(bestliving)(bestliving)</option><option value="4">성진리테일(goldmom)</option><option value="3">인스브룩크(innsbruck)</option><option value="2">세윤티에스티(sytst)</option></select>
+				<span class="ui-combobox"><input title="" class="ui-state-default ui-combobox-input ui-autocomplete-input ui-widget ui-widget-content ui-corner-left" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"><a tabindex="-1" title="Show All Items" class="ui-button ui-widget ui-state-default ui-button-icon-only ui-corner-right ui-combobox-toggle" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-triangle-1-s"></span><span class="ui-button-text"></span></a></span>
+			</td>						
+		</tr>
+        <tr>
+            <th><span>입점사유형</span></th>
+            <td>
+                <div class="resp_checkbox">
+					<label><input type="checkbox" name="" class="chkall" value="" /> 일반셀러</label>
+                    <label><input type="checkbox" name="" value="" /> 시공업체</label>
+                </div>
+            </td>
+        </tr>
+		<tr data-fid='sc_provider_status'   >
+			<th><span>입점사 상태</span></th>
+			<td>
+				<div class="resp_radio">
+					<label><input type="radio" name="provider_status" value="all" /> 전체</label>
+					<label><input type="radio" name="provider_status" value="Y"/> 정상</label>
+					<label><input type="radio" name="provider_status" value="N" /> 종료</label>
+                    <label><input type="radio" name="provider_status" value="" /> 승인대기</label>
+				</div>
+			</td>
+		</tr>
+
+		<tr data-fid='sc_commission_type'  >
+			<th><span>정산 기준</span></th>
+			<td>
+				<select name="commission_type">
+					<option value="">전체</option>
+					<option value="SACO">수수료 방식</option>
+					<option value="SUPPLY">공급가 방식</option>
+				</select>
+			</td>
+		</tr>
+
+		<tr data-fid='sc_calcu_count'  >
+			<th><span>정산 주기</span></th>
+			<td>
+				<div class="resp_checkbox">
+					<label><input type="checkbox" name="calcu_count[]" class="chkall" value="all" /> 전체</label>
+					<label><input type="checkbox" name="calcu_count[]" value="1" /> 월 1회</label>
+					<label><input type="checkbox" name="calcu_count[]" value="2" /> 월 2회</label>
+					<label><input type="checkbox" name="calcu_count[]" value="4" /> 월 4회</label>
+				</div>
+			</td>
+		</tr>
+
+		<tr data-fid='sc_pgroup_seq'  class='hide' >
+			<th><span>판매 등급</span></th>
+			<td>
+				<select name="pgroup_seq">
+					<option value="">전체</option>
+					<option value="1">일반</option>
+				</select>
+			</td>
+		</tr>
+
+		<tr data-fid='sc_regdate'  class='hide' >
+			<th><span>입점일</span></th>
+			<td>
+				<input type="text" name="regdate[]" value="" class="datepicker sdate"  maxlength="10"/>
+				-
+				<input type="text" name="regdate[]" value="" class="datepicker edate" maxlength="10"/>
+				<div class="resp_btn_warp">
+					<input type="button"  id="today" value="오늘" class="select_date resp_btn" /></span>
+					<input type="button"  id="3day" value="3일간" class="select_date resp_btn" /></span>
+					<input type="button"  id="1week" value="일주일" class="select_date resp_btn" /></span>
+					<input type="button"  id="1month" value="1개월" class="select_date resp_btn" /></span>
+					<input type="button"  id="3month" value="3개월" class="select_date resp_btn" /></span>
+					<input type="button"  id="select_date_all"  value="전체" class="select_date resp_btn"/></span>	
+				</div>
+			</td>
+		</tr>
+
+		<tr data-fid='sc_info_type'  class='hide' >
+			<th><span>사업자</span></th>
+			<td>
+				<div class="resp_checkbox">
+					<label><input type="checkbox" name="info_type[]" class="chkall" value="all" /> 전체</label>
+					<label><input type="checkbox" name="info_type[]" value="개인" /> 개인</label>
+					<label><input type="checkbox" name="info_type[]" value="법인"  /> 법인</label>
+				</div>
+			</td>
+		</tr>
+
+		<tr data-fid='sc_shop_cnt'  class='hide' >
+			<th><span>단골 수</span></th>
+			<td>
+				<input type="text" name="mshop_cnt_s" value="" size="10" maxlength="10" /> 
+				~ 
+				<input type="text" name="mshop_cnt_e" value="" size="10" maxlength="10" />
+			</td>
+		</tr>
+	</table>
+
+	<div class="search_btn_lay center mt10"><div>	<span class="fl">		<button type="button" class="search_form_edit resp_btn v3" mode="editor"><img src="http://www.ttukttak.kr/admin/skin/default/images/common/icon_search_setting.png"><span class="txt">검색 편집</span></button>	</span>	<span class="search">		<button type="button" class="search_submit resp_btn active size_XL">검색</button>		<button type="button" class="search_reset resp_btn v3 size_XL">초기화</button>	</span>	<span class="edit hide">		<button type="button" class="search_form_edit_save resp_btn active size_L">저장</button>		<button type="button" class="search_form_edit_cancel resp_btn v3 size_L" mode="cancel">취소</button>	</span><span class="fr detail">	<button type="button" class="search_detail resp_btn v3" mode="basic"><span class="txt">상세 검색</span><img src="http://www.ttukttak.kr/admin/skin/default/images/common/icon_search_detail_open.png"></button></span><span class="fr default hide" style="display: none;">	<button type="button" class="search_default resp_btn v3"><img src="/admin/skin/default/images/common/icon_search_reset.png"><span class="txt">기본설정</span></button></span></div></div>
+
+</div>
+
+
+<div class="contents_container">
+	
+	<div class="list_info_container">
+		<div class="dvs_left">	
+			<div class="left-btns-txt">검색 <b>486</b>개 (총 <b>486</b>개)</div>
+		</div>
+		<div class="dvs_right">	
+			<span class="display_sort" sort=""><select name="search_sort"><option value="A.regdate DESC">최근 입점순</option><option value="provider_name DESC">업체명순</option><option value="provider_id DESC">입점사ID순</option><option value="mshop_cnt DESC">단골미니샵순</option></select></span>
+			<span class="display_quantity" perpage="10"><select name="search_perpage"><option id="dp_qty10" value="10" selected="">10개씩</option><option id="dp_qty50" value="50">50개씩</option><option id="dp_qty100" value="100">100개씩</option><option id="dp_qty200" value="200">200개씩</option></select></span>
+		</div>
+	</div>
+	</form>
+	<table class="table_row_basic">		
+		<colgroup>
+			<col width="5%" />
+			<col width="6%" />
+            <col width="6%"/>
+			<col width="11%" />
+			<col width="7%" />
+			<col width="7%" />
+			<col width="7%" />
+			<col width="7%" />
+			<col width="6%" />
+			<col width="8%" />
+			<col width="9%" />
+			<col width="7%" />
+			<col width="7%" />
+			<col width="10%" />
+		</colgroup>
+		<thead>
+		<tr>
+			<th>번호</th>
+			<th>상태</th>
+            <th>입점사유형</th>
+			<th>입점사명 (코드)</th>
+			<th>입점사 ID</th>
+			<th colspan="2">
+				정산 기준
+				<span class="tooltip_btn" onClick="showTooltip(this, '/admin/tooltip/provider', '#tip3')"></span>
+			</th>
+			<th>정산 주기</th>
+			<th>사업자</th>			
+			<th>판매 등급</th>
+			<th>입점사 상품</th>
+			<th>미니샵 단골</th>
+			<th>관리</th>
+			<th>입점사 로그인</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>475</td>
+			<td><span>종료</span></td>
+            <td>일반셀러</td>
+			<td class="left"><a href="provider_reg?no=479" class="resp_btn_txt v2">디자인류</a> (479)</td>
+			<td class="left">designryu</td>
+			<td>
+수수료 방식
+			</td>
+			<td>
+				수수료 3%
+			</td>
+			<td>
+					월1회
+			</td>
+			<td>법인</td>
+			<td>일반</td>			
+			<td>
+				<span class="resp_btn_txt v2" onclick="goods_set('479')" >총 1개</span>
+				
+				<div id="goodsPopup_479" class="hide">
+					<table class="table_basic tdc">
+						<col width="33%">
+						<col width="33%">
+						<col width="33%">
+						<tr>
+							<th>일반</th>
+							<th>티켓</th>
+							<th>패키지/복합</th>
+						</tr>
+						<tr>
+							<td><a href="http://www.ttukttak.kr/admin/goods/catalog?provider_seq=479&provider_name
+							=디자인류%28designryu%29" class="blue" target="_blank">1 </a>개</td>
+							<td><a href="http://www.ttukttak.kr/admin/goods/social_catalog?provider_seq=479&provider_name
+							=디자인류%28designryu%29" class="blue" target="_blank">0 </a>개</td>
+							<td><a href="http://www.ttukttak.kr/admin/goods/package_catalog?provider_seq=479&provider_name
+							=디자인류%28designryu%29" class="blue" target="_blank">0 </a>개</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+			<td>
+				<a href="../member/catalog?provider_seq=479&provider_name=디자인류" target="_blank" class="resp_btn_txt v2">0명</a>			
+			</td>
+			<td><button class="detail resp_btn v2" name='providerDetail' type="button" no="479">수정</button>	</td>
+			<td><button type="button" data-providerSeq='479' data-providerId='designryu' class="btnSellerAdminLogin resp_btn"> 로그인</button></td>				
+		</tr>
+		<tr>
+			<td>474</td>
+			<td><span style="color:blue;">정상</span></td>
+            <td>일반셀러</td>
+			<td class="left"><a href="provider_reg?no=478" class="resp_btn_txt v2">아라미디어솔루션</a> (478)</td>
+			<td class="left">aramedia</td>
+			<td>
+수수료 방식
+			</td>
+			<td>
+				수수료 15%
+			</td>
+			<td>
+					월1회
+			</td>
+			<td>법인</td>
+			<td>일반</td>			
+			<td>
+				<span class="resp_btn_txt v2" onclick="goods_set('478')" >총 1개</span>
+				
+				<div id="goodsPopup_478" class="hide">
+					<table class="table_basic tdc">
+						<col width="33%">
+						<col width="33%">
+						<col width="33%">
+						<tr>
+							<th>일반</th>
+							<th>티켓</th>
+							<th>패키지/복합</th>
+						</tr>
+						<tr>
+							<td><a href="http://www.ttukttak.kr/admin/goods/catalog?provider_seq=478&provider_name
+							=아라미디어솔루션%28aramedia%29" class="blue" target="_blank">1 </a>개</td>
+							<td><a href="http://www.ttukttak.kr/admin/goods/social_catalog?provider_seq=478&provider_name
+							=아라미디어솔루션%28aramedia%29" class="blue" target="_blank">0 </a>개</td>
+							<td><a href="http://www.ttukttak.kr/admin/goods/package_catalog?provider_seq=478&provider_name
+							=아라미디어솔루션%28aramedia%29" class="blue" target="_blank">0 </a>개</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+			<td>
+				<a href="../member/catalog?provider_seq=478&provider_name=아라미디어솔루션" target="_blank" class="resp_btn_txt v2">0명</a>			
+			</td>
+			<td><button class="detail resp_btn v2" name='providerDetail' type="button" no="478">수정</button>	</td>
+			<td><button type="button" data-providerSeq='478' data-providerId='aramedia' class="btnSellerAdminLogin resp_btn"> 로그인</button></td>				
+		</tr>
+		<tr>
+			<td>473</td>
+			<td><span style="color:red;">승인 대기</span></td>
+            <td>시공업체</td>
+			<td class="left"><a href="provider_reg?no=477" class="resp_btn_txt v2">온라인몰</a> (477)</td>
+			<td class="left">skonlinemall</td>
+			<td>
+수수료 방식
+			</td>
+			<td>
+				수수료 15%
+			</td>
+			<td>
+					월1회
+			</td>
+			<td>개인</td>
+			<td>일반</td>			
+			<td>
+				<span class="resp_btn_txt v2" onclick="goods_set('477')" >총 0개</span>
+				
+				<div id="goodsPopup_477" class="hide">
+					<table class="table_basic tdc">
+						<col width="33%">
+						<col width="33%">
+						<col width="33%">
+						<tr>
+							<th>일반</th>
+							<th>티켓</th>
+							<th>패키지/복합</th>
+						</tr>
+						<tr>
+							<td><a href="http://www.ttukttak.kr/admin/goods/catalog?provider_seq=477&provider_name
+							=온라인몰%28skonlinemall%29" class="blue" target="_blank">0 </a>개</td>
+							<td><a href="http://www.ttukttak.kr/admin/goods/social_catalog?provider_seq=477&provider_name
+							=온라인몰%28skonlinemall%29" class="blue" target="_blank">0 </a>개</td>
+							<td><a href="http://www.ttukttak.kr/admin/goods/package_catalog?provider_seq=477&provider_name
+							=온라인몰%28skonlinemall%29" class="blue" target="_blank">0 </a>개</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+			<td>
+				<a href="../member/catalog?provider_seq=477&provider_name=온라인몰" target="_blank" class="resp_btn_txt v2">0명</a>			
+			</td>
+			<td><button class="detail resp_btn v2" name='providerDetail' type="button" no="477">수정</button>	</td>
+			<td><button type="button" data-providerSeq='477' data-providerId='skonlinemall' class="btnSellerAdminLogin resp_btn"> 로그인</button></td>				
+		</tr>
+		<tr>
+			<td>472</td>
+			<td><span style="color:blue;">정상</span></td>
+            <td>일반셀러</td>
+			<td class="left"><a href="provider_reg?no=476" class="resp_btn_txt v2">유무</a> (476)</td>
+			<td class="left">umu2016</td>
+			<td>
+수수료 방식
+			</td>
+			<td>
+				수수료 15%
+			</td>
+			<td>
+					월1회
+			</td>
+			<td>개인</td>
+			<td>일반</td>			
+			<td>
+				<span class="resp_btn_txt v2" onclick="goods_set('476')" >총 0개</span>
+				
+				<div id="goodsPopup_476" class="hide">
+					<table class="table_basic tdc">
+						<col width="33%">
+						<col width="33%">
+						<col width="33%">
+						<tr>
+							<th>일반</th>
+							<th>티켓</th>
+							<th>패키지/복합</th>
+						</tr>
+						<tr>
+							<td><a href="http://www.ttukttak.kr/admin/goods/catalog?provider_seq=476&provider_name
+							=유무%28umu2016%29" class="blue" target="_blank">0 </a>개</td>
+							<td><a href="http://www.ttukttak.kr/admin/goods/social_catalog?provider_seq=476&provider_name
+							=유무%28umu2016%29" class="blue" target="_blank">0 </a>개</td>
+							<td><a href="http://www.ttukttak.kr/admin/goods/package_catalog?provider_seq=476&provider_name
+							=유무%28umu2016%29" class="blue" target="_blank">0 </a>개</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+			<td>
+				<a href="../member/catalog?provider_seq=476&provider_name=유무" target="_blank" class="resp_btn_txt v2">0명</a>			
+			</td>
+			<td><button class="detail resp_btn v2" name='providerDetail' type="button" no="476">수정</button>	</td>
+			<td><button type="button" data-providerSeq='476' data-providerId='umu2016' class="btnSellerAdminLogin resp_btn"> 로그인</button></td>				
+		</tr>
+		<tr>
+			<td>471</td>
+			<td><span style="color:blue;">정상</span></td>
+            <td>일반셀러</td>
+			<td class="left"><a href="provider_reg?no=475" class="resp_btn_txt v2">와이엘사이언스</a> (475)</td>
+			<td class="left">ylsic</td>
+			<td>
+수수료 방식
+			</td>
+			<td>
+				수수료 15%
+			</td>
+			<td>
+					월1회
+			</td>
+			<td>법인</td>
+			<td>일반</td>			
+			<td>
+				<span class="resp_btn_txt v2" onclick="goods_set('475')" >총 0개</span>
+				
+				<div id="goodsPopup_475" class="hide">
+					<table class="table_basic tdc">
+						<col width="33%">
+						<col width="33%">
+						<col width="33%">
+						<tr>
+							<th>일반</th>
+							<th>티켓</th>
+							<th>패키지/복합</th>
+						</tr>
+						<tr>
+							<td><a href="http://www.ttukttak.kr/admin/goods/catalog?provider_seq=475&provider_name
+							=와이엘사이언스%28ylsic%29" class="blue" target="_blank">0 </a>개</td>
+							<td><a href="http://www.ttukttak.kr/admin/goods/social_catalog?provider_seq=475&provider_name
+							=와이엘사이언스%28ylsic%29" class="blue" target="_blank">0 </a>개</td>
+							<td><a href="http://www.ttukttak.kr/admin/goods/package_catalog?provider_seq=475&provider_name
+							=와이엘사이언스%28ylsic%29" class="blue" target="_blank">0 </a>개</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+			<td>
+				<a href="../member/catalog?provider_seq=475&provider_name=와이엘사이언스" target="_blank" class="resp_btn_txt v2">0명</a>			
+			</td>
+			<td><button class="detail resp_btn v2" name='providerDetail' type="button" no="475">수정</button>	</td>
+			<td><button type="button" data-providerSeq='475' data-providerId='ylsic' class="btnSellerAdminLogin resp_btn"> 로그인</button></td>				
+		</tr>
+		<tr>
+			<td>470</td>
+			<td><span style="color:blue;">정상</span></td>
+            <td>일반셀러</td>
+			<td class="left"><a href="provider_reg?no=474" class="resp_btn_txt v2">오케이굳</a> (474)</td>
+			<td class="left">okgood</td>
+			<td>
+수수료 방식
+			</td>
+			<td>
+				수수료 15%
+			</td>
+			<td>
+					월1회
+			</td>
+			<td>법인</td>
+			<td>일반</td>			
+			<td>
+				<span class="resp_btn_txt v2" onclick="goods_set('474')" >총 0개</span>
+				
+				<div id="goodsPopup_474" class="hide">
+					<table class="table_basic tdc">
+						<col width="33%">
+						<col width="33%">
+						<col width="33%">
+						<tr>
+							<th>일반</th>
+							<th>티켓</th>
+							<th>패키지/복합</th>
+						</tr>
+						<tr>
+							<td><a href="http://www.ttukttak.kr/admin/goods/catalog?provider_seq=474&provider_name
+							=오케이굳%28okgood%29" class="blue" target="_blank">0 </a>개</td>
+							<td><a href="http://www.ttukttak.kr/admin/goods/social_catalog?provider_seq=474&provider_name
+							=오케이굳%28okgood%29" class="blue" target="_blank">0 </a>개</td>
+							<td><a href="http://www.ttukttak.kr/admin/goods/package_catalog?provider_seq=474&provider_name
+							=오케이굳%28okgood%29" class="blue" target="_blank">0 </a>개</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+			<td>
+				<a href="../member/catalog?provider_seq=474&provider_name=오케이굳" target="_blank" class="resp_btn_txt v2">0명</a>			
+			</td>
+			<td><button class="detail resp_btn v2" name='providerDetail' type="button" no="474">수정</button>	</td>
+			<td><button type="button" data-providerSeq='474' data-providerId='okgood' class="btnSellerAdminLogin resp_btn"> 로그인</button></td>				
+		</tr>
+		<tr>
+			<td>469</td>
+			<td><span style="color:blue;">정상</span></td>
+            <td>일반셀러</td>
+			<td class="left"><a href="provider_reg?no=473" class="resp_btn_txt v2">원더플라이2020</a> (473)</td>
+			<td class="left">wonderfly2020</td>
+			<td>
+수수료 방식
+			</td>
+			<td>
+				수수료 15%
+			</td>
+			<td>
+					월1회
+			</td>
+			<td>법인</td>
+			<td>일반</td>			
+			<td>
+				<span class="resp_btn_txt v2" onclick="goods_set('473')" >총 47747개</span>
+				
+				<div id="goodsPopup_473" class="hide">
+					<table class="table_basic tdc">
+						<col width="33%">
+						<col width="33%">
+						<col width="33%">
+						<tr>
+							<th>일반</th>
+							<th>티켓</th>
+							<th>패키지/복합</th>
+						</tr>
+						<tr>
+							<td><a href="http://www.ttukttak.kr/admin/goods/catalog?provider_seq=473&provider_name
+							=원더플라이2020%28wonderfly2020%29" class="blue" target="_blank">47747 </a>개</td>
+							<td><a href="http://www.ttukttak.kr/admin/goods/social_catalog?provider_seq=473&provider_name
+							=원더플라이2020%28wonderfly2020%29" class="blue" target="_blank">0 </a>개</td>
+							<td><a href="http://www.ttukttak.kr/admin/goods/package_catalog?provider_seq=473&provider_name
+							=원더플라이2020%28wonderfly2020%29" class="blue" target="_blank">0 </a>개</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+			<td>
+				<a href="../member/catalog?provider_seq=473&provider_name=원더플라이2020" target="_blank" class="resp_btn_txt v2">0명</a>			
+			</td>
+			<td><button class="detail resp_btn v2" name='providerDetail' type="button" no="473">수정</button>	</td>
+			<td><button type="button" data-providerSeq='473' data-providerId='wonderfly2020' class="btnSellerAdminLogin resp_btn"> 로그인</button></td>				
+		</tr>
+		<tr>
+			<td>468</td>
+			<td><span style="color:blue;">정상</span></td>
+            <td>일반셀러</td>
+			<td class="left"><a href="provider_reg?no=472" class="resp_btn_txt v2">골드몰</a> (472)</td>
+			<td class="left">goldmall</td>
+			<td>
+수수료 방식
+			</td>
+			<td>
+				수수료 15%
+			</td>
+			<td>
+					월1회
+			</td>
+			<td>법인</td>
+			<td>일반</td>			
+			<td>
+				<span class="resp_btn_txt v2" onclick="goods_set('472')" >총 0개</span>
+				
+				<div id="goodsPopup_472" class="hide">
+					<table class="table_basic tdc">
+						<col width="33%">
+						<col width="33%">
+						<col width="33%">
+						<tr>
+							<th>일반</th>
+							<th>티켓</th>
+							<th>패키지/복합</th>
+						</tr>
+						<tr>
+							<td><a href="http://www.ttukttak.kr/admin/goods/catalog?provider_seq=472&provider_name
+							=골드몰%28goldmall%29" class="blue" target="_blank">0 </a>개</td>
+							<td><a href="http://www.ttukttak.kr/admin/goods/social_catalog?provider_seq=472&provider_name
+							=골드몰%28goldmall%29" class="blue" target="_blank">0 </a>개</td>
+							<td><a href="http://www.ttukttak.kr/admin/goods/package_catalog?provider_seq=472&provider_name
+							=골드몰%28goldmall%29" class="blue" target="_blank">0 </a>개</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+			<td>
+				<a href="../member/catalog?provider_seq=472&provider_name=골드몰" target="_blank" class="resp_btn_txt v2">0명</a>			
+			</td>
+			<td><button class="detail resp_btn v2" name='providerDetail' type="button" no="472">수정</button>	</td>
+			<td><button type="button" data-providerSeq='472' data-providerId='goldmall' class="btnSellerAdminLogin resp_btn"> 로그인</button></td>				
+		</tr>
+		<tr>
+			<td>467</td>
+			<td><span style="color:blue;">정상</span></td>
+            <td>일반셀러</td>
+			<td class="left"><a href="provider_reg?no=471" class="resp_btn_txt v2">엘지데코</a> (471)</td>
+			<td class="left">nubirapark</td>
+			<td>
+수수료 방식
+			</td>
+			<td>
+				수수료 15%
+			</td>
+			<td>
+					월1회
+			</td>
+			<td>개인</td>
+			<td>일반</td>			
+			<td>
+				<span class="resp_btn_txt v2" onclick="goods_set('471')" >총 10개</span>
+				
+				<div id="goodsPopup_471" class="hide">
+					<table class="table_basic tdc">
+						<col width="33%">
+						<col width="33%">
+						<col width="33%">
+						<tr>
+							<th>일반</th>
+							<th>티켓</th>
+							<th>패키지/복합</th>
+						</tr>
+						<tr>
+							<td><a href="http://www.ttukttak.kr/admin/goods/catalog?provider_seq=471&provider_name
+							=엘지데코%28nubirapark%29" class="blue" target="_blank">10 </a>개</td>
+							<td><a href="http://www.ttukttak.kr/admin/goods/social_catalog?provider_seq=471&provider_name
+							=엘지데코%28nubirapark%29" class="blue" target="_blank">0 </a>개</td>
+							<td><a href="http://www.ttukttak.kr/admin/goods/package_catalog?provider_seq=471&provider_name
+							=엘지데코%28nubirapark%29" class="blue" target="_blank">0 </a>개</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+			<td>
+				<a href="../member/catalog?provider_seq=471&provider_name=엘지데코" target="_blank" class="resp_btn_txt v2">0명</a>			
+			</td>
+			<td><button class="detail resp_btn v2" name='providerDetail' type="button" no="471">수정</button>	</td>
+			<td><button type="button" data-providerSeq='471' data-providerId='nubirapark' class="btnSellerAdminLogin resp_btn"> 로그인</button></td>				
+		</tr>
+		<tr>
+			<td>466</td>
+			<td><span style="color:blue;">정상</span></td>
+            <td>일반셀러</td>
+			<td class="left"><a href="provider_reg?no=470" class="resp_btn_txt v2">쎄전기</a> (470)</td>
+			<td class="left">seelectric</td>
+			<td>
+수수료 방식
+			</td>
+			<td>
+				수수료 15%
+			</td>
+			<td>
+					월1회
+			</td>
+			<td>개인</td>
+			<td>일반</td>			
+			<td>
+				<span class="resp_btn_txt v2" onclick="goods_set('470')" >총 0개</span>
+				
+				<div id="goodsPopup_470" class="hide">
+					<table class="table_basic tdc">
+						<col width="33%">
+						<col width="33%">
+						<col width="33%">
+						<tr>
+							<th>일반</th>
+							<th>티켓</th>
+							<th>패키지/복합</th>
+						</tr>
+						<tr>
+							<td><a href="http://www.ttukttak.kr/admin/goods/catalog?provider_seq=470&provider_name
+							=쎄전기%28seelectric%29" class="blue" target="_blank">0 </a>개</td>
+							<td><a href="http://www.ttukttak.kr/admin/goods/social_catalog?provider_seq=470&provider_name
+							=쎄전기%28seelectric%29" class="blue" target="_blank">0 </a>개</td>
+							<td><a href="http://www.ttukttak.kr/admin/goods/package_catalog?provider_seq=470&provider_name
+							=쎄전기%28seelectric%29" class="blue" target="_blank">0 </a>개</td>
+						</tr>
+					</table>
+				</div>
+			</td>
+			<td>
+				<a href="../member/catalog?provider_seq=470&provider_name=쎄전기" target="_blank" class="resp_btn_txt v2">0명</a>			
+			</td>
+			<td><button class="detail resp_btn v2" name='providerDetail' type="button" no="470">수정</button>	</td>
+			<td><button type="button" data-providerSeq='470' data-providerId='seelectric' class="btnSellerAdminLogin resp_btn"> 로그인</button></td>				
+		</tr>
+	</tbody>
+
+	</table>
+
+	<!-- 페이징 -->
+	<div class="paging_navigation"><a class="on red">1</a><a href="?&amp;page=10" data-ci-pagination-page="2">2</a><a href="?&amp;page=20" data-ci-pagination-page="3">3</a><a href="?&amp;page=30" data-ci-pagination-page="4">4</a><a href="?&amp;page=40" data-ci-pagination-page="5">5</a><a href="?&amp;page=50" data-ci-pagination-page="6">6</a><a href="?&amp;page=60" data-ci-pagination-page="7">7</a><a href="?&amp;page=70" data-ci-pagination-page="8">8</a><a href="?&amp;page=80" data-ci-pagination-page="9">9</a><a href="?&amp;page=90" data-ci-pagination-page="10">10</a><a href="?&amp;page=10" data-ci-pagination-page="2" rel="next"  class="next"><span class="next btn "></span></a><a href="?&amp;page=470" data-ci-pagination-page="48"><span class="end btn"></span></a></div>
+</div>
+
+
+
+<!-- 입점사관리자 로그인 -->
+<form name="selladminLoginForm" method="post" action="../../selleradmin/login_process/login" target="_blank">
+	<input type="hidden" name="provider_seq" id="provider_seq" value='' />
+	<input type="hidden" name="main_id" id="provider_id" />
+	<input type="hidden" name="superadmin_login" value="1" />
+	<input type="hidden" name="out_login" value="1" />
+	<input type="hidden" name="main_pwd" value="-" />
+</form>
+<!-- 입점사관리자 로그인 -->
+
+<!--<div id="managerPaymentPopup" class="hide"></div>-->
+
+<!--[ 레이아웃 바디(본문) : 끝 ]-->
+		</div>
+	</div>
+
+	<iframe name="actionFrame" id="actionFrame" src="/main/blank" frameborder="0" width="100%" height="0"></iframe>
+</div>
+
+<div id="main_demo" class="hide"></div>
+<div id="openDialogLayer" class="hide">
+	<div align="center" id="openDialogLayerMsg"></div>
+</div>
+
+<div id="goodsSelectDialog" class="hide"></div>
+
+<div id="ajaxLoadingLayer" class="hide"></div>
+
+<div id="qrcodeGuideLayer" class="hide" style="padding:10px;"></div>
+
+<style type="text/css">
+#addsaleGuideLayer .GuideTitle {height:40px;line-height:40px;font-size:14px;text-align:center;border:1px solid #aaaaaa;background-color:#f1f1f1;font-weight:bold;}
+#addsaleGuideLayer ul.addsaleGuideLayer li {padding-top:5px;font-size:11px;}
+table.info-table-style td.bgyellow {background-color:#fffeca;}
+</style>
+<div id="addsaleGuideLayer" class="hide">
+	<div class="GuideTitle">소비자에게 다양한 추가 혜택 제공으로 매출을 높이십시오.</div>
+	<div class="item-title">
+		<table width="100%" cellpadding="0" cellspacing="0">
+		<tr><td>추가 혜택 세팅</td></tr>
+		</table>
+	</div>
+	<div>
+		<table class="info-table-style" style="margin:auto;" width="100%">
+		<colgroup>
+			<col width="15%" />
+			<col width="30%" />
+			<col />
+			<col width="20%" />
+		</colgroup>
+		<thead>
+		<tr>
+			<th class="its-th-align center">추가 혜택</th>
+			<th class="its-th-align center">세팅</th>
+			<th class="its-th-align center">조건</th>
+			<th class="its-th-align center">혜택</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<th class="its-th-align center">대량구매</th>
+			<td class="its-td-align left pdl5">상품 > <a href="../goods/catalog" target="_blank"><span class="highlight-link">상품리스트</span></a></td>
+			<td class="its-td-align left pdl5">한 상품을 여러 개를 구매하였을 때</td>
+			<td class="its-td-align left pdl5">추가 할인</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">이벤트</th>
+			<td class="its-td-align left pdl5">프로모션 > <a href="../event/catalog" target="_blank"><span class="highlight-link">할인 이벤트</span></a></td>
+			<td class="its-td-align left pdl5">이벤트 상품을 구매하였을 때</td>
+			<td class="its-td-align left pdl5">추가 할인 및 추가 적립</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">등급</th>
+			<td class="its-td-align left pdl5">설정 > 회원 > <a href="../setting/member" target="_blank"><span class="highlight-link">등급별 구매혜택</span></a></td>
+			<td class="its-td-align left pdl5">해당 등급이 구매하였을 때</td>
+			<td class="its-td-align left pdl5">추가 할인 및 추가 적립</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">모바일</th>
+			<td class="its-td-align left pdl5">설정 > <a href="../setting/config" target="_blank"><span class="highlight-link">판매환경</span></a></td>
+			<td class="its-td-align left pdl5">모바일에서 구매하였을 때</td>
+			<td class="its-td-align left pdl5">추가 할인 및 추가 적립</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">쿠폰</th>
+			<td class="its-td-align left pdl5">프로모션 > <a href="../coupon/catalog" target="_blank"><span class="highlight-link">할인 쿠폰</span></a></td>
+			<td class="its-td-align left pdl5">할인 쿠폰을 사용하여 구매하였을 때</td>
+			<td class="its-td-align left pdl5">추가 할인 및 적립</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">코드</th>
+			<td class="its-td-align left pdl5">프로모션 > <a href="../promotion/catalog" target="_blank"><span class="highlight-link">할인 코드</span></a></td>
+			<td class="its-td-align left pdl5">할인 코드를 사용하여 구매하였을 때</td>
+			<td class="its-td-align left pdl5">추가 할인</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">유입경로</th>
+			<td class="its-td-align left pdl5">프로모션 > <a href="../referer/catalog" target="_blank"><span class="highlight-link">할인 유입경로</span></a></td>
+			<td class="its-td-align left pdl5">특정 유입경로로 접속하여 구매하였을 때 </td>
+			<td class="its-td-align left pdl5">추가 할인</td>
+		</tr>
+		</tbody>
+		</table>
+		<ul class="addsaleGuideLayer" >
+			<li>추가 혜택 세팅 시 혜택 적용 조건을 설정할 수 있습니다.</li>
+			<li>예를 들어 쿠폰의 경우 아래와 같이 혜택 적용 조건 설정이 가능합니다.</li>
+			<li>발급시작/중지, 다운로드기간/수량/등급, 유효기간, 제한금액, 최대할인, 중복할인, 타쿠폰동시사용, 모바일, 결제수단, 중복할인, 유입경로, 할인분담, 적용 상품</li>
+		</ul>
+	</div>
+
+	<br style="line-height:30px;" />
+
+	<div class="item-title">
+		<table width="100%" cellpadding="0" cellspacing="0">
+		<tr><td>추가 혜택 적용 페이지</td></tr>
+		</table>
+	</div>
+	<div>
+		<table class="info-table-style" style="margin:auto;" width="100%">
+		<colgroup>
+			<col />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+		</colgroup>
+		<thead>
+		<tr>
+			<th class="its-th-align center" rowspan="2">데스크탑/모바일</th>
+			<th class="its-th-align center" colspan="7">추가 혜택</th>
+		</tr>
+		<tr>
+			<th class="its-th-align center">대량구매</th>
+			<th class="its-th-align center">이벤트</th>
+			<th class="its-th-align center">등급</th>
+			<th class="its-th-align center">모바일</th>
+			<th class="its-th-align center">쿠폰</th>
+			<th class="its-th-align center">코드</th>
+			<th class="its-th-align center">유입경로</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<th class="its-th-align center">위시리스트</th>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">최근 본 상품</th>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">검색 페이지</th>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">검색 자동 완성</th>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">최근 본 상품</th>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">스크롤 배너</th>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">리스트</th>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">상세</th>
+			<td class="its-td-align center bgyellow">△</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">△</td>
+			<td class="its-td-align center bgyellow">△</td>
+			<td class="its-td-align center bgyellow">△</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">상세 - 관련상품</th>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">장바구니</th>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">주문</th>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+		</tr>
+		</tbody>
+		</table>
+		<ul class="addsaleGuideLayer" >
+			<li><font size="1.5">△</font> : 추가 혜택이 안내되어짐</li>
+			<li><font size="3">○</font> : 추가 혜택 금액이 계산되어 판매가에 적용됨</li>
+		</ul>
+	</div>
+
+	<br style="line-height:30px;" />
+
+	<div class="item-title">
+		<table width="100%" cellpadding="0" cellspacing="0">
+		<tr><td>추가 혜택 적용 페이지에서 상품옵션의 범위</td></tr>
+		</table>
+	</div>
+	<div>
+		<table class="info-table-style" style="margin:auto;" width="100%">
+		<colgroup>
+			<col />
+			<col width="15%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+			<col width="8%" />
+		</colgroup>
+		<thead>
+		<tr>
+			<th class="its-th-align center" rowspan="2" colspan="2">데스크탑/모바일</th>
+			<th class="its-th-align center" colspan="7">추가 혜택</th>
+		</tr>
+		<tr>
+			<th class="its-th-align center">대량구매</th>
+			<th class="its-th-align center">이벤트</th>
+			<th class="its-th-align center">등급</th>
+			<th class="its-th-align center">모바일</th>
+			<th class="its-th-align center">쿠폰</th>
+			<th class="its-th-align center">코드</th>
+			<th class="its-th-align center">유입경로</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<th class="its-th-align center" rowspan="2">필수 옵션<br/>(옷, 신발)</th>
+			<th class="its-th-align center">추가 할인</th>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">추가 마일리지/포인트</th>
+			<td class="its-td-align center">-</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">-</td>
+			<td class="its-td-align center">-</td>
+			<td class="its-td-align center">-</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center" rowspan="2">추가 구성 옵션<br/>(벨트, 깔창)</th>
+			<th class="its-th-align center">추가 할인</th>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">X</td>
+		</tr>
+		<tr>
+			<th class="its-th-align center">추가 마일리지/포인트</th>
+			<td class="its-td-align center">-</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center bgyellow">○</td>
+			<td class="its-td-align center">X</td>
+			<td class="its-td-align center">-</td>
+			<td class="its-td-align center">-</td>
+			<td class="its-td-align center">-</td>
+		</tr>
+		</tbody>
+		</table>
+	</div>
+
+	<br style="line-height:30px;" />
+
+</div>
+
+<script type="text/javascript" >
+	// 업그레이드 안내 :: 2016-12-07 lwh
+	function noProvideService(msg, width, height){
+		/*if(msg){
+			$("#noProvideService_msg").html(msg)
+		}
+		if(!width)	width	= 550;
+		if(!height)	height	= 440;
+
+		openDialog("무료몰 제한<span class='desc'></span>", "noProvideService", {"width":width,"height":height});*/
+
+		$.ajax({
+			type: "get",
+			url: "http://www.ttukttak.kr/admin/main/main_free",
+			success: function(result){
+				$("#main_demo").html(result);
+				openDialog("무료몰 제한", "main_demo", {"width":"700","height":"700","show" : "fade","hide" : "fade"});
+			}
+		});
+	}
+
+	// facebook config (무료몰인경우 연결 및 스킨설정
+	$('#freefacebookconfignone').bind('click', function() {
+		
+	});
+
+	// onlyfacebook config (facebook전용인경우 설정불가
+	$('#onlyfacebooklinknone').bind('click', function() {
+		if($(this).attr("config")){
+			openDialog("PC, Mobile/Table 쇼핑몰 업그레이드 안내<span class='desc'></span>", "onlyfacebookService", {"width":600,"height":350});
+		}else{
+			openDialog("PC, Mobile/Table 쇼핑몰 안내<span class='desc'></span>", "onlyfacebookService", {"width":600,"height":350});
+		}
+	});
+
+	/* 추가 혜택 적용 범위 안내 */
+	$(".addsaleGuideBtn").live('click',function(){
+		openDialog("추가 혜택 적용 범위 안내","addsaleGuideLayer",{"width":720,"height":500});
+	});
+</script>
+<div id="freefacebookService" class="hide">
+<div>
+		<table width="100%">
+		<tr>
+		<td align="left">
+			무료몰 Plus+ : PC 및 Mobile/Tablet 쇼핑몰 운영이 가능합니다.<br />
+			Facebook PC 쇼핑몰 운영을 위해서는<br />
+			프리미엄몰 Plus+ 또는 독립몰 Plus+로 업그레이드 하시길 바랍니다.<br />
+		</td>
+		</tr>
+		<tr>
+			<td>
+<div style="width:90%; padding-top:10px; text-align:center;">&lt; 서비스 상품별 판매 상품 등록 안내 &gt;</div>
+<table cellspacing='0' cellpadding='0' class='sale_service' >
+<tr>
+	<th>구분</th>
+	<th>서비스상품</th>
+	<th>실물 배송 상품</th>
+	<th>쿠폰 발송 상품</th>
+</tr>
+<tr>
+	<td rowspan='2'>오픈마켓 쇼핑몰</td>
+	<td>입점몰 Plus+</td>
+	<td>무제한</td>
+	<td>무제한</td>
+</tr>
+<tr>
+	<td>입점몰 Plus+ Lite</td>
+	<td>무제한</td>
+	<td>미지원</td>
+</tr>
+<tr>
+	<td rowspan='3'>일반 쇼핑몰</td>
+	<td>독립몰 Plus+</td>
+	<td>무제한</td>
+	<td>3개(무료) 또는 무제한(유료)</td>
+</tr>
+<tr>
+	<td>프리미엄몰 Plus+</td>
+	<td>무제한</td>
+	<td>미지원</td>
+</tr>
+<tr>
+	<td>무료몰 Plus+</td>
+	<td>무제한</td>
+	<td>미지원</td>
+</tr>
+<tr>
+	<td>오프라인용 쇼핑몰</td>
+	<td>오프라인 Shop</td>
+	<td>미지원</td>
+	<td>무제한</td>
+</tr>
+</table>
+			</td>
+		</tr>
+		<tr>
+		<td align="center"><br /><br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<img src="http://www.ttukttak.kr/admin/skin/default/images/common/btn_upgrade.gif" class="hand" onclick="serviceUpgrade();" align="absmiddle" />
+		</td>
+		</tr>
+		</table>
+	</div>
+	<br style="line-height:20px;" />
+</div>
+
+<div id="onlyfacebookService" class="hide">
+<div>
+		<table width="100%">
+		<tr>
+		<td align="left">
+			페이머스 Plus+ : Facebook 쇼핑몰 운영이 가능합니다.<br />
+			PC, Mobile/Tablet  쇼핑몰 운영을 위해서는<br />
+			프리미엄몰 Plus+ 또는 독립몰 Plus+로 업그레이드 하시길 바랍니다.<br />
+		</td>
+		</tr>
+		<tr>
+			<td>
+<div style="width:90%; padding-top:10px; text-align:center;">&lt; 서비스 상품별 판매 상품 등록 안내 &gt;</div>
+<table cellspacing='0' cellpadding='0' class='sale_service' >
+<tr>
+	<th>구분</th>
+	<th>서비스상품</th>
+	<th>실물 배송 상품</th>
+	<th>쿠폰 발송 상품</th>
+</tr>
+<tr>
+	<td rowspan='2'>오픈마켓 쇼핑몰</td>
+	<td>입점몰 Plus+</td>
+	<td>무제한</td>
+	<td>무제한</td>
+</tr>
+<tr>
+	<td>입점몰 Plus+ Lite</td>
+	<td>무제한</td>
+	<td>미지원</td>
+</tr>
+<tr>
+	<td rowspan='3'>일반 쇼핑몰</td>
+	<td>독립몰 Plus+</td>
+	<td>무제한</td>
+	<td>3개(무료) 또는 무제한(유료)</td>
+</tr>
+<tr>
+	<td>프리미엄몰 Plus+</td>
+	<td>무제한</td>
+	<td>미지원</td>
+</tr>
+<tr>
+	<td>무료몰 Plus+</td>
+	<td>무제한</td>
+	<td>미지원</td>
+</tr>
+<tr>
+	<td>오프라인용 쇼핑몰</td>
+	<td>오프라인 Shop</td>
+	<td>미지원</td>
+	<td>무제한</td>
+</tr>
+</table>
+			</td>
+		</tr>
+		<tr>
+		<td align="center"><br /><br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<img src="http://www.ttukttak.kr/admin/skin/default/images/common/btn_upgrade.gif" class="hand" onclick="serviceUpgrade();" align="absmiddle" />
+		</td>
+		</tr>
+		</table>
+	</div>
+	<br style="line-height:20px;" />
+</div>
+
+<div id="noProvideService" class="hide">
+<div>
+		<table width="100%">
+		<tr>
+			<td class="pdt10" id="noProvideService_msg" align="center">
+				사용중이신 서비스에서는 해당기능이 지원되지 않습니다.<br/>
+				업그레이드 하시길 바랍니다.
+			</td>
+		</tr>
+		<tr>
+		<td class="pdt30" align="center">
+			<br/>
+			<img src="http://www.ttukttak.kr/admin/skin/default/images/common/btn_upgrade.gif" class="hand" onclick="serviceUpgrade();" align="absmiddle" />
+		</td>
+		</tr>
+		</table>
+	</div>
+	<br style="line-height:20px;" />
+</div>
+
+<div id="nostorfreeServiceBigdata" class="hide">
+	<p>사용중이신 서비스에서는 해당기능이 지원되지 않습니다.</p>
+	<p>상위 버전으로 업그레이드 하시길 바랍니다.</p>
+	<br /><p class="center"> <빅데이터 큐레이션 기능 이용 안내> </p><br />
+	<table class="info-table-style" width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td class="its-th-align center">구분</td>
+			<td class="its-th-align center">서비스 상품</td>
+			<td class="its-th-align center">빅데이터 큐레이션</td>
+			<td class="its-th-align center">비고</td>
+		</tr>
+		<tr>
+			<td class="its-td-align center" rowspan="2">오픈마켓</td>
+			<td class="its-td-align center">입점몰 Plus</td>
+			<td class="its-td-align center">모든 기능 제한 없음</td>
+			<td class="its-td-align center">큐레이션당 최대 3개까지 복수 설정 가능</td>
+		</tr>
+		<tr>
+			<td class="its-td-align center">입점몰 Plus Lite</td>
+			<td class="its-td-align center">모든 기능 제한 없음</td>
+			<td class="its-td-align center">큐레이션당 최대 3개까지 복수 설정 가능</td>
+		</tr>
+		<tr>
+			<td class="its-td-align center" rowspan="3">일반 쇼핑몰</td>
+			<td class="its-td-align center">독립몰 Plus</td>
+			<td class="its-td-align center">모든 기능 제한 없음</td>
+			<td class="its-td-align center">큐레이션당 최대 3개까지 복수 설정 가능</td>
+		</tr>
+		<tr>
+			<td class="its-td-align center">프리미엄몰 Plus</td>
+			<td class="its-td-align center">모든 기능 제한 없음</td>
+			<td class="its-td-align center">큐레이션당 최대 3개까지 복수 설정 가능</td>
+		</tr>
+		<tr>
+			<td class="its-td-align center">무료몰 Plus</td>
+			<td class="its-td-align center">'관리자가 직접 지정'만 사용 가능</td>
+			<td class="its-td-align center">최대 1개 가능. 다른 조건으로 변경불가</td>
+		</tr>
+		<tr>
+			<td class="its-td-align center">O2O</td>
+			<td class="its-td-align center">홈페이지 Shop</td>
+			<td class="its-td-align center">모든 기능 제한 없음</td>
+			<td class="its-td-align center">큐레이션당 최대 3개까지 복수 설정 가능</td>
+		</tr>
+	</table>
+	<div class="center mt10">
+		<img align="absmiddle" class="hand" onclick="serviceUpgrade();" src="http://www.ttukttak.kr/admin/skin/default/images/common/btn_upgrade.gif">
+	</div>
+</div>
+
+<div id="nofreeService" class="hide">	
+	<table width="100%">
+		<tr>
+			<td>
+				사용중이신 서비스에서는 해당기능이 지원되지 않습니다.<br />
+				프리미엄몰 Plus+ 또는 독립몰 Plus+로 업그레이드 하시길 바랍니다.<br />
+			</td>
+		</tr>
+		<tr class="center">
+			<td><a href="#" class="hand btn_resp mt15" onclick="serviceUpgrade();">업그레이드</a></td>
+		</tr>
+	</table>	
+</div>
+
+
+<script>
+	Lpad=function(str, len){
+		str = str + "";
+		while(str.length < len){
+			str = "0"+str;
+		}
+		return str;
+	}
+
+	// 자동로그아웃 시간 셋팅
+	var iMinute = "60";
+	var noticeSecond = 1;
+
+	var iSecond = iMinute * 60 ;
+	var timerchecker = null;
+
+	initTimer=function(){
+
+		//이벤트 발생 체크
+		if(window.event){
+			iSecond = iMinute * 60 ;;
+			clearTimeout(timerchecker);
+		}
+		rMinute = parseInt(iSecond / 60);
+		rSecond = iSecond % 60;
+
+		if(iSecond > 0){
+		//지정한 시간동안 마우스, 키보드 이벤트가 발생되지 않았을 경우
+			timer.innerHTML =  "<font family=tahoma style='font-size:70;'>AUTO LOG OUT</font> </h1> <font color=red>" + Lpad(rMinute, 2)+":"+Lpad(rSecond, 2) ;
+			iSecond--;
+			timerchecker = setTimeout("initTimer()", 1000); // 1초 간격으로 체크
+		}else{
+			clearTimeout(timerchecker);
+			openDialog("관리자 자동 로그아웃 알림", "autoLogoutMsg", {"width":"600","height":"240", "noClose":true});
+			actionFrame.location.href = "../login_process/logout?mode=autoLogout"; // 로그아웃 처리
+		}
+	}
+	onload = initTimer;///현재 페이지 대기시간
+	document.onclick = initTimer; /// 현재 페이지의 사용자 마우스 클릭이벤트 캡춰
+	document.onkeypress = initTimer;/// 현재 페이지의 키보트 입력이벤트 캡춰
+</script>
+
+<!-- 자동로그아웃시까지 남은 시간을 보여주는 레이어-->
+<div id="timer" style="position:absolute; right:10px; bottom:20px; width:200px; visibility:hidden; border:0;  color:black; font-family:tahoma; font-size:150;font-weight:bold;text-align:center"></div>
+<div id="autoLogoutMsg" class="hide">
+<center><h2>자동으로 로그아웃 되었습니다.</h2></center>
+<div style="height:20px;"></div>
+- 안전한 관리를 위하여 1시간 동안 사용이 없어 자동로그아웃 되었습니다.
+<div style="height:5px;"></div>
+- 다시 로그인 하시려면 [로그인]버튼을 클릭하십시오.
+<div style="height:20px;"></div>
+<div align="center">
+<span class="btn large gray"><input type="button" value="로그인" onclick="location.href='../login/index'"></span>
+</div>
+</div>
+
+</body>
+
+</html>
