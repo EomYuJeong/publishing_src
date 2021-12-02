@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+.special_weekend_sale_wrap{}
+.special_weekend_sale_wrap ul{padding:0 calc(90/640*100vw) calc(88/640*100vw);position:relative}
+.special_weekend_sale_wrap ul li{position:relative;margin-bottom:calc(100/640*100vw)}
+.special_weekend_sale_wrap ul li a h1{font-size:1.2rem;color:#212121;font-weight:bold;margin-top:1.2rem}
+.special_weekend_sale_wrap ul li a h2{font-size:1.2rem;color:#212121;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;margin-bottom:0.8rem}
+.special_weekend_sale_wrap ul li a .basic-price{display:inline-block;padding-left:0.6rem;font-size:1.2rem;color:#b8b8b8;text-decoration:line-through} 
+.special_weekend_sale_wrap ul li a .special-price{font-size:1.4rem;color:#ff2703;letter-spacing:-0.5px;display:inline-block}
+.special_weekend_sale_wrap ul li a .special-price strong{font-size:1.5rem}
+.special_weekend_sale_wrap .special_weekend--badge{background:#000;width:calc(90/640*100vw);height:calc(90/640*100vw);font-size:1.1rem;position:absolute;top:calc(15/640*100vw);left:calc(16/640*100vw);color:#fff;text-align:center;border-radius:50%;line-height:1.2rem;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;display:flex;justify-content:center;align-items:center}
+
+
+
+
+
+
+
+
+
+
