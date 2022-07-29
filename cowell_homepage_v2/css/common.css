@@ -117,8 +117,8 @@ strong, b, .bold {font-weight:600;}
 .ban_slider .btn_prev,.ban_slider .btn_next{display:inline-block;overflow:hidden;text-indent:-9999px;position:absolute;width:23px;height:42px;z-index:100;border:none;margin:0}
 /*.ban_slider .btn_prev{background:url('../images/ico_sl_l_s.png') 0 0 no-repeat;position:absolute;left:50px;top:128px}
 .ban_slider .btn_next{background:url('../images/ico_sl_r_s.png') 0 0 no-repeat;position:absolute;right:50px;top:128px}*/
-.ban_slider .btn_prev{background:url('../images/ico_sl_l_s.png') 0 0 no-repeat;position:absolute;left:50px;top:97px}
-.ban_slider .btn_next{background:url('../images/ico_sl_r_s.png') 0 0 no-repeat;position:absolute;right:50px;top:97px}
+.ban_slider .btn_prev{background:url('../images/ico_sl_l_s.png') 0 0 no-repeat;position:absolute;left:50px;top:75px}
+.ban_slider .btn_next{background:url('../images/ico_sl_r_s.png') 0 0 no-repeat;position:absolute;right:50px;top:75px}
 .ban_slider .box{text-align:center;}
 .ban_slider .box > a{text-align:center;position:relative;background:rgba(146,146,146,0.3);border-radius:10px;padding:16px;display:inline-block}
 .ban_slider .box .img{display:block;text-align:center}
@@ -252,11 +252,24 @@ strong, b, .bold {font-weight:600;}
 .cont_wrap .affiliate_wrap .affiliate_con{width:26%;box-sizing:border-box;padding:19px 0;text-align:center;border:2px solid #d7d7d7;margin-bottom:44px;margin-right:11%;float:left}
 .cont_wrap .affiliate_wrap .affiliate_con:nth-child(3n){margin-right:0}
 .cont_wrap .affiliate_wrap .affiliate_con.lst{padding:0 0 34px 0}
+.cont_wrap .affiliate_wrap .affiliate_con img{max-width:100%}
 .cont_wrap .affiliate_wrap .affiliate_con .aff_box{border:1px solid #d2d2d2;padding:25px 23px 23px;position:relative;height:248px}
 .cont_wrap .affiliate_wrap .affiliate_con .aff_box .img{display:block;position:relative}
 .cont_wrap .affiliate_wrap .affiliate_con .aff_box .img:after{position:absolute;top:75px;width:77px;height:5px;left:0;background:#01b2b0;content:''}
 .cont_wrap .affiliate_wrap .affiliate_con .aff_box .txt{position:absolute;font-size:16px;color:#4b4b4b;bottom:23px}
 .cont_wrap .affiliate_wrap .affiliate_con .dscrt{border-top:1px solid #d7d7d7;height:100px;padding-top:10px;font-size:14px;color:#707070}
+.cont_wrap .affiliate_wrap .affiliate_section{display:flex}
+.cont_wrap .affiliate_wrap .affiliate_box{width:65%;border:3px solid #e7e5ea;position:relative;padding:40px 0 10px;display:flex;justify-content: space-evenly}
+.cont_wrap .affiliate_wrap .affiliate_box .box_tit{width:150px;border-radius:20px;background:#1660a9;position:absolute;left:50%;top:-20px;transform:translateX(-50%);color:#fff;font-size:20px;height:40px;line-height:40px;text-align:center;font-weight:bold}
+.cont_wrap .affiliate_wrap .affiliate_box .col{width:30%;min-width:150px}
+.cont_wrap .affiliate_wrap .affiliate_box .col .col_tit{font-size:16px;color:#333;background:#f4f4f4;text-align:center;border-radius:15px;margin-bottom:30px;padding:5px 0;font-weight:bold}
+.cont_wrap .affiliate_wrap .affiliate_box .col .sp{display:block;text-align:center;margin-bottom:30px}
+.cont_wrap .affiliate_wrap .affiliate_box .col .sp img{height:28px}
+.cont_wrap .affiliate_wrap .plus_box{width:10%;position:relative}
+.cont_wrap .affiliate_wrap .plus_box:before{content:'';width:20px;height:7px;background:#000;position:absolute;top:50%;left:50%;transform:translateX(-50%)}
+.cont_wrap .affiliate_wrap .plus_box:after{content:'';width:7px;height:20px;background:#000;position:absolute;top:50%;left:50%;transform:translateX(-50%);margin-top:-6px}
+.cont_wrap .affiliate_wrap .affiliate_box.box2{width:25%}
+.cont_wrap .affiliate_wrap .affiliate_box.box2 .box_tit{background:#000}
 .cont_wrap .brand_wrap .br_logo{padding:58px 0 22px}
 .cont_wrap .brand_wrap .br_img ul:after{content:'';display:block;clear:both}
 .cont_wrap .brand_wrap .br_img ul li{float:left;margin:0 17px 17px 0}
@@ -416,7 +429,11 @@ strong, b, .bold {font-weight:600;}
 @media only screen and (max-width:768px){
     .cont_wrap .cowell_sales{overflow-x:auto}
     .cont_wrap .cowell_sales img{width:951px}
-    
+	.cont_wrap .affiliate_wrap .affiliate_section{display:block}
+	.cont_wrap .affiliate_wrap .affiliate_box{width:100%;box-sizing:border-box;flex-wrap:wrap}
+	.cont_wrap .affiliate_wrap .affiliate_box.box2{width:100%}
+	.cont_wrap .affiliate_wrap .plus_box{width:100%;height:100px;padding-bottom:20px}
+	
 }
 @media only screen and (max-width:640px){
     .cont_wrap .affiliate_wrap .affiliate_tit img,.cont_wrap .affiliate_wrap .affiliate_con img{height:34px;max-width:100%}

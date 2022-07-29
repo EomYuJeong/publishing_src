@@ -1,1417 +1,273 @@
-<!doctype html>
-<html lang="ko">
+<style>
+	.text-hide {
+		text-indent: -9999px;
+		font-size: 0
+	}
 
-<head>
-	<style type="text/css">
-		.styles_overlay__CLSq- {
-			background: rgba(0, 0, 0, 0.75);
-			display: flex;
-			align-items: flex-start;
-			position: fixed;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			overflow-y: auto;
-			overflow-x: hidden;
-			z-index: 1000;
-			padding: 1.2rem;
-		}
+	.event-20220211 {
+		position: relative
+	}
 
-		.styles_modal__gNwvD {
-			max-width: 800px;
-			position: relative;
-			padding: 1.2rem;
-			background: #ffffff;
-			background-clip: padding-box;
-			box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.25);
-			margin: 0 auto;
-		}
+	.event-20220211 .event-top {
+		background: url('../images/event-top.jpg') center 0 no-repeat;
+		height: 1739px;
+		position: relative
+	}
 
-		.styles_modalCenter__L9F2w {
-			margin: auto;
-		}
+	.event-20220211 .event-top #js-container {
+		top: 689px;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%)
+	}
 
-		.styles_closeButton__20ID4 {
-			position: absolute;
-			top: 14px;
-			right: 14px;
-			border: none;
-			padding: 0;
-			background-color: transparent;
-			display: flex;
-		}
+	.event-20220211 .event-top .event-notice-box {
+		position: absolute;
+		z-index: 3;
+		top: 1594px;
+		left: 0;
+		right: 0;
+		text-align: center;
+	}
 
-		.styles_closeIcon__1QwbI {}
+	.event-20220211 .event-top .event-notice__button {
+		background: url('../images/button-notice-off.png') 0 0 no-repeat;
+		width: 156px;
+		height: 44px;
+		margin: 0 auto;
+	}
 
-		.styles_transitionEnter__3j_-a {
-			opacity: 0.01;
-		}
+	.event-20220211 .event-top .event-notice__button.on {
+		background-image: url('../images/button-notice-on.png')
+	}
 
-		.styles_transitionEnterActive___eQs7 {
-			opacity: 1;
-			transition: opacity 500ms cubic-bezier(0.23, 1, 0.32, 1);
-		}
+	.event-notice__list {
+		display: none;
+		background: #e6f1ef;
+		padding: 25px 0 32px;
+		position: absolute;
+		z-index: 3;
+		left: 0;
+		right: 0;
+		top: 1549px;
+	}
 
-		.styles_transitionExit__1KmEf {
-			opacity: 1;
-		}
+	.event-notice-box.active .event-notice__list {
+		display: block
+	}
 
-		.styles_transitionExitActive__1nQXw {
-			opacity: 0.01;
-			transition: opacity 500ms cubic-bezier(0.23, 1, 0.32, 1);
-		}
+	.event-notice__list li {
+		font-size: 16px;
+		line-height: 32px;
+		color: #4c4032;
+		width: 968px;
+		margin: 0 auto;
+		padding-left: 206px;
+		box-sizing: border-box
+	}
 
-	</style>
-	<script type="text/javascript" async="" src="//www.googleadservices.com/pagead/conversion_async.js"></script>
-	<script type="text/javascript" async="" src="http://www.google-analytics.com/analytics.js"></script>
-	<script async="true" type="text/javascript" src="https://sslwidget.criteo.com/event?a=34027&amp;v=5.8.0&amp;p0=e%3Dexd%26site_type%3Dm%26ref%3Dhttp%253A%252F%252Fwww.mariomall.co.kr&amp;p1=e%3Dvl%26p%3D%255B%255D&amp;p2=e%3Ddis&amp;adce=1&amp;bundle=kOJ_HV85eVMlMkJDVDJ4N1h1ekJBazVadTZiQnQwS3p0WWVwamNXSFMxcTJCNVdSYlh1UUhOS1RHZ1FUZFdWQ21oemQ2Z2NWcmVrUE5IbmlCOVg4ejdwTTdCemdqeUVVeDdBVnhycU5KRjJxV1V2emJjYW1HV3h4dEZlaHhYOUM0MDlXMGdvcnFmRmlEQ1lvVXdBbTdVVk9mcmY0USUzRCUzRA&amp;tld=mariomall.co.kr&amp;pm=1&amp;dtycbr=47952" data-owner="criteo-tag"></script>
-	<script type="text/javascript" async="" src="//mariooutlet.weblog.cafe24.com/weblog.html?uid=mariooutlet&amp;udim=414*736&amp;uref=http://www.mariomall.co.kr/&amp;url=http://m.mariomall.co.kr/Search/Result?redirecturl=http://m.mariomall.co.kr&amp;keyword=%ea%b9%80%ed%9d%ac%eb%a0%b9&amp;t=1637820518848"></script>
-	<script type="text/javascript" async="" defer="" src="http://logger.eigene.io/js/logger.min.js"></script>
-	<meta charset="UTF-8">
+	.event-contents {
+		background: url('../images/event-contents.jpg') center 0 no-repeat;
+		height: 3458px;
+		position: relative
+	}
 
+	.event-contents ul {
+		display: flex;
+		flex-wrap: wrap;
+		width: 1100px;
+		margin: 0 auto;
+		position: relative;
+		justify-content: space-between
+	}
 
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">
-	<meta http-equiv="pragma" content="no-cache">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
-	<meta name="format-detection" content="telephone=no">
-	<!-- [2016-10-17] 메타태그추가 -->
+	.event-contents ul li {
+		width: 536px;
+		height: 485px;
+	}
 
+	.event-contents ul li a {
+		display: block;
+		width: 100%;
+		height: 100%;
+		font-size: 0
+	}
 
+</style>
 
-	<title>검색결과 - 김희령, 마리오몰</title>
-	<meta name="title" content="김희령, 마리오몰">
-	<meta name="description" content="김희령 마리오몰 검색결과 입니다.">
-	<meta property="og:title" content="김희령, 마리오몰">
-
-
-
-	<!-- [2016-10-20] 메타태그 추가 (SEO 정의) -->
-	<meta http-equi="Refresh" content="no-cache">
-	<meta name="Subject" content="마리오아울렛 공식 온라인 쇼핑몰">
-
-	<meta name="Author" content="마리오아울렛 공식 온라인 쇼핑몰">
-	<meta name="Publisher" content="마리오아울렛 공식 온라인 쇼핑몰">
-	<meta name="Other Agent" content="마리오아울렛 공식 온라인 쇼핑몰">
-	<meta name="Classification" content="쇼핑몰,몰,브랜드쇼핑몰,쇼핑,온라인쇼핑몰,여성,아이옷,마리오아울렛,마리오아울렛온라인쇼핑몰,마리오아울렛쇼핑몰,마이아울렛마리오아울렛">
-	<meta name="Reply-To(Email)" content="info@emario.co.kr">
-	<!-- META name="Filename" content="index.html" / -->
-	<meta name="Author-Date(Date)" content="마리오아울렛,2016">
-	<meta name="Location" content="대한민국,서울,가산디지털단지">
-	<meta name="Distribution" content="마리오아울렛 공식 온라인 쇼핑몰">
-	<meta name="Copyright" content="COPYRIGHT © MARIOOUTLET CO.,LTD. ALL RIGHTS RSEREVED.">
-	<meta name="Robots" content="ALL">
-	<!-- //[2016-10-20] 메타태그 추가 (SEO 정의) -->
-	<!-- [2016-10-18] 메타태그 수정 // 어제 추가한 property="og:image" 이 부분 포함해서 수정 -->
-	<meta name="apple-mobile-web-app-title" content="마리오아울렛 공식 온라인 쇼핑몰">
-	<meta property="og:url" content="http://www.mariomall.co.kr/">
-	<meta property="og:type" content="website">
-	<meta property="og:image" content="http://cdn.mariooutlet.com/ui/common/mobile_web_pavicon.png">
-	<meta property="og:description" content="마리오아울렛 공식 온라인 쇼핑몰, 마리오몰, 여성복, 남성복, 캐주얼, 스포츠아웃도어, 유/아동복, 디지털/가전, 생활용품 등 판매">
-	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="마리오아울렛 공식 온라인 쇼핑몰">
-	<meta name="twitter:url" content="http://www.mariomall.co.kr/">
-	<meta name="twitter:image" content="//cdn.mariooutlet.com/ui/common/mobile_web_pavicon.png">
-	<meta name="twitter:description" content="마리오아울렛 공식 온라인 쇼핑몰, 마리오몰, 여성복, 남성복, 캐주얼, 스포츠아웃도어, 유/아동복, 디지털/가전, 생활용품 등 판매">
-	<meta name="google-site-verification" content="7apbBQ3aDoEODDBbcNoKSRz3u3WLU5RAVDmRhsp08DE">
-	<link rel="shortcut icon" href="//cdn.mariooutlet.com/ui/common/mariooutlet_a.ico">
-	<link rel="apple-touch-icon" href="//cdn.mariooutlet.com/ui/common/mariooutlet_i.png">
-	<meta http-equiv="content-language" content="ko-kr">
-	<!-- 공통 : css -->
-
-	<style>
-		@font-face {
-			font-family: 'Montserrat';
-			font-style: normal;
-			font-weight: 400;
-			src: local('Montserrat Regular'), local('Montserrat-Regular'), url(/fonts/montserrat/fonts/JTUSjIg1_i6t8kCHKm459WlhzSTh89Y.woff) format('woff');
-		}
-
-		@font-face {
-			font-family: 'Montserrat';
-			font-style: normal;
-			font-weight: 600;
-			src: local('Montserrat SemiBold'), local('Montserrat-SemiBold'), url(/fonts/montserrat/fonts/JTURjIg1_i6t8kCHKm45_bZF3gnD-Px3rCs.woff) format('woff');
-		}
-
-		@font-face {
-			font-family: 'Montserrat';
-			font-style: normal;
-			font-weight: 700;
-			src: local('Montserrat Bold'), local('Montserrat-Bold'), url('/fonts/montserrat/fonts/JTURjIg1_i6t8kCHKm45_dJE3gnD-Px3rCs.woff') format('woff');
-		}
-
-		@font-face {
-			font-family: 'NotoD';
-			font-style: normal;
-			font-weight: 350;
-			src: local('Noto Sans DemiLight'), local('NotoSans-DemiLight'), url('/fonts/NotoSansKR-Hestia/fonts/eot/NotoSansKR-DemiLight-Hestia.eot'), url('/fonts/NotoSansKR-Hestia/fonts/woff/NotoSansKR-DemiLight-Hestia.woff') format('woff'), url('/fonts/NotoSansKR-Hestia/fonts/otf/NotoSansKR-DemiLight-Hestia.otf') format('opentype');
-			url('/fonts/NotoSansKR-Hestia/fonts/eot/NotoSansKR-DemiLight-Hestia.eot?#iefix') format('embedded-opentype'),
-			;
-		}
-
-		@font-face {
-			font-family: 'NotoM';
-			font-style: normal;
-			font-weight: 500;
-			src: local('Noto Sans Medium'), local('NotoSans-Medium'), url('/fonts/NotoSansKR-Hestia/fonts/eot/NotoSansKR-Medium-Hestia.eot'), url('/fonts/NotoSansKR-Hestia/fonts/eot/NotoSansKR-Medium-Hestia.eot?#iefix') format('embedded-opentype'), url('/fonts/NotoSansKR-Hestia/fonts/woff/NotoSansKR-Medium-Hestia.woff') format('woff'), url('/fonts/NotoSansKR-Hestia/fonts/otf/NotoSansKR-Medium-Hestia.otf') format('opentype');
-		}
-
-	</style>
-
-	<link rel="stylesheet" type="text/css" href="/statics/stylesheet/mobile/base.css?20211122">
-	<link rel="stylesheet" type="text/css" href="/statics/stylesheet/mobile/layout.css?20211122">
-	<link rel="stylesheet" type="text/css" href="/statics/stylesheet/mobile/common.css?20211122">
-
-
-
-	<!-- 공통 : js -->
-	<script src="http://cr.acecounter.com/Mobile/AceCounter_CTS.js?gc=AP1A445561980&amp;py=0&amp;up=&amp;rd=1637820518016"></script>
-	<script async="" src="//mariooutlet.weblog.cafe24.com/weblog.js?v=1637820518008"></script>
-	<script async="" src="//mariooutlet.cmclog.cafe24.com/weblog.js?v=1637820518007"></script>
-	<script async="" src="//www.googletagmanager.com/gtm.js?id=GTM-W9T28X"></script>
-	<script src="https://connect.facebook.net/signals/config/1285894718274277?v=2.9.48&amp;r=stable" async=""></script>
-	<script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script>
-	<script type="text/javascript" src="/statics/javascript/jquery-1.10.2.min.js"></script>
-
-	<script type="text/javascript" src="/statics/javascript/jquery.swiper.min.js?20180226"></script>
-	<script type="text/javascript" src="/statics/javascript/jquery.iscroll.js"></script>
-	<script type="text/javascript" src="/statics/javascript/jquery.tmpl.min.js"></script>
-	<script type="text/javascript" src="/statics/javascript/common.js"></script>
-	<script type="text/javascript" src="/statics/javascript/JFramework.Validate.js"></script>
-	<script type="text/javascript" src="/statics/javascript/jquery.lazyload.min.js"></script>
-	<script type="text/javascript" src="/statics/javascript/TweenMax.min.js"></script>
-	<script type="text/javascript" src="/statics/javascript/jquery.masonry.min.js?20180123"></script>
-	<script type="text/javascript" src="/statics/javascript/ui.common.js?20211122"></script>
-	<script type="text/javascript" src="/statics/javascript/ui.common.m.js?20211122"></script>
-	<script type="text/javascript" src="/statics/javascript/jquery.imagesloaded.min.js"></script>
-
-	<script type="text/javascript" src="/Common/Js/AppCom.js?20180726"></script>
-	<script type="text/javascript" src="/Common/Js/initialize.js?20191112"></script>
-	<script type="text/javascript" src="/statics/javascript/webpush.js"></script>
-
-	<script type="text/javascript">
-		document.domain = "mariomall.co.kr";
-
-	</script>
-	<!-- Facebook Pixel Code -->
-	<script>
-		! function(f, b, e, v, n, t, s) {
-			if (f.fbq) return;
-			n = f.fbq = function() {
-				n.callMethod ?
-					n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-			};
-			if (!f._fbq) f._fbq = n;
-			n.push = n;
-			n.loaded = !0;
-			n.version = '2.0';
-			n.queue = [];
-			t = b.createElement(e);
-			t.async = !0;
-			t.src = v;
-			s = b.getElementsByTagName(e)[0];
-			s.parentNode.insertBefore(t, s)
-		}(window, document, 'script',
-			'https://connect.facebook.net/en_US/fbevents.js');
-		fbq('init', '1285894718274277');
-		fbq('track', 'PageView');
-
-	</script>
-	<noscript>
-		<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1285894718274277&ev=PageView&noscript=1" />
-	</noscript>
-	<!-- End Facebook Pixel Code -->
-	<!-- Naver ClickChoice Script Start -->
-	<script type="text/javascript" src="//wcs.naver.net/wcslog.js"> </script>
-	<!-- Naver ClickChoice Script End -->
-
-	<script type="text/javascript">
-		<!--
-		function mobRf() {
-			var rf = new EN();
-			rf.setSSL(true);
-			rf.sendRf();
-		}
-		//
-
-		-->
-	</script>
-	<script async="true" src="https://cdn.megadata.co.kr/js/enliple_min2.js" onload="mobRf();"></script>
-
-
-	<script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/adfit/static/kp.js"></script>
-	<script type="text/javascript">
-		kakaoPixel('2011682883394518132').pageView();
-
-	</script>
-
-
-	<script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/adfit/static/kp.js"></script>
-	<script type="text/javascript">
-		kakaoPixel('2011682883394518132').pageView();
-		kakaoPixel('2011682883394518132').search({
-			keyword: '김희령'
-		});
-
-	</script>
-
-
-	<style data-styled="" data-styled-version="4.4.1"></style>
-	<meta http-equiv="origin-trial" content="A4RpyXPHPXj2Tt0KMMrya+U6IibH8/6yFLknmyK5ZwpgUNYhhwGyllkLZNqKedteT7fKzxsI8p/Pbpbd4tEJOQoAAAB8eyJvcmlnaW4iOiJodHRwczovL2NyaXRlby5uZXQ6NDQzIiwiZmVhdHVyZSI6IkludGVyZXN0Q29ob3J0QVBJIiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
-	<script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/870176073/?random=1637820519594&amp;cv=9&amp;fst=1637820519594&amp;num=1&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;u_h=736&amp;u_w=414&amp;u_ah=736&amp;u_aw=414&amp;u_cd=24&amp;u_his=15&amp;u_tz=540&amp;u_java=false&amp;u_nplug=0&amp;u_nmime=0&amp;gtm=2wgba1&amp;sendb=1&amp;ig=1&amp;frm=0&amp;url=http%3A%2F%2Fm.mariomall.co.kr%2FSearch%2FResult%3Fredirecturl%3Dhttp%3A%2F%2Fm.mariomall.co.kr%26keyword%3D%25ea%25b9%2580%25ed%259d%25ac%25eb%25a0%25b9&amp;ref=http%3A%2F%2Fwww.mariomall.co.kr%2F&amp;tiba=%EA%B2%80%EC%83%89%EA%B2%B0%EA%B3%BC%20-%20%EA%B9%80%ED%9D%AC%EB%A0%B9%2C%20%EB%A7%88%EB%A6%AC%EC%98%A4%EB%AA%B0&amp;hn=www.googleadservices.com&amp;async=1&amp;rfmt=3&amp;fmt=4"></script>
-</head>
-
-<body style="">
-	<script>
-		dataLayer = [];
-
-	</script>
-
-
-
-	<div id="layerAlert" class="layer-wrap">
-		<button class="btn-close layer-btn">닫기</button>
-		<div class="layer-cont">
-			<p id="message">알럿 메세지 노출</p> <!-- 메세지 노출 영역 -->
-			<button type="button" class="btn-close btn-type s1">확인</button>
-		</div>
-	</div>
-
-
-	<article id="layerXXX" class="layer-wrap layer-XXX">
-		<h1 class="layer-tit">확인</h1>
-		<button class="btn-close layer-btn">레이어 닫기</button>
-		<div class="layer-cont">
-			<p id="message">내용이 들어갑니다.</p>
-			<div class="btn-wrap">
-				<a href="javascript:;" class="btn-type s2 btn-close" id="btnOk">확인</a>
-				<a href="javascript:;" class="btn-type02 s2 btn-close" id="btnCancel">취소</a>
+<section class="page-content page-plan">
+	<div class="event-20220211">
+		<div class="event-top">
+			<div id="js-container">
+				<canvas class="canvas" id="js-canvas" width="681" height="311"></canvas>
+				<div class="event-coupon" style="visibility: visible;"></div>
 			</div>
-		</div>
-	</article>
 
-	<div class="layer-wrap" id="layerInfo">
-		<div class="layer-cont">
-			<p>
-				“지연 취소 예정일”은 매장에서 직접 판매가 이뤄지는 아울렛 특성 상 상품 재고가 일시적으로 부족한 경우 상품 준비 기간을 한정하여 자동으로 취소/환불되는 예정 일자입니다. 여러 개의 상품을 구매하신 경우 준비가 완료된 상품은 자동 취소/환불이 시행되지 않으며 “지연 취소 예정일” 이후 준비 완료된 상품만 출고 됩니다.
-			</p>
-			<button type="button" class="btn-type s1 btn-close">확인</button>
-		</div>
-	</div>
-
-	<div id="div_layerPopup"></div>
-
-	<aside id="loader">
-		<img src="//cdn.mariooutlet.com/ui/mobile/loader-1.png" class="active">
-		<img src="//cdn.mariooutlet.com/ui/mobile/loader-2.png">
-		<img src="//cdn.mariooutlet.com/ui/mobile/loader-3.png">
-		<img src="//cdn.mariooutlet.com/ui/mobile/loader-4.png">
-		<img src="//cdn.mariooutlet.com/ui/mobile/loader-5.png">
-		<img src="//cdn.mariooutlet.com/ui/mobile/loader-6.png">
-		<img src="//cdn.mariooutlet.com/ui/mobile/loader-7.png">
-		<img src="//cdn.mariooutlet.com/ui/mobile/loader-8.png">
-		<img src="//cdn.mariooutlet.com/ui/mobile/loader-9.png">
-		<img src="//cdn.mariooutlet.com/ui/mobile/loader-10.png">
-		<img src="//cdn.mariooutlet.com/ui/mobile/loader-11.png">
-		<img src="//cdn.mariooutlet.com/ui/mobile/loader-12.png">
-		<img src="//cdn.mariooutlet.com/ui/mobile/loader-13.png">
-	</aside>
-
-
-
-	<div id="wrap">
-
-
-		<!-- ### [L] : header ### -->
-		<header id="header" class="global-search search-header">
-			<div class="search-header__wrap">
-				<div class="search-header__form clearfix">
-					<fieldset class="input-search">
-						<legend>통합검색</legend>
-						<label for="searchInput">검색어를 입력해 주세요</label>
-						<input type="text" id="searchInput" autofocus="autofocus" placeholder="검색어를 입력하세요" value="김희령" onkeyup="GetKeyword(); GetTopSearchProduct();" onkeydown="if (event.keyCode == 13) { $(this).next().children('#btnSearch').click(); }">
-						<div class="btn-wrap05">
-							<button type="button" class="btn-search03" id="btnSearch" onclick="location.href='/Search/Result?redirectUrl=http://m.mariomall.co.kr&amp;keyword=' + encodeURIComponent($('#searchInput').val());">검색</button>
-						</div>
-					</fieldset>
-					<a href="javascript:;" onclick="javascript: history.back(); return false;" class="btn-back">뒤로</a>
-				</div>
-
-				<!-- 연관 검색어 -->
-				<div class="search-header__words swiper-container swiper-container-horizontal swiper-container-free-mode swiper-container-ios">
-
-
-					<ul class="swiper-wrapper">
-						<li class="swiper-slide swiper-slide-active"><a href="/Search/Result?keyword=%ED%8C%A8%EB%94%A9">패딩</a></li>
-						<li class="swiper-slide swiper-slide-next"><a href="/Search/Result?keyword=%EC%98%A8%EC%95%A4%EC%98%A8">온앤온</a></li>
-						<li class="swiper-slide"><a href="/Search/Result?keyword=%ED%81%AC%EB%A1%9C%EC%BB%A4%EB%8B%A4%EC%9D%BC%EB%A0%88%EC%9D%B4%EB%94%94">크로커다일레이디</a></li>
-						<li class="swiper-slide"><a href="/Search/Result?keyword=%EC%8B%9C%EC%97%90%EB%A1%9C">시에로</a></li>
-						<li class="swiper-slide"><a href="/Search/Result?keyword=%EC%83%A4%ED%8B%B4">샤틴</a></li>
-						<li class="swiper-slide"><a href="/Search/Result?keyword=%EC%85%80%EB%8D%B4">셀덴</a></li>
-						<li class="swiper-slide"><a href="/Search/Result?keyword=%EB%A1%B1%ED%8C%A8%EB%94%A9">롱패딩</a></li>
-						<li class="swiper-slide"><a href="/Search/Result?keyword=%EB%AC%B4%EC%8A%A4%ED%83%95">무스탕</a></li>
-						<li class="swiper-slide"><a href="/Search/Result?keyword=%EB%89%B4%EC%97%90%EB%9D%BC">뉴에라</a></li>
-						<li class="swiper-slide"><a href="/Search/Result?keyword=%EC%98%AC%EB%A6%AC%EB%B9%84%EC%95%84%ED%95%98%EC%8A%AC%EB%9F%AC">올리비아하슬러</a></li>
+			<div class="event-notice-box">
+				<button type="button" class="event-notice__button text-hide">이벤트 유의사항</button>
+				<div class="event-notice__list">
+					<ul>
+						<li>•&nbsp;&nbsp;&nbsp;이벤트 기간 : 2022.02.21 ~ 2022.03.06</li>
+						<li>•&nbsp;&nbsp;&nbsp;발행된 쿠폰은 마이페이지 나의 쿠폰함에서 확인 가능합니다.</li>
+						<li>•&nbsp;&nbsp;&nbsp;쿠폰 유효기간 : ID당 1일 1회 발급가능하며, 발급받은 쿠폰은 당일에만 사용가능합니다. (미사용시 자동 소멸)</li>
+						<li>•&nbsp;&nbsp;&nbsp;단순 변심에 의한 반품시 지급된 쿠폰은 재발행 되지 않습니다.</li>
+						<li>•&nbsp;&nbsp;&nbsp;일부 특가 상품 또는 저마진 상품에는 쿠폰 사용이 제한 될 수 있습니다.</li>
+						<li>•&nbsp;&nbsp;&nbsp;발급되는 쿠폰은 장바구니 쿠폰이 아닌 이상 상품에 적용되는 상품쿠폰입니다. (사용에 유의해주세요)</li>
+						<li>•&nbsp;&nbsp;&nbsp;비정상적인 방법으로 참여하신 경우 당첨자 선정 대상에서 제외될 수 있으며, 당첨 후에도 취소 될 수 있습니다.</li>
+						<li>•&nbsp;&nbsp;&nbsp;본 이벤트는 당사의 사정의 따라 사전 공지 없이 조기 종료되거나 변경 될 수 있습니다.</li>
 					</ul>
-					<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
 				</div>
 			</div>
-			<div class="search-layer search-header__layer">
-				<ul class="search-layer__figure"></ul>
-				<ul class="search-layer__list"></ul>
-			</div>
-			<!-- //검색어 리스트  -->
-		</header>
-		<!-- ### // [L] : header ### -->
-		<!-- ### content ### -->
-		<article id="content" class="search-content02">
-			<!-- ### [Layout] : 페이지 내용 ### -->
-			<section class="page-content page-search">
-				<!-- ###
-            [Layout] : 카테고리 선택
-            구현된 스크립트는 : ui.common.m.js에 있습니다.
-            * uiScrollNav02.init();는 슬라이드 및 클릭 이벤트 정의
-            * uiScrollNav02.resize() 는 슬라이드 재호출
-            * uiScrollNav02.show() 는 카테고리 선택 팝업 노출
-            * uiScrollNav02.close() 는 카테고리 선택 팝업 닫힘
-            * uiScrollNav02.change() 는 라디오버튼 선택시 a태그의 텍스트 변경
-        ### -->
-				<!-- ### //[Layout] : 카테고리 선택 ### -->
-
-				<div class="search-category" style="display:none;">
-					<nav class="search-category__depth1 swiper-container swiper-container-horizontal swiper-container-free-mode swiper-container-ios">
-						<ul class="swiper-wrapper" style="transition-duration: 0ms;">
-							<li class="swiper-slide"><a href="/Search/Result?keyword=김희령" class="btn-type03 s5">전체</a></li>
-						</ul>
-						<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-					</nav>
-				</div>
-
-
-
-
-
-
-				<!-- [S] : 상품 리스트 -->
-				<section class="divider divider-top">
-					<div class="container">
-						<div class="btn-toolbar">
-							<p class="text-medium"><strong class="text-weight-semiBold" id="totalViewCount">0</strong>개 상품</p>
-							<div class="d-flex justify-content-between align-items-center">
-								<button type="button" data-model="filter" data-filter-target="filterBrand" onclick="filterNavTab($(this));" class="btn-toolbar__border text-small">브랜드</button>
-								<label class="dropdown btn-toolbar__border">
-									<span class="dropdown__text text-small d-flex align-items-center">
-										<span data-dropdown="text">인기순</span>
-										<i class="icon icon-down-up"></i>
-									</span>
-									<select name="order" id="order" class="dropdown__select" onchange="dropdown($(this));">
-										<option value="0" selected="">인기순</option>
-										<option value="1">신상품순</option>
-										<option value="2">낮은 가격순</option>
-										<option value="3">높은 가격순</option>
-										<option value="4">할인률순</option>
-										<option value="5">핵싸상품순</option>
-									</select>
-								</label>
-								<button type="button" data-model="filter" data-filter-target="filterProduct" onclick="filterNavTab($(this));" class="btn-toolbar__border text-small d-flex align-items-center">
-									<span>필터</span>
-									<i class="icon icon-filter"></i>
-								</button>
-							</div>
-						</div>
-
-						<div class="filter-result swiper-container swiper-container-horizontal swiper-container-free-mode swiper-container-ios">
-							<div class="swiper-wrapper">
-							</div>
-							<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-						</div>
-					</div>
-
-					<div class="container-fluid">
-						<div class="card-product__list card-product__col clearfix" id="productListContainer" style="display: none;">
-
-							<input type="hidden" id="deliverytype_all" value="0">
-							<input type="hidden" id="deliverytype_a" value="0">
-							<input type="hidden" id="deliverytype_b" value="0">
-							<input type="hidden" id="deliverytype_g" value="0">
-
-
-							<script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>
-							<script type="text/javascript">
-								function criteo(email) {
-									window.criteo_q = window.criteo_q || [];
-									window.criteo_q.push({
-										event: "setAccount",
-										account: 34027
-									});
-									if (email && email != '' && typeof email != undefined) {
-										window.criteo_q.push({
-											event: "setHashedEmail",
-											email: email
-										});
-									}
-									window.criteo_q.push({
-										event: "setSiteType",
-										type: "m"
-									});
-									window.criteo_q.push({
-										event: "viewList",
-										item: ['']
-									});
-								}
-
-								if (IsLogin() == "True") {
-									//  이메일
-									$.ajax({
-										url: "/Home/MD5HashFunc",
-										type: "GET",
-										cache: false,
-										async: true,
-										success: function(data) {
-											criteo(data);
-										}
-									});
-								} else {
-									criteo('');
-								}
-
-							</script>
-						</div>
-					</div>
-				</section>
-
-				<a href="#" class="btn-more s4 margin-t-0" id="btnMoreProduct" onclick="return false;" style="display: none;">MORE</a>
-
-				<p class="txt-nodata s1" id="filterempty" style="display:none;">
-					선택하신 속성에 대한 결과값이 없습니다.
-				</p>
-				<div id="searchrecommend"></div>
-				<!-- //[S] : 상품 리스트 -->
-				<!-- //[S] : 상품 리스트 -->
-				<!-- //[2016-08-30] 해시태그 추가 -->
-
-				<div class="section block03" id="emptyData" style="">
-					<div class="txt-nodata s2">
-						<p>입력하신 검색어와 일치하는 상품이 없습니다.</p>
-						<ul class="txt-type">
-							<li>검색어를 정확히 입력하셨는지 확인해 보세요</li>
-							<li>띄어쓰기 또는 넓은 의미의 단어를 사용해 보세요</li>
-						</ul>
-					</div>
-
-					<!-- [2016-11-23] 이런 상품 찾지 않으셨어요? -->
-
-
-
-					<div class="banner-type03">
-						<h2 class="tit-type03">이 상품 찾지 않으셨어요?</h2>
-						<ul class="list-product clearfix">
-							<li>
-
-
-
-
-
-
-
-								<a href="/Detail?PCode=P001581125&amp;pid=2306&amp;isPersonal=1&amp;rccode=m_search" class="card-product" data-tn="0">
-									<div class="card-product__thumb" style="background-image: url(//cdn.mariooutlet.com/Product/A0355/ARQ/P001581125_d1.jpg?RS=250)">
-									</div>
-									<div class="card-product__caption">
-										<strong class="card-product__brand">내셔널지오그래픽</strong>
-										<p class="card-product__name">내셔널지오그래픽 숏패딩 타루가 N204MDW030 남녀공용 타루가 숏패딩 RDS덕다운</p>
-										<s class="card-product__price">359,000</s>
-										<div class="d-flex">
-											<p class="card-product__discount">30%</p>
-											<p class="card-product__price">251,300</p>
-										</div>
-										<div class="card-product__colors">
-										</div>
-										<div class="card-product__labels">
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-
-
-
-
-
-
-
-								<a href="/Detail?PCode=P001290801&amp;pid=2306&amp;isPersonal=1&amp;rccode=m_search" class="card-product" data-tn="0">
-									<div class="card-product__thumb" style="background-image: url(//cdn.mariooutlet.com/Product/A0249/A7D/P001290801_d1.jpg?RS=250)">
-									</div>
-									<div class="card-product__caption">
-										<strong class="card-product__brand">카파</strong>
-										<p class="card-product__name">[마리오단독특가♥] 카파 남여 트랜스폼 디테쳐블 구스다운</p>
-										<s class="card-product__price">290,000</s>
-										<div class="d-flex">
-											<p class="card-product__discount">80%</p>
-											<p class="card-product__price">59,000</p>
-										</div>
-										<div class="card-product__colors">
-										</div>
-										<div class="card-product__labels">
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-
-
-
-
-
-
-
-								<a href="/Detail?PCode=P001751464&amp;pid=2306&amp;isPersonal=1&amp;rccode=m_search" class="card-product" data-tn="0">
-									<div class="card-product__thumb" style="background-image: url(//cdn.mariooutlet.com/Product/A0327/AHO/P001751464_d1.jpg?RS=250)">
-									</div>
-									<div class="card-product__caption">
-										<strong class="card-product__brand">지이크</strong>
-										<p class="card-product__name">[파렌하이트] FW 라쿤 퍼 점퍼 균일 3종</p>
-										<s class="card-product__price">569,000</s>
-										<div class="d-flex">
-											<p class="card-product__discount">87%</p>
-											<p class="card-product__price">75,050</p>
-										</div>
-										<div class="card-product__colors">
-										</div>
-										<div class="card-product__labels">
-											<span class="card-product__label">5% 즉시할인</span>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-
-
-
-
-
-
-
-								<a href="/Detail?PCode=P001160479&amp;pid=2306&amp;isPersonal=1&amp;rccode=m_search" class="card-product" data-tn="0">
-									<div class="card-product__thumb" style="background-image: url(//cdn.mariooutlet.com/Product/A0105/A4V/P001160479_d1.jpg?RS=250)">
-									</div>
-									<div class="card-product__caption">
-										<strong class="card-product__brand">크로커다일레이디</strong>
-										<p class="card-product__name">CL0WDW103</p>
-										<s class="card-product__price">428,000</s>
-										<div class="d-flex">
-											<p class="card-product__discount">65%</p>
-											<p class="card-product__price">151,050</p>
-										</div>
-										<div class="card-product__colors">
-										</div>
-										<div class="card-product__labels">
-											<span class="card-product__label">5% 즉시할인</span>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-
-
-
-
-
-
-
-								<a href="/Detail?PCode=P001131270&amp;pid=2306&amp;isPersonal=1&amp;rccode=m_search" class="card-product" data-tn="0">
-									<div class="card-product__thumb" style="background-image: url(//cdn.mariooutlet.com/Product/A0203/B2E/P001131270_d1.jpg?RS=250)">
-									</div>
-									<div class="card-product__caption">
-										<strong class="card-product__brand">뉴에라</strong>
-										<p class="card-product__name">뉴에라 아우터 공용 NE-TECH 구스 다운 재킷 12142357</p>
-										<s class="card-product__price">499,000</s>
-										<div class="d-flex">
-											<p class="card-product__discount">71%</p>
-											<p class="card-product__price">143,720</p>
-										</div>
-										<div class="card-product__colors">
-										</div>
-										<div class="card-product__labels">
-											<span class="card-product__label">4% 즉시할인</span>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-
-
-
-
-
-
-
-								<a href="/Detail?PCode=P000508595&amp;pid=2306&amp;isPersonal=1&amp;rccode=m_search" class="card-product" data-tn="0">
-									<div class="card-product__thumb" style="background-image: url(//cdn.mariooutlet.com/Product/A0323/A3C/P000508595_d1.jpg?RS=250)">
-									</div>
-									<div class="card-product__caption">
-										<strong class="card-product__brand">빠니깔레</strong>
-										<p class="card-product__name">덕다운하이넥 오리털패딩코트 m-ecjp51bk</p>
-										<s class="card-product__price">830,000</s>
-										<div class="d-flex">
-											<p class="card-product__discount">82%</p>
-											<p class="card-product__price">150,000</p>
-										</div>
-										<div class="card-product__colors">
-											<span class="card-product__color icon-color c-BK"></span>
-										</div>
-										<div class="card-product__labels">
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-
-
-
-
-
-
-
-								<a href="/Detail?PCode=P001734893&amp;pid=2306&amp;isPersonal=1&amp;rccode=m_search" class="card-product" data-tn="0">
-									<div class="card-product__thumb" style="background-image: url(//cdn.mariooutlet.com/Product/A0039/A3P/P001734893_d1.jpg?RS=250)">
-									</div>
-									<div class="card-product__caption">
-										<strong class="card-product__brand">마모트</strong>
-										<p class="card-product__name">남여공용 겨울 사파리형 롱인피니티 다운 자켓 1MMPAW8903</p>
-										<s class="card-product__price">499,000</s>
-										<div class="d-flex">
-											<p class="card-product__discount">79%</p>
-											<p class="card-product__price">103,550</p>
-										</div>
-										<div class="card-product__colors">
-										</div>
-										<div class="card-product__labels">
-											<span class="card-product__label">5% 즉시할인</span>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-
-
-
-
-
-
-
-								<a href="/Detail?PCode=P001722194&amp;pid=2306&amp;isPersonal=1&amp;rccode=m_search" class="card-product" data-tn="0">
-									<div class="card-product__thumb" style="background-image: url(//cdn.mariooutlet.com/Product/A0333/AMP/P001722194_d1.jpg?RS=250)">
-									</div>
-									<div class="card-product__caption">
-										<strong class="card-product__brand">몽블랑</strong>
-										<p class="card-product__name">MONTBLANC 몽블랑126258 6cc 소프트 그레인 카드지갑 126258</p>
-										<s class="card-product__price">273,800</s>
-										<div class="d-flex">
-											<p class="card-product__discount">22%</p>
-											<p class="card-product__price">212,430</p>
-										</div>
-										<div class="card-product__colors">
-										</div>
-										<div class="card-product__labels">
-											<span class="card-product__label">3% 즉시할인</span>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-
-
-
-
-
-
-
-								<a href="/Detail?PCode=P001711684&amp;pid=2306&amp;isPersonal=1&amp;rccode=m_search" class="card-product" data-tn="0">
-									<div class="card-product__thumb" style="background-image: url(//cdn.mariooutlet.com/Product/A0133/A7F/P001711684_d1.jpg?RS=250)">
-									</div>
-									<div class="card-product__caption">
-										<strong class="card-product__brand">써스데이아일랜드</strong>
-										<p class="card-product__name">레이스 패치 코듀로이 원피스 T208MOP234W</p>
-										<s class="card-product__price">299,000</s>
-										<div class="d-flex">
-											<p class="card-product__discount">55%</p>
-											<p class="card-product__price">134,550</p>
-										</div>
-										<div class="card-product__colors">
-										</div>
-										<div class="card-product__labels">
-											<span class="card-product__label">10% 즉시할인</span>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-
-
-
-
-
-
-
-								<a href="/Detail?PCode=P001670957&amp;pid=2306&amp;isPersonal=1&amp;rccode=m_search" class="card-product" data-tn="0">
-									<div class="card-product__thumb" style="background-image: url(//cdn.mariooutlet.com/Product/A0250/AFS/P001670957_d1.jpg?RS=250)">
-									</div>
-									<div class="card-product__caption">
-										<strong class="card-product__brand">기비 키이스</strong>
-										<p class="card-product__name">딜라이트 셔츠 코트 G0WH704</p>
-										<s class="card-product__price">749,000</s>
-										<div class="d-flex">
-											<p class="card-product__discount">30%</p>
-											<p class="card-product__price">525,000</p>
-										</div>
-										<div class="card-product__colors">
-										</div>
-										<div class="card-product__labels">
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-
-
-
-
-
-
-
-								<a href="/Detail?PCode=P001156676&amp;pid=2306&amp;isPersonal=1&amp;rccode=m_search" class="card-product" data-tn="0">
-									<div class="card-product__thumb" style="background-image: url(//cdn.mariooutlet.com/Product/A0113/A3Y/P001156676_d1.jpg?RS=250)">
-									</div>
-									<div class="card-product__caption">
-										<strong class="card-product__brand">안지크</strong>
-										<p class="card-product__name">폭스퍼 후드 롱 구스다운(DD4FP5960)</p>
-										<s class="card-product__price">2,380,000</s>
-										<div class="d-flex">
-											<p class="card-product__discount">85%</p>
-											<p class="card-product__price">359,100</p>
-										</div>
-										<div class="card-product__colors">
-											<span class="card-product__color icon-color c-BR"></span>
-										</div>
-										<div class="card-product__labels">
-											<span class="card-product__label">10% 즉시할인</span>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-
-
-
-
-
-
-
-								<a href="/Detail?PCode=P001154632&amp;pid=2306&amp;isPersonal=1&amp;rccode=m_search" class="card-product" data-tn="0">
-									<div class="card-product__thumb" style="background-image: url(//cdn.mariooutlet.com/Product/A0322/B0W/P001154632_d1.jpg?RS=250)">
-									</div>
-									<div class="card-product__caption">
-										<strong class="card-product__brand">시에로</strong>
-										<p class="card-product__name">[시에로] 아웃포켓이 포인트인 롱 DOWN 점퍼 SF4JPF371</p>
-										<s class="card-product__price">569,000</s>
-										<div class="d-flex">
-											<p class="card-product__discount">62%</p>
-											<p class="card-product__price">216,220</p>
-										</div>
-										<div class="card-product__colors">
-										</div>
-										<div class="card-product__labels">
-											<span class="card-product__label">5% 즉시할인</span>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-
-
-
-
-
-
-
-								<a href="/Detail?PCode=P001730263&amp;pid=2306&amp;isPersonal=1&amp;rccode=m_search" class="card-product" data-tn="0">
-									<div class="card-product__thumb" style="background-image: url(//cdn.mariooutlet.com/Product/A0395/AW0/P001730263_d1.jpg?RS=250)">
-									</div>
-									<div class="card-product__caption">
-										<strong class="card-product__brand">마리오 슈퍼딜</strong>
-										<p class="card-product__name">[KARRA] 겨울준비 신상&amp;BEST 특가세일 점퍼/니트/가디건/원피스/자켓</p>
-										<s class="card-product__price">58,000</s>
-										<div class="d-flex">
-											<p class="card-product__discount">78%</p>
-											<p class="card-product__price">12,720</p>
-										</div>
-										<div class="card-product__colors">
-										</div>
-										<div class="card-product__labels">
-											<span class="card-product__label">20% 즉시할인</span>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-
-
-
-
-
-
-
-								<a href="/Detail?PCode=P001721582&amp;pid=2306&amp;isPersonal=1&amp;rccode=m_search" class="card-product" data-tn="0">
-									<div class="card-product__thumb" style="background-image: url(//cdn.mariooutlet.com/Product/A0367/ASB/P001721582_d1.jpg?RS=250)">
-									</div>
-									<div class="card-product__caption">
-										<strong class="card-product__brand">럭셔리에비뉴</strong>
-										<p class="card-product__name">(아미) BFHK001 001 001 스몰 하트 로고 남성 니트</p>
-										<s class="card-product__price">505,000</s>
-										<div class="d-flex">
-											<p class="card-product__discount">28%</p>
-											<p class="card-product__price">364,720</p>
-										</div>
-										<div class="card-product__colors">
-										</div>
-										<div class="card-product__labels">
-											<span class="card-product__label">6% 즉시할인</span>
-										</div>
-									</div>
-								</a>
-							</li>
-						</ul>
-						<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-					</div>
-
-
-
-					<!-- //[2016-11-23] 이런 상품 찾지 않으셨어요? -->
-					<!-- [2016-08-30] 인기 검색어 키워드 추가 -->
-					<h2 class="tit-type03">인기 검색어 키워드</h2>
-
-
-					<ol class="list-search">
-						<li>
-							<a href="/Search/Result?keyword=%ED%8C%A8%EB%94%A9">패딩<strong>NEW</strong></a>
-						</li>
-						<li>
-							<a href="/Search/Result?keyword=%EC%98%A8%EC%95%A4%EC%98%A8">온앤온<strong class="icon-d">아래로</strong></a>
-						</li>
-						<li>
-							<a href="/Search/Result?keyword=%ED%81%AC%EB%A1%9C%EC%BB%A4%EB%8B%A4%EC%9D%BC%EB%A0%88%EC%9D%B4%EB%94%94">크로커다일레이디<strong class="icon-u">위로</strong></a>
-						</li>
-						<li>
-							<a href="/Search/Result?keyword=%EC%8B%9C%EC%97%90%EB%A1%9C">시에로</a>
-						</li>
-						<li>
-							<a href="/Search/Result?keyword=%EC%83%A4%ED%8B%B4">샤틴<strong>NEW</strong></a>
-						</li>
-						<li>
-							<a href="/Search/Result?keyword=%EC%85%80%EB%8D%B4">셀덴<strong class="icon-u">위로</strong></a>
-						</li>
-						<li>
-							<a href="/Search/Result?keyword=%EB%A1%B1%ED%8C%A8%EB%94%A9">롱패딩<strong>NEW</strong></a>
-						</li>
-						<li>
-							<a href="/Search/Result?keyword=%EB%AC%B4%EC%8A%A4%ED%83%95">무스탕<strong>NEW</strong></a>
-						</li>
-						<li>
-							<a href="/Search/Result?keyword=%EB%89%B4%EC%97%90%EB%9D%BC">뉴에라<strong class="icon-d">아래로</strong></a>
-						</li>
-						<li>
-							<a href="/Search/Result?keyword=%EC%98%AC%EB%A6%AC%EB%B9%84%EC%95%84%ED%95%98%EC%8A%AC%EB%9F%AC">올리비아하슬러<strong>NEW</strong></a>
-						</li>
-					</ol>
-
-					<!-- //[2016-08-30] 인기 검색어 키워드 추가 -->
-				</div>
-			</section>
-			<!-- ### //[Layout] : 페이지 내용 ### -->
-		</article>
-		<input type="hidden" id="hid_backheight" value="">
-		<!-- ### //content ### -->
-		<!-- 20210427 -->
-		<article id="filter" class="layer-wrap">
-			<header class="filter-header">
-				<h2 class="filter-title">필터</h2>
-				<button type="button" class="btn-close02">레이어 닫기</button>
-				<nav class="filter-nav">
-					<ul class="filter-nav__list">
-						<li class="filter-nav__item active" data-filter-target="filterProduct">
-							<button type="button" class="filter-nav__button">
-								<span class="filter-nav__text">상품군별</span>
-							</button>
-						</li>
-						<li class="filter-nav__item" data-filter-target="filterBrand">
-							<button type="button" class="filter-nav__button">
-								<span class="filter-nav__text">브랜드</span>
-							</button>
-						</li>
-						<li class="filter-nav__item" data-filter-target="filterColor">
-							<button type="button" class="filter-nav__button">
-								<span class="filter-nav__text">컬러</span>
-							</button>
-						</li>
-						<li class="filter-nav__item" data-filter-target="filterSize">
-							<button type="button" class="filter-nav__button">
-								<span class="filter-nav__text">사이즈</span>
-							</button>
-						</li>
-						<li class="filter-nav__item" data-filter-target="filterEtc">
-							<button type="button" class="filter-nav__button">
-								<span class="filter-nav__text">판매/배송</span>
-							</button>
-						</li>
-					</ul>
-				</nav>
-			</header>
-
-			<footer class="filter-footer">
-				<div class="filter-result swiper-container swiper-container-horizontal swiper-container-free-mode swiper-container-ios">
-					<div class="swiper-wrapper">
-
-					</div>
-					<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-				</div>
-				<div class="btn-toolbar">
-					<button type="button" id="btnClear">
-						<i class="icon icon-arrow-clockwise"></i>
-						<span class="text-medium text-weight-medium">필터 재설정</span>
-					</button>
-					<button type="button" class="btn-type text-large text-bold" id="btnSearchFilter">적용</button>
-				</div>
-			</footer>
-		</article>
-		<!-- // 20210427 -->
-
-
-
-
-
-		<!-- ###
-    [L] : footer
-    [2016-10-31] 전체적으로 변경
- ### -->
-		<footer id="footer">
-			<!-- 공지사항 -->
-			<div class="footer-notice">
-				<h2>공지</h2>
-				<p><a href="/Customer/Board" class="gtm_analytics_m" data-analyticsaction="풋터" data-analyticslabel="공지사항">마리오몰 추석 덕담이벤트 당첨자 발표</a></p>
-			</div>
-			<!-- //공지사항 -->
-			<!-- 퀵메뉴 -->
-			<div class="footer-guick">
-				<p class="gtm_analytics_m go-on" data-analyticsaction="풋터" data-analyticslabel="바로ON">바로<strong>OFF</strong></p>
-
-				<!-- 로그인 했을 경우 -->
-				<a id="btnLogin" style="" href="#" onclick="location.href = 'https://member.mariomall.co.kr/Login?redirectUrl=' + location.href.replace(/&amp;/gi, '|*|'); return false;" class="gtm_analytics_m" data-analyticsaction="풋터" data-analyticslabel="로그인">로그인</a> <!-- 로그인 했을 경우 -->
-				<a href="/Customer" class="gtm_analytics_m" data-analyticsaction="풋터" data-analyticslabel="고객센터">고객센터</a> <!-- [2016-10-07] 메뉴 추가 -->
-				<a href="javascript:;" target="_blank" onclick="SiteSSOCheck('O','http://m.mariooutlet.co.kr/Store/Store?Menu=0');" class="gtm_analytics_m" data-analyticsaction="풋터" data-analyticslabel="매장안내">매장안내</a>
-			</div>
-			<!-- //퀵메뉴 -->
-			<!-- SNS -->
-			<ul class="footer-sns">
-				<li><a href="https://www.facebook.com/eMariooutlet?AppHandle=newbrowser" target="_blank" class="gtm_analytics_m" data-analyticsaction="풋터" data-analyticslabel="페이스북">페이스북</a></li>
-				<li><a href="https://www.instagram.com/mario_outlet_?AppHandle=newbrowser" target="_blank" class="gtm_analytics_m" data-analyticsaction="풋터" data-analyticslabel="인스타그램">인스타그램</a></li>
-
-				<li style="" id="viewPcVersion"><a href="#none" class="gtm_analytics_m" data-analyticsaction="풋터" data-analyticslabel="PC">PC바로가기</a></li>
+		</div>
+		<div class="event-contents">
+			<ul>
+				<li class="event-cont__item"><a href="http://www.mariomall.co.kr/PlanShop?ThemeSeq=1542">더아이잗 봄프리뷰 단독 할인특가 + 10%쿠폰</a></li>
+				<li class="event-cont__item"><a href="http://www.mariomall.co.kr/PlanShop?ThemeSeq=269">트루젠 단독특가 + 23%쿠폰</a></li>
+				<li class="event-cont__item"><a href="http://www.mariomall.co.kr/PlanShop?ThemeSeq=1271">리바이스 봄신상 조거/데님팬츠 단독특가</a></li>
+				<li class="event-cont__item"><a href="http://www.mariomall.co.kr/PlanShop?ThemeSeq=432">셀덴 아동 가디건/자켓외 이월신상 ~72%할인</a></li>
+				<li class="event-cont__item"><a href="http://www.mariomall.co.kr/PlanShop?ThemeSeq=1261">레노마골프 봄신상 최대 92% SALE + 10%쿠폰</a></li>
+				<li class="event-cont__item"><a href="http://www.mariomall.co.kr/PlanShop?ThemeSeq=622">미소페 봄상품 마리오단독 55%할인 + 10%쿠폰</a></li>
+				<li class="event-cont__item"><a href="http://www.mariomall.co.kr/PlanShop?ThemeSeq=1295">리바이스 바디웨어 봄 맞이 단독특가 ~70%할인+20%쿠폰</a></li>
+				<li class="event-cont__item"><a href="http://www.mariomall.co.kr/PlanShop?ThemeSeq=1092">박홍금홈패션 새로운 계절맞이 새침구 최대 50%할인</a></li>
+				<li class="event-cont__item"><a href="http://www.mariomall.co.kr/PlanShop?ThemeSeq=1209">삼성/LG전자 외 대형가전부터 소형가전까지 최대 30%할인</a></li>
+				<li class="event-cont__item"><a href="http://www.mariomall.co.kr/PlanShop?ThemeSeq=782">ab.f.z 미리보는 봄신상 ~91% 할인 + 10%쿠폰</a></li>
 			</ul>
-			<!-- //SNS -->
-
-			<dl class="footer-family">
-				<dt>패밀리사이트이동</dt>
-				<dd><a href="javascript:;" onclick="SiteSSOCheck('O','http://m.mariooutlet.co.kr');" class="gtm_analytics_m" data-analyticsaction="풋터" data-analyticslabel="마리오아울렛">마리오아울렛</a></dd>
-				<dd><a href="http://www.herbvillage.co.kr?AppHandle=newbrowser" target="_blank" class="gtm_analytics_m" data-analyticsaction="풋터" data-analyticslabel="허브빌리지">허브빌리지</a></dd>
-
-			</dl>
-
-			<!-- 약관 및 법적 고지 확인하기 -->
-			<button type="button" class="footer-btn">약관 및 법적 고지 확인하기</button>
-			<div class="footer-agree">
-				<address>
-					<span><strong>마리오쇼핑(주)</strong></span>
-					<span>서울특별시 금천구 디지털로 9길 23 마리오아울렛 2관 13층</span>
-					<span>대표이사 전무 우길조 사업자번호 112-81-15877</span>
-					<span>통신판매업신고: 2021-서울금천-2260</span>
-					<span><strong>고객센터 1522-3605 | </strong><a href="mailto:info@emario.co.kr">info@emario.co.kr</a></span>
-					<span>건강기능식품 판매업신고 : 제 2021-0084603 호</span>
-					<span>개인정보관리책임자 : 홍진기 상무</span>
-					<span>호스팅 서비스 제공자 마리오쇼핑(주)</span>
-				</address>
-				<p class="footer-info">
-					<strong>농협은행 채무지급보증안내</strong>
-					고객님께서 안전거래를 위해 현금 등으로 결제하신 경우, <br>
-					저희 쇼핑몰에서 가입한 NH농협은행의 채무지급보증(구매안전서비스)을 이용하실 수 있습니다.
-					<a href="#layerUsafeService" data-modal="layerUsafeService">서비스가입사실확인</a> <!-- [2016-09-28] 링크 추가 -->
-				</p>
-				<p class="footer-isms" style="margin-top:2rem;">
-					<a href="#layerIsmsService" data-modal="layerIsmsService"><img src="//cdn.mariooutlet.com/builder//202110/T20211020434549378.png" border="0" alt="isms"></a>
-				</p>
-				<ul class="footer-link">
-					<li><a target="_blank" href="http://www.ftc.go.kr/www/bizCommView.do?key=232&amp;apv_perm_no=2011317014230200894&amp;pageUnit=10&amp;searchCnd=wrkr_no&amp;searchKrwd=1128115877&amp;pageIndex=1">사업자정보확인</a></li>
-					<li><a href="/Customer/Clause?Tab=0)">이용약관</a></li>
-					<li><a href="/Customer/Clause?Tab=1" style="font-weight:bold;color:#ff614c;">개인정보처리방침</a></li>
-					<li><a href="/Customer/Clause?Tab=2">청소년보호정책</a></li>
-				</ul>
-			</div>
-			<!-- //약관 및 법적 고지 확인하기 -->
-
-			<small> COPYRIGHT © MARIO OUTLET. ALL RIGHTS RSEREVED.</small>
-		</footer>
-		<!-- ### //[L] : footer ### -->
-
-		<script type="text/javascript">
-			$(document).ready(function() {
-				if (fn_IsMarioAppCheck() == false) {
-					$("#viewPcVersion").show();
-				}
-
-				$.ajax({
-					url: "/Customer/Board?Page=0&Keyword=&pageSize=1",
-					type: "POST",
-					async: true,
-					cache: false,
-					success: function(data) {
-						for (var i = 0; i < data.length; i++) {
-							$("div.footer-notice p a").text(data[i].Title);
-						}
-					}
-				});
-
-				var Baro = getCookie("BaroYn");
-				if (Baro.length > 0) {
-					if (Baro == "Y") {
-						$('p.go-on').addClass("on").find('strong').text('ON');
-					} else {
-						$('p.go-on').removeClass("on").find('strong').text('OFF');
-					}
-				} else {
-					$('p.go-on').removeClass("on").find('strong').text('OFF');
-				}
-
-				if (IsLogin() == "True") {
-					$("#btnLogout").show();
-					$("#btnLogin").remove();
-				} else {
-					$("#btnLogout").remove();
-					$("#btnLogin").show();
-				}
-
-				$("#viewPcVersion").click(function() {
-					setSessionCookie_domain("viewPc", true);
-					//location.href = location.href.replace("m.mariooutlet", "www.mariooutlet");
-					location.href = "http://www.mariomall.co.kr";
-				});
-
-				$('p.go-on').click(function() {
-					location.href = "http://m.mariomall.co.kr/Event?EventNm=BaroOn";
-				});
-			})
-
-		</script>
-
-		<!-- ### [L] : top btn ### -->
-		<div class="view-addon">
-			<div class="goods-recommend-btn not-view is-small" style="display:none;">
-				<button type="button" class="plus01 plus done" data-model="layer-detail-list-recommend">
-					<span>추천상품</span>
-					<img src="http://cdn.mariooutlet.com/ui/mobile/goods-recommend-plus-hanger.png" alt="추천상품보러 가기">
-				</button>
-			</div>
-			<a href="#top" class="btn-top">TOP</a>
 		</div>
-		<a href="javascript:;" onclick="btn_history_back();" class="btn-back02" style="display:none;">BACK</a>
-		<!-- ### // [L] : top btn ### -->
 	</div>
+</section>
+<!-- ### //[Layout] : 페이지 내용 ### -->
 
+<script type="text/javascript">
+	/* 복권 */
+	(function() {
+		'use strict';
 
-	<!-- ### [L] : below ### -->
-	<aside id="below" style="bottom: 0px;">
-		<a href="/" class="btn-home">홈</a>
-		<a href="/Navigation/NewAside" class="btn-menu">카테고리</a>
-		<a href="/History" class="btn-history btn-thumbnail">히스토리<img src="http://cdn.mariooutlet.com/Product/A0040/A3S/P001684207_d1.jpg?RS=30"></a>
-		<a href="/MyPage" class="btn-my">MY 마리오</a>
+		var isDrawing, lastPoint;
+		var container = document.getElementById('js-container'),
+			canvas = document.getElementById('js-canvas'),
+			canvasWidth = canvas.width,
+			canvasHeight = canvas.height,
+			ctx = canvas.getContext('2d'),
+			image = new Image(),
+			brush = new Image();
 
-		<a href="#floating" class="btn-mo">더보기</a> <!-- 알림 있을때 active -->
-	</aside>
-	<!-- ### // [L] : below ### -->
-	<!-- ### [2017-01-12] 플로팅메뉴 ### -->
-	<aside id="floating">
-		<a href="javascript:;" onclick="AppAlertMessage(1);" class="btn-setting" style="display:none;">설정</a>
-		<a href="#memBarcode" class="btn-barcode" style="display:none">멤버십 적립</a>
-		<a href="/MyPage/MyCoupon" class="btn-coupon">쿠폰</a>
-		<a href="javascript:;" onclick="AppAlertMessage(2);" class="btn-notice" style="display:none;">알림</a>
-		<a href="#" onclick="SiteSSOCheck('O', 'http://m.mariooutlet.co.kr');" class="btn-mario">오프라인매장</a>
-		<button type="button" class="btn-close">닫기</button>
-	</aside>
-	<!-- ### //[2017-01-12] 플로팅메뉴 ### -->
-	<!-- ### [2017-01-12] 바코드 ### -->
+		// base64 Workaround because Same-Origin-Policy
+		image.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYkAAABPCAYAAAAeGzmgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyVpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQ4IDc5LjE2NDAzNiwgMjAxOS8wOC8xMy0wMTowNjo1NyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIxLjEgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6M0NDNkIxOTg2MERFMTFFQTlBNUI5OTc4OTM5MEQwQjYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6M0NDNkIxOTk2MERFMTFFQTlBNUI5OTc4OTM5MEQwQjYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFQzdFRTZGRjYwREQxMUVBOUE1Qjk5Nzg5MzkwRDBCNiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFQzdFRTcwMDYwREQxMUVBOUE1Qjk5Nzg5MzkwRDBCNiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ps6afVUAABbzSURBVHja7F1JjB7FFW6PZgxSbJBYPKwCm33Hxh4wEpvYwckRLpy4cE1yTY7hmiBx4MSNKxyI2UFikTAeGw/7zpgdbBYJ7EjgOZB8Hb1RTU9Vdy3v1dJ/PenXP9N/bd1d9b631as1v//+ewNaXFz848LCwl8OHDiwbWlpaV1TOK1Zs6ahe6O/8R3SnlQdXbm+uqbfutdtytn27dO2T/3Q58bx3iaNaJ1IltH95nvNp55vu67XuZ4lRx2fNmZmZg7Pzs7u2bJlyz83bty4s11DqLhr165/zM/P/22MCyCUScQGB5v6nEycEyRCrlWQyBMcuBhfCEN2ZfY2/dmOJweQCAUI3/pzc3P3b9++/e/T+/fv3zFWgOBaSDkxmhDGyMHofYGtAkQFI59ysSToGEDKdT+x7h248D+tYvfUvn37/jpGrQF/p9IiQl4Mh5mJs+/uNd29cY2Lk6lXgMhDi+Bk/D5t5Wz+KYHggpg+ePDg1ir18wMFB0Pm0g5stIEYkjnHu6kaRBlSqGub0mCSg9RfIhgBH6aPHDmyvi4HHiYT21Ed835CHdWV+VcgCdEQQhzfru36XB8rwAMfpuo0jwsQkn1yajDc98PB4G0mfgWS4WcYI5rJhSFLzYVYDH3spqfpsS6EHJmFZKSUrzbA6QiXfC6V+cdjZhLaQYhkLjXuWCGvpWoRRKPQJHwk6hRjdH15fczZN1JJmmnHNqX1PZNKcoxDMurIJ+TVlaH7jD9kjZXsHJ8e0wLIwXbvqt1IOXO5QMSlnhRAVOZfFphImpls+gyR+CV8FKVHT02PbYLHZCg5OKpjMPoS3muuJsYxAoTPxjMuLYKjTuq9F6Voi0SjclyncB6nfKHS4b65aBE2G/AqQITNNSkG49Juaqncpe1Jmm+j0SRKAgifPn21lhjRWtXMVL52wNGetLOaw3HMZU6K7UxPSaN0XMeoa2vmiclAuepKp97I5d1XcOBjeKF+iBjOai7hTJKR+85nyTEVr0mMXYPgrBPC/Dmyu0qAcCXzsynFbs6xszpHB/JY0n1MlbwIUmkQUtqH6fdQaUjqufhIZZX556VJxNQiOM1MMe5NIkpKChwk18z0JC6gFGk3uMCDOzdTLDNTze6aH0DkIN3G0iJi3hvXHoxctI8iQSKUyZcULpkrQJSwgbGSPHPhOifCRXJ31Ui4mKg0M841vcfUJE1uylsjxdBSpPkuKddU1RDyWRu5mZlS1OPY7xFaj8rnnP9pojQJ37ouW++5dlXbSPk2/cRIscF1kFAFkrwk0RwT5KUyM0k5xkPnc4x3VBxIjOWcag7twgdIQupJPvPK/PMCE+kzGXzaH2NW19z8KcWDRGmMpM+0FWMvQirNIta9VErDWDj3RHDfR6imUUqmV1oTVZMoGGByzc3E+Uwq4x4nQMR09Po4q3NIIcJRN/Q+qibRQctcN81J2tu5nd0xo5mqmaks7SCFFpHCh9JXRieZT8pZ1lWTEGT+XQCTduJy7mvwBYhStbtKYYw2NNWH5GY6DvDxBYixA0kRIbAhtjepRHpUtlt+SFKxZf7c+ZU4nNy298Fl6qIyFUzCGZREdE7sBH6mo1dLCnktEViK2ScRi1Gk2B4vne/IF1xSnTJn0tIquT9z2zOtpdcP16FAXNK/lNYT49nGfqfTpU7+1HW5GKh0uGtMkLJl6pXx5yHQhEjZEllmXYElhqaQ03tLtW5G55NIBRCS4+e6p752jj/++Oaoo45qDh061H6kHNUlLIpK4dpCKOBwSvKSADgJlB1IpErfbZoYxxxzTHP22We3f+/bt89aIzjttNOaE0880Uu7+P7775uvv/56xbVTTz21bU9Hb731Vvt9wgknNNu2bWv/fuqpp9ry9P/TTz/dO4atW7c2p5xySrN3797m7bff1pY999xzmzPPPLP58ccfm9dff93pnQGEUP+kk05q1q9f33z77bft5+OPP26OHDmyquzmzZvbv1944QVte2vXrm0uuuii5uSTT26OO+645qeffmrH9e677zaHDx9eVf7GG29svxcWFtqyOkI71B7a1xHGivro4/PPP3eaZ+vWrWvOOOMMrzmKfvGsdIwMYz3nnHPasYNobN988432HWIMeFaYz7ZMEfUgRPz222/Nhx9+aDXmSy+9tG17//79reBhKgNaXFxcVebOO+9sv3fv3t2uiSuvvLKd059++mnz/vvv9/aNcliDtBZBX3755fL6+uqrr5JsZCsl7DVbkEhlYuozkxx77LHN1VdfvcxgbPvGJN2+fbvXeLAoCCSobbQ3NzfXCxJYxAATqgfmAcbP9czQHjEiFwKDueqqq1ZcQzv44LcnnnhiBVDgPvr6AbO94447VjByMHZ8wACff/75VUBA7b333nva+7rmmmus740YPYAMfelASUcARwI/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';
+		image.onload = function() {
+			ctx.drawImage(image, 0, 0);
+			// Show the form when Image is loaded.
+			document.querySelectorAll('.event-coupon')[0].style.visibility = 'visible';
+		};
+		// brush image
+		brush.src = 'data:image/png;base64,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';
 
-	<div id="MemberShipInfo"></div>
+		canvas.addEventListener('mousedown', handleMouseDown, false);
+		canvas.addEventListener('touchstart', handleMouseDown, false);
+		canvas.addEventListener('mousemove', handleMouseMove, false);
+		canvas.addEventListener('touchmove', handleMouseMove, false);
+		canvas.addEventListener('mouseup', handleMouseUp, false);
+		canvas.addEventListener('touchend', handleMouseUp, false);
 
-	<!-- ### //[2017-01-12] 바코드 ### -->
+		function distanceBetween(point1, point2) {
+			return Math.sqrt(Math.pow(point2.x - point1.x, 2) + Math.pow(point2.y - point1.y, 2));
+		}
 
+		function angleBetween(point1, point2) {
+			return Math.atan2(point2.x - point1.x, point2.y - point1.y);
+		}
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-			var histories = getCookie('myHistories');
-			var historyimagename = getCookie('historyfirstimagename');
-			var historyval = '';
-			var btnhistory = $("#below .btn-history");
-			if (fn_IsMarioAppCheck() == false) {
-				//$(".btn-back").show();
-				$(".btn-notice").hide();
-			} else {
-				//$(".btn-back").hide();
-				$(".btn-notice").show();
-				$(".btn-setting").show();
+		// Only test every `stride` pixel. `stride`x faster,
+		// but might lead to inaccuracy
+		function getFilledInPixels(stride) {
+			if (!stride || stride < 1) {
+				stride = 1;
 			}
-			if (fn_IsIOS() == false) {
-				$(".btn-notice").html("알림<strong id='alertCount'>" + 0 + "</strong>");
-				if (getCookie("alramcount") != null) {
-					$("#alertCount").text(getCookie("alramcount"));
+
+			var pixels = ctx.getImageData(0, 0, canvasWidth, canvasHeight),
+				pdata = pixels.data,
+				l = pdata.length,
+				total = (l / stride),
+				count = 0;
+
+			// Iterate over all pixels
+			for (var i = count = 0; i < l; i += stride) {
+				if (parseInt(pdata[i]) === 0) {
+					count++;
 				}
 			}
 
-			if (histories != null && histories != "" && historyimagename != null) {
-				if (histories.substring(0, 1) == 'P') {
-					if (histories.indexOf(",") > -1) {
-						historyval = histories.substring(0, histories.indexOf(","));
-					} else {
-						historyval = histories;
-					}
+			return Math.round((count / total) * 100);
+		}
 
-					if (historyimagename.indexOf(historyval) > -1) {
-						$(btnhistory).addClass("btn-thumbnail");
-						$(btnhistory).html("히스토리<img src='http://cdn.mariooutlet.com/Product/" + historyimagename + "_d1.jpg?RS=30'>")
-					}
-				} else {
-					if (histories.indexOf(",") > -1) {
-						historyval = histories.substring(0, histories.indexOf(","));
-					} else {
-						historyval = histories;
-					}
+		function getMouse(e, canvas) {
+			var offsetX = 0,
+				offsetY = 0,
+				mx, my;
 
-					if (historyimagename.indexOf(historyval) > -1) {
-						$(btnhistory).addClass("btn-thumbnail");
-						$(btnhistory).html("히스토리<img src='http://cdn.mariooutlet.com/theme/" + historyimagename + "?RS=0X17&SZ=30X30'>")
-					}
-				}
-			} else {
-				$(btnhistory).removeClass("btn-thumbnail");
+			if (canvas.offsetParent !== undefined) {
+				do {
+					offsetX += canvas.offsetLeft;
+					offsetY += canvas.offsetTop;
+				} while ((canvas = canvas.offsetParent));
 			}
+
+			mx = (e.pageX || e.touches[0].clientX) - offsetX;
+			my = (e.pageY || e.touches[0].clientY) - offsetY;
+
+			return {
+				x: mx,
+				y: my
+			};
+		}
+
+		function handlePercentage(filledInPixels) {
+			filledInPixels = filledInPixels || 0;
+			if (filledInPixels > 60) {
+				canvas.parentNode.removeChild(canvas);
+				modalCon('layer-event__1', false, true);
+			}
+		}
+
+		function handleMouseDown(e) {
+			isDrawing = true;
+			lastPoint = getMouse(e, canvas);
+		}
+
+		function handleMouseMove(e) {
+			if (!isDrawing) {
+				return;
+			}
+
+			e.preventDefault();
+
+			var currentPoint = getMouse(e, canvas),
+				dist = distanceBetween(lastPoint, currentPoint),
+				angle = angleBetween(lastPoint, currentPoint),
+				x, y;
+
+			for (var i = 0; i < dist; i++) {
+				x = lastPoint.x + (Math.sin(angle) * i) - 25;
+				y = lastPoint.y + (Math.cos(angle) * i) - 25;
+				ctx.globalCompositeOperation = 'destination-out';
+				ctx.drawImage(brush, x, y);
+			}
+
+			lastPoint = currentPoint;
+			handlePercentage(getFilledInPixels(32));
+		}
+
+		function handleMouseUp(e) {
+			isDrawing = false;
+		}
+	})();
+
+	$(window).load(function() {
+		$('.event-notice__button').on('mouseenter', function() {
+			$(this).parent('.event-notice').addClass('active');
 		});
+		$('.event-notice__close').on('click', function() {
+			$(this).parents('.event-notice').removeClass('active');
+		});
+	});
 
-		function goOffLine() {
-			var _device = "2";
-			if (_device == "4") {
-				AppAlertMessage(9);
-			} else {
-				if (IsLogin() == "True") {
-					SiteSSOCheck('O', 'http://m.mariooutlet.co.kr');
-				} else {
-					location.href = 'http://m.mariooutlet.co.kr';
-					//window.open("http://m.mariooutlet.co.kr");
-				}
-			}
-		}
-		if (getCookie("cartCount") == null || getCookie("cartCount").length == 0)
-			setSessionCookie_domain("cartCount", "0");
-
-		$("#cartCount").text(getCookie("cartCount"));
-
-		if (IsLogin() == "True") {
-			$.ajax({
-				url: '/Navigation/MemberShipInfo',
-				type: "GET",
-				processData: false,
-				contentType: false,
-				async: true,
-				cache: false,
-				success: function(data) {
-					if (data != null && data.length > 0) {
-						$(".btn-barcode").show();
-						$("#MemberShipInfo").html(data);
-					}
-				}
-			});
-		} else {
-			$(".btn-barcode").hide();
-			$("#MemberShipInfo").html('');
-		}
-
-	</script>
-
-
-
-
-	<article id="layerReturn" class="layer-wrap layer-return"></article>
-	<div id="layer-search-category" class="layer-search-category">
-
-	</div>
-
-	<!-- ### popup [2021-10-20] ### -->
-	<article id="layerIsmsService" class="layer-wrap">
-		<h1 class="layer-tit">정보보호 관리체계 인증서</h1>
-		<div class="layer-cont">
-			<img src="//cdn.mariooutlet.com/ui/common/imsm_footer.jpg" alt="ISMS">
-		</div>
-		<button class="btn-close layer-btn">레이어 닫기</button>
-	</article>
-	<!-- ### //popup ### -->
-	<!-- ### popup [2016-10-31] ### -->
-	<article id="layerUsafeService" class="layer-wrap">
-		<h1 class="layer-tit">서비스가입사실확인</h1>
-		<div class="layer-cont">
-			<img src="//cdn.mariooutlet.com/ui/common/footer_usafe_img.jpg" alt="농협지급보증">
-		</div>
-		<button class="btn-close layer-btn">레이어 닫기</button>
-	</article>
-	<!-- ### //popup ### -->
-
-	<input type="hidden" id="hid_textbanner">
-	<div class="div_temp_membership"></div>
-	<div class="div_temp_slidepopup"></div>
-
-
-
-	<div id="wp_tg_cts" style="display:none;">
-		<script id="wp_tag_script_1637820518714" src="https://astg.widerplanet.com/delivery/wpc.php?v=1&amp;ver=4.0&amp;r=1&amp;md=bs&amp;ga=1gmak5c-kin2jt-3-1&amp;wp_uid=2-d938cd4b40f319b457654b5d03633ac5-s1625639424.9501%7Cwindows_10%7Cchrome-sycl8l&amp;ty=Home&amp;ti=44140&amp;device=mobile&amp;charset=UTF-8&amp;tc=1637820518714&amp;ref=http%3A%2F%2Fwww.mariomall.co.kr%2F&amp;loc=http%3A%2F%2Fm.mariomall.co.kr%2FSearch%2FResult%3Fredirecturl%3Dhttp%3A%2F%2Fm.mariomall.co.kr%26keyword%3D%25ea%25b9%2580%25ed%259d%25ac%25eb%25a0%25b9"></script>
-	</div>
-	<script type="text/javascript">
-		var wptg_tagscript_vars = wptg_tagscript_vars || [];
-
-		function widerplanet_layout(id) {
-			if (id == null) {
-				id = "";
-			}
-
-			wptg_tagscript_vars.push(
-				(function() {
-					return {
-						wp_hcuid: id,
-						/*고객넘버 등 Unique ID (ex. 로그인  ID, 고객넘버 등 )를 암호화하여 대입.
-						 *주의 : 로그인 하지 않은 사용자는 어떠한 값도 대입하지 않습니다.*/
-						ti: "44140",
-						/*광고주 코드 */
-						ty: "Home",
-						/*트래킹태그 타입 */
-						device: "mobile" /*디바이스 종류  (web 또는  mobile)*/
-
-					};
-				}));
-		}
-
-		if (IsLogin() == "True") {
-			//  이메일
-			$.ajax({
-				url: "/Home/MD5HashFunc",
-				type: "GET",
-				cache: false,
-				async: true,
-				success: function(data) {
-					widerplanet_layout(data);
-				}
-			});
-		} else {
-			widerplanet_layout('');
-		}
-
-	</script>
-	<script type="text/javascript" async="" src="//cdn-aitg.widerplanet.com/js/wp_astg_4.0.js"></script>
-
-
-
-	<script type="text/javascript">
-		var sTime = new Date().getTime();
-		(function(i, s, o, g, r, a, m) {
-			i['cmcObject'] = g;
-			i['cmcUid'] = r;
-			a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-			a.async = 1;
-			a.src = g;
-			m.parentNode.insertBefore(a, m)
-		})(window, document, 'script', '//mariooutlet.cmclog.cafe24.com/weblog.js?v=' + sTime, 'mariooutlet');
-
-	</script>
-
-	<!-- 리포트2.0 로그분석코드 시작 -->
-	<script type="text/javascript">
-		var sTime = new Date().getTime();
-		(function(i, s, o, g, r, a, m) {
-			i['webObject'] = g;
-			i['webUid'] = r;
-			a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-			a.async = 1;
-			a.src = g;
-			m.parentNode.insertBefore(a, m)
-		})
-		(window, document, 'script', '//mariooutlet.weblog.cafe24.com/weblog.js?v=' + sTime, 'mariooutlet');
-
-	</script>
-	<!-- 리포트2.0  로그분석코드 완료 -->
-	<!-- Cafe24 End -->
-	<!-- 네이버 클릭초이스 공통 스크립트 Start-->
-	<!-- 공통 적용 스크립트 , 모든 페이지에 노출되도록 설치. 단 전환페이지 설정값보다 항상 하단에 위치해야함 -->
-	<script type="text/javascript">
-		if (!wcs_add) var wcs_add = {};
-		wcs_add["wa"] = "s_239ae02c46e6";
-		if (!_nasa) var _nasa = {};
-		wcs.inflow();
-		wcs_do(_nasa);
-
-	</script>
-	<!-- 네이버 클릭초이스 공통 스크립트 End-->
-
-
-
-
-
-
-	<!-- AceCounter kakaostyle Mobile WebSite Gathering Script V.2.0.20190705 -->
-	<script type="text/javascript">
-		var _AceKS_CTS = (function(_a, _b, _c, _d) {
-			var _sr = [_a, _b, _c, _d];
-			var _sc = document.createElement('script');
-			var _sm = document.getElementsByTagName('script')[0];
-			var _sh = '//cr.acecounter.com/Mobile/AceCounter_' + _d + '.js?gc=' + _c + '&py=0&up=&rd=' + (new Date().getTime());
-			if (typeof(_AceKS_CTS) == 'undefined') {
-				_sc.src = (location.protocol.indexOf('http') == 0 ? location.protocol : 'http:') + _sh;
-				_sm.parentNode.insertBefore(_sc, _sm);
-			}
-			return _sr;
-		})('mariomall.co.kr', 'm.mariomall.co.kr,www.mariomall.co.kr,mariomall.co.kr,member.mariomall.co.kr', 'AP1A445561980', 'CTS');
-
-	</script>
-	<!-- AceCounter kakaostyle Mobile WebSite Gathering Script End V.2.0.20190705 -->
-
-	<!-- 20210303 : 판매자리스트 레이어 출력 -->
-	<script>
-		//판매자리스트 레이어 출력
-		function fn_SellerListView(Current) {
-			Current = Current || "1";
-			$.post("/Customer/SellerListView?Current=" + Current, function(data) {
-				$("#layerSellerList .layer-cont").html(data);
-				modalCon('layerSellerList', false, true); /* 20210303 */
-			});
-		}
-
-	</script>
-	<article id="layerSellerList" class="layer-wrap">
-		<h1 class="layer-tit">판매자 리스트</h1>
-		<button class="btn-close layer-btn">레이어 닫기</button>
-		<div class="layer-cont">
-		</div>
-	</article>
-	<!-- // 20210303 : 판매자리스트 레이어 출력 -->
-
-
-	<div id="criteo-tags-div" style="display: none;"><iframe src="https://gum.criteo.com/syncframe?topUrl=m.mariomall.co.kr&amp;origin=onetag#{&quot;bundle&quot;:{&quot;origin&quot;:3,&quot;value&quot;:&quot;kOJ_HV85eVMlMkJDVDJ4N1h1ekJBazVadTZiQnQwS3p0WWVwamNXSFMxcTJCNVdSYlh1UUhOS1RHZ1FUZFdWQ21oemQ2Z2NWcmVrUE5IbmlCOVg4ejdwTTdCemdqeUVVeDdBVnhycU5KRjJxV1V2emJjYW1HV3h4dEZlaHhYOUM0MDlXMGdvcnFmRmlEQ1lvVXdBbTdVVk9mcmY0USUzRCUzRA&quot;},&quot;cw&quot;:true,&quot;optout&quot;:{&quot;origin&quot;:0,&quot;value&quot;:null},&quot;origin&quot;:&quot;onetag&quot;,&quot;pm&quot;:1,&quot;sid&quot;:{&quot;origin&quot;:0,&quot;value&quot;:null},&quot;tld&quot;:&quot;mariomall.co.kr&quot;,&quot;topUrl&quot;:&quot;m.mariomall.co.kr&quot;,&quot;version&quot;:&quot;5_8_0&quot;,&quot;ifa&quot;:{&quot;origin&quot;:0,&quot;value&quot;:null},&quot;lsw&quot;:true}" id="criteo-syncframe-onetag" width="0" height="0" frameborder="0" style="border-width:0px; margin:0px; display:none" title="Criteo GUM iframe"></iframe></div><iframe height="0" width="0" title="Criteo DIS iframe" style="display: none;"></iframe>
-</body>
-
-</html>
+</script>
