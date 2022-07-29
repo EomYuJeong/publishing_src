@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>기획전 | 마리오아울렛</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- [2016-08-26] 최신 표준 모드 렌더링 추가 -->
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<!--[if lte IE 9]>
+    <script src="http://www.mariomall.co.kr/statics/javascript/html5shiv.js"></script>
+    <script src="http://www.mariomall.co.kr/statics/javascript/placeholders.min.js"></script>
+    <![endif]-->
+
+	<!-- 공통 -->
+	<link rel="stylesheet" type="text/css" href="http://www.mariomall.co.kr/statics/stylesheet/base.css" />
+	<link rel="stylesheet" type="text/css" href="http://www.mariomall.co.kr/statics/stylesheet/layout.css" />
+	<link rel="stylesheet" type="text/css" href="http://www.mariomall.co.kr/statics/stylesheet/common.css" />
+	<script type="text/javascript" src="http://www.mariomall.co.kr/statics/javascript/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="http://www.mariomall.co.kr/statics/javascript/jquery.bxslider.min.js"></script>
+	<script type="text/javascript" src="http://www.mariomall.co.kr/statics/javascript/TweenMax.min.js"></script>
+	<script type="text/javascript" src="http://www.mariomall.co.kr/statics/javascript/jquery.swiper.min.js"></script>
+	<script type="text/javascript" src="http://www.mariomall.co.kr/statics/javascript/slick.js"></script>
+	<script type="text/javascript" src="http://www.mariomall.co.kr/statics/javascript/jquery.masonry.min.js"></script>
+	<script type="text/javascript" src="http://www.mariomall.co.kr/statics/javascript/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="http://www.mariomall.co.kr/statics/javascript/jquery.menu-aim.js"></script>
+	<script type="text/javascript" src="http://www.mariomall.co.kr/statics/javascript/ui.common.js"></script>
+	<script type="text/javascript" src="http://www.mariomall.co.kr/statics/javascript/ui.common.web.js"></script>
+
+</head>
+
+<body>
+	<a href="#content" class="skip-menu">본문바로가기</a>
+	<div id="wrap">
+		<!-- ### header ### -->
+		<header id="header">
+			<div style="background:#f4f4f4;color:#111;height:116px;text-align:center;font-size:1.16em;line-height:116px;border-bottom:1px solid #ddd;">HEADER : <a href="../work/layout_page.html" target="_blank">공통 레이아웃 참고</a></div>
+		</header><!-- ### //header ### -->
+		<!-- ### content ### -->
+		<article id="content">
+			<!-- ### [Layout] : 현재페이지 경로 ### -->
+			<nav class="location-wrap">
+				<a href="#none" class="btn-back">앞으로 가기</a>
+				<span>마리오아울렛</span>
+				<a href="#none" class="lo-depth">기획전</a>
+			</nav>
+			<!-- ### //[Layout] : 현재페이지 경로 ### -->
+			<!-- ### [Layout] : 페이지 타이틀 ### -->
+			<header class="page-header">
+				<h1 class="tit-type hid">기획전</h1>
+				<!-- 2016-08-03 -->
+				<div class="plan-header">
+					<span class="select-wrap">
+						<select title="기획전 선택">
+							<option selected="selected">해당 카테고리의 다른 기획전 보기</option>
+							<option>A 기획전</option>
+							<option>B 기획전</option>
+							<option>C 기획전</option>
+							<option>기획전 전체 보기</option>
+						</select>
+					</span>
+					<div class="plan-info">
+						<em>2016-05-01 ~ 2016-07-30</em>
+						<ul class="btn-type03 s5">
+							<li><a href="#none" class="icon-sns-b s1">네이버블로그</a></li>
+							<li><a href="#none" class="icon-sns-f">페이스북</a></li>
+							<li><a href="#none" class="icon-sns-k s1">카카오스토리</a></li>
+						</ul>
+					</div>
+				</div>
+			</header>
+			<!-- ### //[Layout] : 페이지 타이틀 ### -->
+			<!-- ### [Layout] : 페이지 내용 ### -->
+			<style>
+			.event-20220105 .event-top {
+				background: url('https://cdn.mariooutlet.com/ui/event/20220105/pc_event_top.jpg') center 0 no-repeat;
+				height: 781px;
+				position: relative;
+				overflow: hidden
+			}
+
+			.event-20220105 .event-top:after {
+				content: '';
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				background: url(images/pc_wave.png) 0 0 repeat;
+				z-index: 100;
+				height: 19px
+			}
+
+			.event-20220105 .event-top .event-top-slide {
+				position: absolute;
+				left: 0;
+				right: 0;
+				z-index: 10;
+				top: 396px;
+				opacity: 0.7;
+				height: 260px;
+				padding: 27px 0
+			}
+
+			.event-20220105 .event-top .event-top-slide .rolling-box {
+				position: absolute;
+				height: inherit;
+				width: inherit;
+				width: 100%;
+				z-index: 1
+			}
+
+			.event-20220105 .event-top .event-top-slide .rolling-box .event-top-slide-banner {
+				width: auto;
+				height: inherit;
+				position: absolute
+			}
+
+			.event-20220105 .event-top .event-top-slide .rolling-box .event-top-slide-banner img {
+				filter: drop-shadow(0 0 27px rgba(0, 0, 0, 0.2))
+			}
+
+			.event-20220105 .event-top .event-top-mobile {
+				position: absolute;
+				top: 279px;
+				left: 50%;
+				transform: translateX(-50%);
+				z-index: 99
+			}
+
+			.event-20220105 .event-top .event-top-mobile img {
+				filter: drop-shadow(14px 14px 7px rgba(0, 0, 0, 0.13))
+			}
+
+			.event-20220105 .event-contents {
+				position: relative;
+				background: url('https://cdn.mariooutlet.com/ui/event/20220105/pc_cont2.jpg') center 0 no-repeat;
+				height: 1619px
+			}
+
+			.event-20220105 .event-contents .event-coupon-wrap {
+				position: absolute;
+				width: 1110px;
+				left: 0;
+				right: 0;
+				margin: 0 auto;
+				top: 184px;
+				z-index: 3;
+				display: flex;
+				-webkit-display: flex;
+				justify-content: space-between
+			}
+
+			.event-20220105 .event-contents .btn_channel {
+				background: url('https://cdn.mariooutlet.com/ui/event/20220105/pc_channel_button.jpg') 0 0 no-repeat;
+				width: 440px;
+				height: 80px;
+				position: absolute;
+				z-index: 10;
+				top: 554px;
+				left: 50%;
+				transform: translateX(-50%);
+				font-size: 0
+			}
+
+			</style>
+			<section class="page-content page-plan">
+				<div class="event-20220105">
+					<div class="event-top">
+						<div class="event-top-slide">
+							<div class="rolling-box">
+								<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/pc_slide_banner.png" alt="" title=""></span>
+								<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/pc_slide_banner2.png" alt="" title=""></span>
+								<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/pc_slide_banner3.png" alt="" title=""></span>
+								<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/pc_slide_banner4.png" alt="" title=""></span>
+								<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/pc_slide_banner5.png" alt="" title=""></span>
+								<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/pc_slide_banner6.png" alt="" title=""></span>
+								<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/pc_slide_banner7.png" alt="" title=""></span>
+								<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/pc_slide_banner8.png" alt="" title=""></span>
+								<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/pc_slide_banner.png" alt="" title=""></span>
+								<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/pc_slide_banner2.png" alt="" title=""></span>
+								<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/pc_slide_banner3.png" alt="" title=""></span>
+								<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/pc_slide_banner4.png" alt="" title=""></span>
+								<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/pc_slide_banner5.png" alt="" title=""></span>
+								<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/pc_slide_banner6.png" alt="" title=""></span>
+								<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/pc_slide_banner7.png" alt="" title=""></span>
+								<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/pc_slide_banner8.png" alt="" title=""></span>
+							</div>
+						</div>
+						<span class="event-top-mobile"><img src="https://cdn.mariooutlet.com/ui/event/20220105/pc_slide_mobile.png" alt="" title=""></span>
+					</div>
+					<div class="event-contents">
+						<div class="event-coupon-wrap">
+							<a href="" style="display:none"><img src="https://cdn.mariooutlet.com/ui/event/20220105/pc_channel_banner.jpg"></a>
+							<a href="" style="display:none"><img src="https://cdn.mariooutlet.com/ui/event/20220105/pc_channel_banner2.jpg"></a>
+						</div>
+						<button type="button" class="btn_channel">마리오몰 채널 바로 추가하기</button>
+					</div>
+				</div>
+			</section>
+			<!-- ### //[Layout] : 페이지 내용 ### -->
+		</article>
+		<!-- ### //content ### -->
+		<!-- ### footer ### -->
+		<footer id="footer">
+			<div style="background:#f4f4f4;color:#111;height:307px;text-align:center;font-size:1.16em;line-height:307px;">FOOTER : <a href="../work/layout_page.html" target="_blank">공통 레이아웃 참고</a></div>
+		</footer><!-- ### //footer ### -->
+		<!-- ### aside ### -->
+		<aside id="qMenu">
+			<div style="background:#f4f4f4;color:#111;height:816px;text-align:center;font-size:1.16em;">ASIDE : <br /><a href="../work/layout_page.html" target="_blank">공통 레이아웃 참고</a></div><a href="#top" class="btn-top">TOP</a>
+		</aside><!-- ### //aside ### -->
+	</div>
+	<script type="text/javascript">
+		function rollingBanner(target_class) {
+			console.log("in");
+			var bannerLeft = 0;
+			var first = 1;
+			var last;
+			var imgCnt = 0;
+			var $img = $('.' + target_class).find('span');
+			var $first;
+			var $last;
+
+			$img.each(function() {
+				$(this).css("left", bannerLeft);
+				bannerLeft += $(this).width() + 10;
+				$(this).attr("id", target_class + "-banner" + (++imgCnt));
+			});
+
+			if (imgCnt > 2) {
+				last = imgCnt;
+				setInterval(function() {
+					$img.each(function() {
+						$(this).css("left", $(this).position().left - 1);
+					});
+					$first = $("#" + target_class + "-banner" + first);
+					$last = $("#" + target_class + "-banner" + last);
+					
+					console.log("$first : "+$first);
+					if ($first.position().left < -300) {
+						$first.css("left", $last.position().left + $last.width() +10);
+						first++;
+						last++;
+						if (last > imgCnt) {
+							last = 1;
+						}
+						if (first > imgCnt) {
+							first = 1;
+						}
+					}
+				}, 20);
+			}
+		}
+
+		setTimeout(function() {
+			rollingBanner('event-top-slide');
+		}, 300);
+
+	</script><!-- 2016-08-17 -->
+</body>
+
+</html>

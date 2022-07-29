@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>기획전 | 마리오아울렛</title>
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+	<meta name="format-detection" content="telephone=no" />
+
+	<link rel="stylesheet" type="text/css" href="http://mt.mariomall.co.kr/statics/stylesheet/mobile/base.css" />
+	<link rel="stylesheet" type="text/css" href="http://mt.mariomall.co.kr/statics/stylesheet/mobile/layout.css" />
+	<link rel="stylesheet" type="text/css" href="http://mt.mariomall.co.kr/statics/stylesheet/mobile/common.css" />
+	<link rel="stylesheet" type="text/css" href="http://mt.mariomall.co.kr/statics/stylesheet/mobile/event.css" />
+	<script type="text/javascript" src="http://mt.mariomall.co.kr/statics/javascript/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="http://mt.mariomall.co.kr/statics/javascript/jquery.swiper.min.js"></script>
+	<script type="text/javascript" src="http://mt.mariomall.co.kr/statics/javascript/jquery.iscroll.js"></script>
+	<script type="text/javascript" src="http://mt.mariomall.co.kr/statics/javascript/TweenMax.min.js"></script>
+	<script type="text/javascript" src="http://mt.mariomall.co.kr/statics/javascript/ui.common.js"></script>
+	<script type="text/javascript" src="http://mt.mariomall.co.kr/statics/javascript/ui.common.m.js"></script>
+
+</head>
+
+<body>
+
+	<article id="layerXXX" class="layer-wrap layer-XXX">
+		<h1 class="layer-tit">확인</h1>
+		<button class="btn-close layer-btn">레이어 닫기</button>
+		<div class="layer-cont">
+			<p id="message">내용이 들어갑니다.</p>
+			<div class="btn-wrap">
+				<a href="javascript:;" class="btn-type s2 btn-close" id="btnOk">확인</a>
+				<a href="javascript:;" class="btn-type02 s2 btn-close" id="btnCancel">취소</a>
+			</div>
+		</div>
+	</article>
+	<div id="wrap">
+		<!-- ### [L] : header ### -->
+		<header id="header">
+			<div style="background:#f4f4f4;color:#111;height: 44px;text-align:center;font-size:1.16em;line-height:4.4rem;">header : <a href="../work/layout_page.html" target="_blank">공통 레이아웃 참고</a></div>
+		</header>
+		<!-- ### // [L] : header ### -->
+		<!-- ### [L] : content ### -->
+		<article id="content">
+			<script>
+				function confirmLayer(text, okFunction, cancelFunction, okBtnText, cancelBtnText) {
+					var modal = "layerXXX";
+					$("#" + modal + " #message").html(text);
+					modalCon(modal, false, true);
+
+					if (okFunction) {
+						$('#' + modal + ' #btnOk').click({
+							target: event.target
+						}, okFunction);
+						if (okBtnText != undefined && okBtnText != "") {
+							$("#" + modal + ' #btnOk').html(okBtnText);
+						}
+					}
+					if (cancelFunction) {
+						$('#' + modal + ' #btnCancel').click({
+							target: event.target
+						}, cancelFunction);
+						if (cancelBtnText != undefined && cancelBtnText != "") {
+							$("#" + modal + ' #btnCancel').html(cancelBtnText);
+						}
+					}
+				}
+
+			</script>
+
+			<!-- ### [Layout] : 페이지 내용 ### -->
+			<style>
+			.event-20220105 .event-top {
+				position: relative;
+				overflow: hidden
+			}
+
+			.event-20220105 .event-top:after {
+				content: '';
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				background: url('https://cdn.mariooutlet.com/ui/event/20220105/m_wave.png') 0 0 repeat;
+				z-index: 100;
+				height: 10px;
+				background-size: auto 10px
+			}
+
+			.event-20220105 .event-top .event-top-slide {
+				position: absolute;
+				left: 0;
+				right: 0;
+				z-index: 10;
+				top: calc(303/640*100vw);
+				opacity: 0.7;
+				height: calc(260/640*100vw);
+				padding: calc(27/640*100vw) 0
+			}
+
+			.event-20220105 .event-top .event-top-slide .rolling-box {
+				position: absolute;
+				height: inherit;
+				width: inherit;
+				width: 100%;
+				z-index: 1
+			}
+
+			.event-20220105 .event-top .event-top-slide .rolling-box .event-top-slide-banner {
+				width: calc(220/640*100vw);
+				height: inherit;
+				position: absolute
+			}
+
+			.event-20220105 .event-top .event-top-slide .rolling-box .event-top-slide-banner img {
+				filter: drop-shadow(0 0 calc(27/640*100vw) rgba(0, 0, 0, 0.2))
+			}
+
+			.event-20220105 .event-top .event-top-mobile {
+				position: absolute;
+				bottom: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				z-index: 99;
+				width: calc(320/640*100vw)
+			}
+
+			.event-20220105 .event-top .event-top-mobile img {
+				filter: drop-shadow(7px 7px 3px rgba(0, 0, 0, 0.13))
+			}
+
+			.event-20220105 .event-contents {
+				position: relative;
+			}
+
+			.event-20220105 .event-contents .event-coupon-wrap {
+				position: absolute;
+				width: calc(620/640*100vw);
+				left: 0;
+				right: 0;
+				margin: 0 auto;
+				top: calc(135/640*100vw);
+				z-index: 3;
+				display: flex;
+				-webkit-display: flex;
+				justify-content: space-between
+			}
+
+			.event-20220105 .event-contents .event-coupon-wrap a {
+				padding: 0 calc(4/640*100vw) 0 0
+			}
+
+			.event-20220105 .event-contents .event-coupon-wrap a:last-child {
+				padding: 0 0 0 calc(4/640*100vw)
+			}
+
+			.event-20220105 .event-contents .btn_channel {
+				background: url('https://cdn.mariooutlet.com/ui/event/20220105/m_channel_button.jpg') 0 0 no-repeat;
+				width: calc(440/640*100vw);
+				height: calc(80/640*100vw);
+				position: absolute;
+				z-index: 10;
+				top: calc(570/640*100vw);
+				left: 50%;
+				transform: translateX(-50%);
+				font-size: 0;
+				background-size: contain
+			}
+
+			.event-20220105 .event-contents .event_channel_way {
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: calc(882/640*100vw);
+				z-index: 2;
+				height: calc(352/640*100vw);
+				overflow-x: auto
+			}
+
+			.event-20220105 .event-contents .event_channel_way img {
+				height: calc(352/640*100vw);
+				width: auto;
+				max-width: none
+			}
+			</style>
+			<article class="event-20220105">
+				<div class="event-top">
+					<img src="https://cdn.mariooutlet.com/ui/event/20220105/m_event_top.jpg" alt="" title="">
+					<div class="event-top-slide">
+						<div class="rolling-box">
+							<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/m_slide_banner1.png" alt="" title=""></span>
+							<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/m_slide_banner2.png" alt="" title=""></span>
+							<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/m_slide_banner3.png" alt="" title=""></span>
+							<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/m_slide_banner4.png" alt="" title=""></span>
+							<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/m_slide_banner5.png" alt="" title=""></span>
+							<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/m_slide_banner6.png" alt="" title=""></span>
+							<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/m_slide_banner7.png" alt="" title=""></span>
+							<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/m_slide_banner8.png" alt="" title=""></span>
+							<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/m_slide_banner.png" alt="" title=""></span>
+							<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/m_slide_banner2.png" alt="" title=""></span>
+							<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/m_slide_banner3.png" alt="" title=""></span>
+							<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/m_slide_banner4.png" alt="" title=""></span>
+							<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/m_slide_banner5.png" alt="" title=""></span>
+							<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/m_slide_banner6.png" alt="" title=""></span>
+							<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/m_slide_banner7.png" alt="" title=""></span>
+							<span class="event-top-slide-banner"><img src="https://cdn.mariooutlet.com/ui/event/20220105/m_slide_banner8.png" alt="" title=""></span>
+						</div>
+					</div>
+					<span class="event-top-mobile"><img src="https://cdn.mariooutlet.com/ui/event/20220105/m_slide_mobile.png" alt="" title=""></span>
+				</div>
+				<div class="event-contents">
+					<img src="https://cdn.mariooutlet.com/ui/event/20220105/m_cont2.jpg" alt="" title="">
+					<div class="event-coupon-wrap">
+						<a href="" style="display:none"><img src="https://cdn.mariooutlet.com/ui/event/20220105/m_channel_banner.jpg"></a>
+						<a href="" style="display:none"><img src="https://cdn.mariooutlet.com/ui/event/20220105/m_channel_banner2.jpg"></a>
+					</div>
+					<button type="button" class="btn_channel">마리오몰 채널 바로 추가하기</button>
+					<div class="event_channel_way">
+						<img src="https://cdn.mariooutlet.com/ui/event/20220105/m_event_channel_way.jpg" alt="" title="">
+					</div>
+				</div>
+			</article>
+
+			<!-- ### [Layout] : //페이지 내용 ### -->
+		</article>
+		<!-- ### // [L] : content ### -->
+		<!-- ###
+       [L] : footer
+       [2016-10-31] 전체적으로 변경
+    ### -->
+		<footer id="footer">
+			<!-- 공지사항 -->
+			<div class="footer-notice">
+				<h2>공지</h2>
+				<p><a href="#none">마이 아울렛, 마리오아울렛 닷컴 OPEN</a></p>
+			</div>
+			<!-- //공지사항 -->
+			<!-- 퀵메뉴 -->
+			<div class="footer-guick">
+				<p class="go-on on">바로<strong>ON</strong></p> <!-- off 상태 : <p class="go-on">바로<strong>OFF</strong></p> -->
+				<a href="#none">로그아웃</a>
+				<a href="#none">고객센터</a>
+				<a href="#none">매장안내</a>
+			</div>
+			<!-- //퀵메뉴 -->
+			<!-- SNS -->
+			<ul class="footer-sns">
+				<li><a href="#none">페이스북</a></li>
+				<li><a href="#none">인스타그램</a></li>
+				<li><a href="#none">블로그</a></li>
+				<li><a href="#none">PC바로가기</a></li>
+			</ul>
+			<!-- //SNS -->
+			<!-- [2017-01-12] 패밀리 사이트 추가 -->
+			<dl class="footer-family">
+				<dt>패밀리사이트이동</dt>
+				<dd><a href="http://m.mariooutlet.co.kr" target="_blank">마리오아울렛</a></dd> <!-- [2017-01-16] 텍스트 및 링크 변경 -->
+				<dd><a href="http://m.herbvillage.co.kr" target="_blank">허브빌리지</a></dd>
+				<dd><a href="http://www.mariokids.com" target="_blank">마리오아울렛 어린이집</a></dd>
+			</dl>
+			<!-- //[2017-01-12] 패밀리 사이트 추가 -->
+			<!-- 약관 및 법적 고지 확인하기 -->
+			<button type="button" class="footer-btn">약관 및 법적 고지 확인하기</button>
+			<div class="footer-agree">
+				<address>
+					<span><strong>마리오아울렛(주)</strong></span>
+					<span>서울특별시 금천구 디지털로 9길 23 마리오아울렛 2관 13층</span>
+					<span>대표이사 회장 홍성열 사업자번호 112-81-15877</span>
+					<span>통신판매업신고: 18-1991</span>
+					<span><strong>고객센터 1522-3605 | </strong><a href="mailto:info@emario.co.kr">info@emario.co.kr</a></span>
+					<span>개인정보관리책임자 : 정재명 부장</span>
+					<span>호스팅 서비스 제공자 마리오아울렛㈜</span>
+				</address>
+				<p class="footer-info">
+					<strong>농협은행 채무지급보증안내</strong>
+					고객님께서 안전거래를 위해 현금 등으로 결제하신 경우, <br>
+					저희 쇼핑몰에서 가입한 NH농협은행의 채무지급보증(구매안전서비스)을 이용하실 수 있습니다.
+					<a href="#layerUsafeService" data-modal="layerUsafeService">서비스가입사실확인</a> <!-- [2016-09-28] 링크 추가 -->
+				</p>
+				<ul class="footer-link">
+					<li><a href="#none">사업자 정보 확인</a></li>
+					<li><a href="#none">이용약관</a></li>
+					<li><a href="#none">개인정보취급방침</a></li>
+				</ul>
+			</div>
+			<!-- //약관 및 법적 고지 확인하기 -->
+			<small> COPYRIGHT © MARIO OUTLET. ALL RIGHTS RSEREVED.</small>
+		</footer>
+		<!-- ### //[L] : footer ### -->
+		<!-- ### [L] : top btn ### -->
+		<a href="#top" class="btn-top">TOP</a>
+		<!-- ### // [L] : top btn ### -->
+		<!-- ### [L : 2017-02-02] : BACK btn ### -->
+		<a href="#none" class="btn-back02">BACK</a>
+		<!-- ### // [L : 2017-02-02] : BACK btn ### -->
+	</div>
+	<!-- ### [L] : allMenu ### -->
+	<!-- ### [L] : below ### -->
+	<aside id="below">
+		<!--  <a href="#none" class="btn-back">뒤로가기</a> WEB일 경우에만 노출 -->
+		<a href="#none" class="btn-notice">알림함<strong>12</strong></a> <!--  [2017-01-12] 메뉴 추가 // APP일 경우에만 노출 -->
+		<!-- <a href="#none" class="btn-cate">카테고리</a> [2017-01-12] 메뉴 삭제 -->
+		<a href="#none" class="btn-my">MY MARIO</a> <!-- [2016-11-02] 메뉴명 변경 -->
+		<a href="#none" class="btn-history">히스토리</a>
+		<a href="#none" class="btn-cart">쇼핑백<strong>12</strong></a>
+		<a href="#floating" class="btn-mo">더보기</a> <!--  [2017-01-12] 메뉴 추가 -->
+	</aside>
+	<!-- ### // [L] : below ### -->
+	<!-- ### [2017-01-12] 플로팅메뉴 ### -->
+	<aside id="floating">
+		<a href="#none" class="btn-coupon">쿠폰</a>
+		<a href="#none" class="btn-order">주문배송조회</a>
+		<a href="#none" class="btn-mario">마리오홈페이지</a>
+		<a href="#memBarcode" class="btn-barcode">바코드</a>
+		<a href="#none" class="btn-setting">설정</a> <!-- [APP에만 노출] -->
+		<button type="button" class="btn-close">닫기</button>
+	</aside>
+	<!-- ### //[2017-01-12] 플로팅메뉴 ### -->
+	<!-- 공통 : js -->
+	<script type="text/javascript">
+		function rollingBanner(target_class) {
+			console.log("in");
+			var bannerLeft = 0;
+			var first = 1;
+			var last;
+			var imgCnt = 0;
+			var $img = $('.' + target_class).find('span');
+			var $first;
+			var $last;
+
+			$img.each(function() {
+				$(this).css("left", bannerLeft);
+				bannerLeft += $(this).width() + 10;
+				$(this).attr("id", target_class + "-banner" + (++imgCnt));
+			});
+
+			if (imgCnt > 2) {
+				last = imgCnt;
+				setInterval(function() {
+					$img.each(function() {
+						$(this).css("left", $(this).position().left - 1);
+					});
+					$first = $("#" + target_class + "-banner" + first);
+					$last = $("#" + target_class + "-banner" + last);
+
+					console.log("$first : " + $first);
+					if ($first.position().left < -300) {
+						$first.css("left", $last.position().left + $last.width() + 10);
+						first++;
+						last++;
+						if (last > imgCnt) {
+							last = 1;
+						}
+						if (first > imgCnt) {
+							first = 1;
+						}
+					}
+				}, 20);
+			}
+		}
+
+		setTimeout(function() {
+			rollingBanner('event-top-slide');
+		}, 300);
+
+	</script>
+</body>
+
+</html>
