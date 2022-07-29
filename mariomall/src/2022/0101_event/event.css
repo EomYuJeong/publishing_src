@@ -1,0 +1,396 @@
+/*--- event-20220103 ---*/
+.event-20220103 {
+	min-width: 1225px;
+	text-align: center;
+	margin: 0 auto;
+	position: relative;
+}
+
+/*--- cont01 ---*/
+.event-20220103 #eventCont .cont01 {
+	background: url("http://cdn.mariooutlet.com/ui/event/20220103/pc_event_top.jpg") no-repeat center top;
+	height: 2006px;
+	position: relative;
+}
+
+/*--- 룰렛 판(배경) ---*/
+.event-20220103 #eventCont .cont01 .roulette_plate {
+	width: 730px;
+	/*position: absolute;
+    top: 775px;*/
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	z-index: 5;
+}
+
+.event-20220103 #eventCont .cont01 .roulette_wrap:after {
+	width: 59px;
+	height: 89px;
+	background: url('http://cdn.mariooutlet.com/ui/event/20220103/pc_roulette_pin.png') 0 0 no-repeat;
+	content: '';
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: -39px;
+	z-index: 9
+}
+
+.event-20220103 #eventCont .cont01 .roulette_plate .roulette_inner {
+	width: 664px;
+	position: absolute;
+	left: 33px;
+	top: 33px;
+	z-index: 6;
+	margin: 0;
+}
+
+/*--- 룰렛 핀 ---*/
+.event-20220103 #eventCont .cont01 .roulette_pin {
+	width: 243px;
+	position: absolute;
+	top: 232px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	z-index: 7;
+}
+
+.event-20220103 #eventCont .cont01 .roulette_pin .my_coupon {
+	display: block;
+}
+
+.event-20220103 #eventCont .cont01 .roulette_pin .roulette_select {
+	position: absolute;
+	top: 84px;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	width: 190px;
+	height: 36px;
+	border: none;
+	padding: 0 10px 0 10px;
+	border-radius: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.event-20220103 #eventCont .cont01 .roulette_pin .roulette_select select {
+	border: none;
+	background: #fff;
+	color: #f7514d;
+	height: 36px;
+	font-size: 11px;
+	font-weight: bold;
+	letter-spacing: -1px;
+}
+
+.event-20220103 #eventCont .cont01 .roulette_pin .select-wrap:after {
+	top: 17px;
+	right: 17px;
+}
+
+
+/*--- 룰렛 스타트 버튼 ---*/
+.event-20220103 #eventCont .cont01 .roulette_start {
+	width: 216px;
+	position: absolute;
+	top: 259px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	z-index: 8;
+}
+
+.event-20220103 #eventCont .cont01 .roulette_start img {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	z-index: 8;
+}
+
+.event-20220103 #eventCont .cont01 .roulette_start img.start-xs {
+	filter: drop-shadow(15px 15px 13px rgba(0, 0, 0, 0.2))
+}
+
+.event-20220103 #eventCont .cont01 .roulette_start img.start-lg {
+	opacity: 0;
+}
+
+.event-20220103 #eventCont .cont01 .roulette_wrap {
+	position: absolute;
+	top: 755px;
+	width: 730px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 2
+}
+
+/*--- 룰렛 당첨 쿠폰 ---*/
+.event-20220103 #eventCont .cont01 .roulette_coupon_wrap {
+	width: 730px;
+	/*position: absolute;
+    top: 756px;*/
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	z-index: 9;
+	display: none;
+}
+
+.event-20220103 #eventCont .cont01 .roulette_coupon_wrap.active {
+	display: block;
+}
+
+.event-20220103 #eventCont .cont01 .roulette_coupon_button {
+	width: 102px;
+	height: 34px;
+	position: absolute;
+	top: 628px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	z-index: 10;
+}
+
+.event-20220103 #eventCont .cont01 .roulette_coupon {
+	width: 730px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	z-index: 9;
+}
+
+.event-20220103 #eventCont .cont01 .roulette_coupon img {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	z-index: 9;
+	display: none;
+}
+
+.event-20220103 #eventCont .cont01 .roulette_coupon img.active {
+	display: block;
+}
+
+.event-20220103 #eventCont .cont01 .roulette_coupon_list_wrap {
+	position: absolute;
+	top: 1590px;
+	width: 740px;
+	left: 50%;
+	z-index: 100;
+	transform: translateX(-50%)
+}
+
+.event-20220103 #eventCont .cont01 .roulette_coupon_list_wrap:after {
+	content: '';
+	width: 18px;
+	height: 12px;
+	background: url('http://cdn.mariooutlet.com/ui/event/20220103/pc_select_arrow.png') 0 0 no-repeat;
+	position: absolute;
+	z-index: 2;
+	top: 40px;
+	right: 51px
+}
+
+.event-20220103 #eventCont .cont01 .roulette_coupon_list_wrap .coupon_txt {
+	width: 100%;
+	height: 90px;
+	text-align: center;
+	font-size: 34px;
+	color: #000;
+	background: #fff;
+	border-radius: 10px
+}
+
+.event-20220103 #eventCont .cont01 .roulette_coupon_list_wrap.active .coupon_txt {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0
+}
+
+.event-20220103 #eventCont .cont01 .roulette_coupon_list_wrap .coupon_list {
+	display: none;
+	position: absolute;
+	background: #fff;
+	top: 90px;
+	left: 0;
+	right: 0;
+	z-index: 3;
+	border-top: 1px solid #e2e2e2;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	padding: 20px 57px
+}
+
+.event-20220103 #eventCont .cont01 .roulette_coupon_list_wrap .coupon_list ul {
+	box-sizing: border-box;
+	max-height: 240px;
+	overflow-y: auto
+}
+
+.event-20220103 #eventCont .cont01 .roulette_coupon_list_wrap .coupon_list ul::-webkit-scrollbar {
+	width: 4px
+}
+
+.event-20220103 #eventCont .cont01 .roulette_coupon_list_wrap .coupon_list ul::-webkit-scrollbar-thumb {
+	width: 4px;
+	background: #e5e5e5;
+	border-radius: 4px
+}
+
+.event-20220103 #eventCont .cont01 .roulette_coupon_list_wrap.active .coupon_list {
+	display: block
+}
+
+.event-20220103 #eventCont .cont01 .roulette_coupon_list_wrap .coupon_list li {
+	color: #111;
+	font-size: 21px;
+	line-height: 60px;
+	cursor: pointer
+}
+
+/*--- 룰렛 누적 참여 횟수  ---*/
+.event-20220103 #eventCont .cont01 .roulette_participant {
+	width: 740px;
+	height: 85px;
+	position: absolute;
+	top: 1708px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	z-index: 4;
+	color: #fff
+}
+
+.event-20220103 #eventCont .cont01 .roulette_participant p {
+	line-height: 85px;
+	margin: 0;
+	font-size: 34px;
+	color: #fff;
+	padding-left: 406px;
+	text-align: left
+}
+
+.event-20220103 #eventCont .cont01 .roulette_participant p span {
+	letter-spacing: 2px;
+	font-weight: bold;
+	padding-right: 10px
+}
+
+/*--- cont02 ---*/
+.event-20220103 #eventCont .cont02 {
+	background: url("http://cdn.mariooutlet.com/ui/event/20220103/pc_event_bottom.jpg") no-repeat center top;
+	height: 629px;
+	position: relative;
+}
+
+.event-20220103 #eventCont .cont02 .notice_wrap {
+	position: absolute;
+	left: 0;
+	right: 0;
+	z-index: 100;
+	top: 507px;
+	text-align: center
+}
+
+.event-20220103 #eventCont .cont02 .notice_wrap .btn_notice {
+	width: 171px;
+	height: 52px;
+	background: url('http://cdn.mariooutlet.com/ui/event/20220103/pc_notice_button.jpg') 0 0 no-repeat;
+	font-size: 0;
+}
+
+.event-20220103 #eventCont .cont02 .notice_wrap.on .btn_notice {
+	background-image: url('http://cdn.mariooutlet.com/ui/event/20220103/pc_notice_button_on.jpg')
+}
+
+.event-20220103 #eventCont .cont02 .notice_wrap .notice_list {
+	display: none;
+	position: absolute;
+	top: 50px;
+	left: 0;
+	right: 0;
+	z-index: 101;
+	background: #fff;
+	padding: 30px 0
+}
+
+.event-20220103 #eventCont .cont02 .notice_wrap.on .notice_list {
+	display: block
+}
+
+.event-20220103 #eventCont .cont02 .notice_wrap .notice_list li {
+	font-size: 16px;
+	line-height: 32px;
+	color: #1e1e1e;
+	width: 1030px;
+	margin: 0 auto;
+	text-indent: 120px;
+	text-align: left
+}
+
+/*--- cont03 ---*/
+.event-20220103 #eventCont .cont03 {
+	background: #424242;
+	color: #fff;
+	padding: 50px 0;
+	margin: 0 auto;
+	text-align: center;
+	position: relative;
+}
+
+.event-20220103 #eventCont .cont03 ul {
+	display: inline-block;
+	text-align: left;
+	width: 900px;
+	font-size: 16px;
+	line-height: 33px;
+	font-weight: bold;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+.event-20220103 #eventCont .cont03 ul li {
+	margin-left: 30px;
+}
+
+.event-20220103 #eventCont .cont03 p {
+	vertical-align: top;
+	padding: 50px 50px 0 0;
+	margin-left: 11%;
+	display: inline-block;
+}
+
+/*--- reset ---*/
+.event-20220103 input[type="button"i],
+.event-20220103 input[type="submit"i],
+.event-20220103 input[type="reset"i],
+.event-20220103 input[type="file"i]::-webkit-file-upload-button,
+button {
+	background-color: transparent;
+	border-color: transparent;
+	border: none;
+	padding: 0;
+}
+
+.event-20220103 .hid {
+	font-size: 0;
+	text-indent: -999999px;
+	display: none;
+}
+
+.event-20220103 .img-responsive {
+	width: 100%;
+	display: block;
+	vertical-align: top;
+}

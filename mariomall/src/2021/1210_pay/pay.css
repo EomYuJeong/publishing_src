@@ -1,0 +1,6 @@
+.form-pay .form-select{display:flex;justify-content:space-between}
+.form-pay .form-select .form-pay__label-text{position:absolute;left:32px;bottom:23px;z-index:3;font-size:12px;color:#ff1f00;line-height:1;font-family:'NotoM'}
+.form-pay .form-select .form-pay__label-text2{position:absolute;left:32px;bottom:23px;z-index:3;font-size:12px;color:#1677cb;line-height:1;font-family:'NotoM'}
+.form-pay .form-select .txt_percent{font-family:Montserrat;font-weight:600}
+
+
